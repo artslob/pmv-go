@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./parser"
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/artslob/pmv/parser"
 	"strings"
 )
 
