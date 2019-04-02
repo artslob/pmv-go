@@ -6,11 +6,15 @@ import (
 	"github.com/artslob/pmv/parser"
 )
 
-func parseToStringAst(input string) string {
+func getParser(input string) *parser.LangParser {
 	is := antlr.NewInputStream(input)
 	lexer := parser.NewLangLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-	p := parser.NewLangParser(stream)
+	return parser.NewLangParser(stream)
+}
+
+func parseToStringAst(input string) string {
+	p := getParser(input)
 	listener := newTreePrintListener(p.GetRuleNames())
 	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
 	return listener.String()
