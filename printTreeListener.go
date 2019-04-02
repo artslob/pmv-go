@@ -62,7 +62,7 @@ func (s *treePrintListener) VisitTerminal(node antlr.TerminalNode) {
 		return
 	}
 	if token := node.GetSymbol(); token != nil {
-		s.print(fmt.Sprintf("  [line %d, offset: %d]\n", token.GetLine(), token.GetColumn()))
+		s.println(fmt.Sprintf("  [line %d, offset: %d]", token.GetLine(), token.GetColumn()))
 	}
 }
 
