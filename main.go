@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/artslob/pmv/parser"
+	"github.com/artslob/pmv-go/parser"
 )
 
 func getParser(input string) *parser.LangParser {
