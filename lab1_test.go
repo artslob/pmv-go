@@ -1,11 +1,14 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
 )
+
+var update = flag.Bool("update", false, "update .golden files")
 
 func TestTreePrintListener(t *testing.T) {
 	var tables = []string{
@@ -42,6 +45,12 @@ func TestTreePrintListener(t *testing.T) {
 	for i, input := range tables {
 		parsed := parseAstToString(input)
 		file := filepath.Join("testdata", "print-tree", fmt.Sprintf("%d.txt", i+1))
+		if *update {
+			t.Logf("update golden file %s", file)
+			if err := ioutil.WriteFile(file, []byte(parsed), 0644); err != nil {
+				t.Fatalf("failed to update golden file: %s", err)
+			}
+		}
 		content, err := ioutil.ReadFile(file)
 		if err != nil {
 			t.Fatalf("failed reading file: %s", file)
