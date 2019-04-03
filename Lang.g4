@@ -8,7 +8,7 @@ EMPTY               : (' ' | '\t' | '\n' | '\r')+ -> skip;
 
 IDENTIFIER          : (LOWERCASE | UPPERCASE | '_') (LOWERCASE | UPPERCASE | '_' | DIGIT)* ;
 STR                 : '"' [^"\\]* (.[^"\\]*)* '"';
-CHAR                : '\'' [^'] '\'' ;
+CHAR                : '\'' ~('\'') '\'' ;
 HEX                 : '0'[xX][0-9A-Fa-f]+ ;
 BITS                : '0'[bB][01]+ ;
 DEC                 : DIGIT+ ;

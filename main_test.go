@@ -199,13 +199,109 @@ func TestTreePrintListener(t *testing.T) {
   <EOF>
 `,
 		},
+		{
+			`
+			def q() of void
+				_a = a_b_1;
+				a = ident;
+				a = "str with \n escapes \t";
+				a = 'a';
+				a = 0x1FA0;
+				a = 0b0110;
+				a = 010;
+				a = true & false;
+			end
+			`,
+			`source
+  sourceItem
+	funcDef
+	  def
+	  funcSignature
+		q  [line 2, offset: 7]
+		(
+		)
+		of
+		typeRef
+		  void  [line 2, offset: 14]
+	  statement
+		expr
+		  expr
+			_a  [line 3, offset: 4]
+		  =  [line 3, offset: 7]
+		  expr
+			a_b_1  [line 3, offset: 9]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 4, offset: 4]
+		  =  [line 4, offset: 6]
+		  expr
+			ident  [line 4, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 5, offset: 4]
+		  =  [line 5, offset: 6]
+		  expr
+			"str with \n escapes \t"  [line 5, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 6, offset: 4]
+		  =  [line 6, offset: 6]
+		  expr
+			'a'  [line 6, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 7, offset: 4]
+		  =  [line 7, offset: 6]
+		  expr
+			0x1FA0  [line 7, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 8, offset: 4]
+		  =  [line 8, offset: 6]
+		  expr
+			0b0110  [line 8, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			a  [line 9, offset: 4]
+		  =  [line 9, offset: 6]
+		  expr
+			010  [line 9, offset: 8]
+		;
+	  statement
+		expr
+		  expr
+			expr
+			  a  [line 10, offset: 4]
+			=  [line 10, offset: 6]
+			expr
+			  true  [line 10, offset: 8]
+		  &  [line 10, offset: 13]
+		  expr
+			false  [line 10, offset: 15]
+		;
+	  end
+  <EOF>
+`,
+		},
 	}
 	for _, testCase := range tables {
 		parsed := parseToStringAst(testCase.input)
 		expected := strings.ReplaceAll(testCase.expected, "\t", "    ")
 		if parsed != expected {
 			t.Logf("%q\n", expected)
-			t.Logf("%q\n", parsed)
+			t.Logf("%s\n", parsed)
 			t.Error("parsed input not equal to expected")
 		}
 	}
