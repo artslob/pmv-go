@@ -1,18 +1,14 @@
 grammar Lang;
 
-fragment LOWERCASE  : [a-z] ;
-fragment UPPERCASE  : [A-Z] ;
-fragment DIGIT      : [0-9] ;
+EMPTY       : (' ' | '\t' | '\n' | '\r')+ -> skip;
 
-EMPTY               : (' ' | '\t' | '\n' | '\r')+ -> skip;
-
-IDENTIFIER          : (LOWERCASE | UPPERCASE | '_') (LOWERCASE | UPPERCASE | '_' | DIGIT)* ;
-STR                 : '"' [^"\\]* (.[^"\\]*)* '"';
-CHAR                : '\'' ~('\'') '\'' ;
-HEX                 : '0'[xX][0-9A-Fa-f]+ ;
-BITS                : '0'[bB][01]+ ;
-DEC                 : DIGIT+ ;
-BOOL                : 'true' | 'false' ;
+IDENTIFIER  : [a-zA-Z_]([a-zA-Z_0-9])* ;
+STR         : '"' [^"\\]* (.[^"\\]*)* '"' ;
+CHAR        : '\'' ~('\'') '\'' ;
+HEX         : '0'[xX][0-9A-Fa-f]+ ;
+BITS        : '0'[bB][01]+ ;
+DEC         : [0-9]+ ;
+BOOL        : 'true' | 'false' ;
 
 source : sourceItem* EOF;
 
