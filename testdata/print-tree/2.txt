@@ -1,0 +1,128 @@
+source
+  sourceItem
+    funcDef
+      def
+      funcSignature
+        f  [line 2, offset: 6]
+        (
+        arg
+          first  [line 2, offset: 8]
+          of
+          typeRef
+            built
+              int
+        ,
+        arg
+          arr  [line 2, offset: 22]
+          of
+          typeRef
+            typeRef
+              File  [line 2, offset: 29]
+            array
+            [
+            5  [line 2, offset: 41]
+            ]
+        )
+        of
+        typeRef
+          built
+            string
+      statement
+        if
+        expr
+          expr
+            a  [line 3, offset: 6]
+          <  [line 3, offset: 8]
+          expr
+            3  [line 3, offset: 10]
+        then
+        statement
+          {
+          statement
+            expr
+              expr
+                expr
+                  expr
+                    expr
+                      expr
+                        expr
+                          a  [line 4, offset: 4]
+                        +=  [line 4, offset: 6]
+                        expr
+                          3  [line 4, offset: 9]
+                      *  [line 4, offset: 11]
+                      expr
+                        arr  [line 4, offset: 13]
+                    [
+                    ranges
+                      expr
+                        0  [line 4, offset: 17]
+                      ..
+                      expr
+                        2  [line 4, offset: 20]
+                    ,
+                    ranges
+                      expr
+                        4  [line 4, offset: 23]
+                    ]
+                  +  [line 4, offset: 26]
+                  expr
+                    ~  [line 4, offset: 28]
+                    expr
+                      default  [line 4, offset: 29]
+                (
+                )
+              &  [line 4, offset: 39]
+              expr
+                0x0F  [line 4, offset: 41]
+            ;
+          }
+        else
+        statement
+          {
+          statement
+            while
+            expr
+              expr
+                a  [line 6, offset: 10]
+              >  [line 6, offset: 12]
+              expr
+                0  [line 6, offset: 14]
+            statement
+              {
+              statement
+                expr
+                  expr
+                    expr
+                      expr
+                        a  [line 7, offset: 5]
+                      =  [line 7, offset: 7]
+                      expr
+                        a  [line 7, offset: 9]
+                    -  [line 7, offset: 11]
+                    expr
+                      !  [line 7, offset: 13]
+                      expr
+                        b  [line 7, offset: 15]
+                  (
+                  )
+                ;
+              statement
+                if
+                expr
+                  expr
+                    q  [line 8, offset: 8]
+                  ==  [line 8, offset: 10]
+                  expr
+                    3  [line 8, offset: 13]
+                then
+                statement
+                  break
+                  ;
+                end
+              }
+            end
+          }
+        end
+      end
+  <EOF>

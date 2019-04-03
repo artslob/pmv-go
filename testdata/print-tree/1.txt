@@ -1,0 +1,40 @@
+source
+  sourceItem
+    funcDef
+      def
+      funcSignature
+        testing  [line 2, offset: 6]
+        (
+        )
+        of
+        typeRef
+          built
+            bool
+      end
+  sourceItem
+    funcDef
+      def
+      funcSignature
+        func  [line 4, offset: 6]
+        (
+        arg
+          first  [line 4, offset: 11]
+          of
+          typeRef
+            built
+              byte
+        ,
+        arg
+          second  [line 4, offset: 26]
+        )
+        of
+        typeRef
+          typeRef
+            built
+              bool
+          array
+          [
+          10  [line 4, offset: 48]
+          ]
+      end
+  <EOF>
