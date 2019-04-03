@@ -297,7 +297,7 @@ func TestTreePrintListener(t *testing.T) {
 		},
 	}
 	for _, testCase := range tables {
-		parsed := parseToStringAst(testCase.input)
+		parsed := parseAstToString(testCase.input)
 		expected := strings.ReplaceAll(testCase.expected, "\t", "    ")
 		if parsed != expected {
 			t.Logf("%q\n", expected)

@@ -17,7 +17,7 @@ func getParser(input string) *parser.LangParser {
 	return parser.NewLangParser(stream)
 }
 
-func parseToStringAst(input string) string {
+func parseAstToString(input string) string {
 	p := getParser(input)
 	listener := newTreePrintListener(p.GetRuleNames())
 	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
@@ -39,7 +39,7 @@ func lab1() {
 	data, err := ioutil.ReadFile(*inputFilename)
 	checkError(err)
 	input := string(data)
-	output := parseToStringAst(input)
+	output := parseAstToString(input)
 	if *outputFilename == "" {
 		fmt.Print(output)
 	} else {
@@ -54,5 +54,5 @@ func main() {
 			if a < 3 then a = 3; end
 		end
 	`
-	fmt.Print(parseToStringAst(input))
+	fmt.Print(parseAstToString(input))
 }
