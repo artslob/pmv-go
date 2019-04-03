@@ -22,9 +22,9 @@ func parseToStringAst(input string) string {
 
 func main() {
 	input := `
-		def testing() of bool end
-
-		def func(first of byte, second) of bool array[10] end
+		def func(first of byte, second of File) of bool array[10]
+			if a < 3 then a = 3; end
+		end
 	`
 	fmt.Print(parseToStringAst(input))
 }
