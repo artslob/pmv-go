@@ -25,7 +25,7 @@ func printCFG(head *Block, builder *strings.Builder) {
 		printCFG(head.next, builder)
 	}
 	if head.branch != nil {
-		builder.WriteString(fmt.Sprintf("%d->%d\n", head.id, head.branch.id))
+		builder.WriteString(fmt.Sprintf("%d->%d [style=dotted]\n", head.id, head.branch.id))
 		printCFG(head.branch, builder)
 	}
 }
@@ -42,14 +42,16 @@ type Block struct {
 	id           int
 	text         string
 	blkType      BlockType
+	level        int
 }
 
 type CFGListener struct {
 	*parser.BaseLangListener
-	head      *Block
-	block     *Block
-	currentId int
-	blocks    []*Block
+	head         *Block
+	block        *Block
+	currentId    int
+	currentLevel int
+	blocks       []*Block
 }
 
 func newCFGListener() *CFGListener {
@@ -68,6 +70,10 @@ func (s *CFGListener) popBlock() *Block {
 	res := s.blocks[len(s.blocks)-1]
 	s.blocks = s.blocks[:len(s.blocks)-1]
 	return res
+}
+
+func (s *CFGListener) removeBlock(i int) {
+	s.blocks = append(s.blocks[:i], s.blocks[i+1:]...)
 }
 
 func (s *CFGListener) lastBlock() *Block {
@@ -91,7 +97,7 @@ func (s *CFGListener) currentBlock(block *Block) {
 func (s *CFGListener) EnterIfExpr(ctx *parser.IfExprContext) {
 	s.increaseId()
 	text := ctx.Expr().GetText()
-	block := &Block{id: s.currentId, text: text}
+	block := &Block{id: s.currentId, text: text, level: s.currentLevel, blkType: IF_EXPR}
 	if s.lastBlock() != nil {
 		s.lastBlock().next = block
 		s.pushBlock(block)
@@ -100,9 +106,17 @@ func (s *CFGListener) EnterIfExpr(ctx *parser.IfExprContext) {
 	s.currentBlock(block)
 }
 
+func (s *CFGListener) EnterIfThen(ctx *parser.IfThenContext) {
+	s.currentLevel++
+}
+
+func (s *CFGListener) ExitIfThen(ctx *parser.IfThenContext) {
+	s.currentLevel--
+}
+
 func (s *CFGListener) EnterExpression(ctx *parser.ExpressionContext) {
 	s.increaseId()
-	block := &Block{id: s.currentId, text: ctx.GetText()}
+	block := &Block{id: s.currentId, text: ctx.GetText(), level: s.currentLevel}
 	fmt.Print("expr ", s.currentId, " ")
 	fmt.Println(ctx.GetText())
 	s.currentBlock(block)
@@ -110,10 +124,16 @@ func (s *CFGListener) EnterExpression(ctx *parser.ExpressionContext) {
 		s.pushBlock(block)
 		return
 	}
-	for !s.emptyBlocks() {
-		lastBlock := s.popBlock()
+	for i := len(s.blocks) - 1; i >= 0; i-- {
+		lastBlock := s.blocks[i]
+		if lastBlock.level == s.currentLevel {
+			s.removeBlock(i)
+		}
 		if lastBlock.next == nil {
 			lastBlock.next = block
+		}
+		if lastBlock.blkType == IF_EXPR && lastBlock.branch == nil && lastBlock.level == s.currentLevel {
+			lastBlock.branch = block
 		}
 	}
 	s.pushBlock(block)

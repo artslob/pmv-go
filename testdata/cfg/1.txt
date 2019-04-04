@@ -8,4 +8,6 @@ digraph G {
 4[label="t+=2;"]
 4->5
 5[label="print(t);"]
+3->5 [style=dotted]
+5[label="print(t);"]
 }
