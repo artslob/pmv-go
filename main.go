@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 func getParser(input string) *parser.LangParser {
@@ -50,9 +51,19 @@ func lab1() {
 
 func main() {
 	input := `
-		def func(first of byte, second of File) of bool array[10]
-			if a < 3 then a = 3; end
+		def func()
+			t = 1;
+			c = 3;
+			if t < 2 then
+				t += 2;
+			end
+			print(t);
 		end
 	`
-	fmt.Print(parseAstToString(input))
+	//fmt.Print(parseAstToString(input))
+	head := parseInputToCFG(input)
+	var builder strings.Builder
+	printCFG(head, &builder)
+	fmt.Println("\n ")
+	fmt.Print(builder.String())
 }
