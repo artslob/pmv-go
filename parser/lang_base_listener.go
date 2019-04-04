@@ -75,17 +75,11 @@ func (s *BaseLangListener) EnterBuilt(ctx *BuiltContext) {}
 // ExitBuilt is called when production built is exited.
 func (s *BaseLangListener) ExitBuilt(ctx *BuiltContext) {}
 
-// EnterExpression is called when production expression is entered.
-func (s *BaseLangListener) EnterExpression(ctx *ExpressionContext) {}
+// EnterIf is called when production if is entered.
+func (s *BaseLangListener) EnterIf(ctx *IfContext) {}
 
-// ExitExpression is called when production expression is exited.
-func (s *BaseLangListener) ExitExpression(ctx *ExpressionContext) {}
-
-// EnterBreak is called when production break is entered.
-func (s *BaseLangListener) EnterBreak(ctx *BreakContext) {}
-
-// ExitBreak is called when production break is exited.
-func (s *BaseLangListener) ExitBreak(ctx *BreakContext) {}
+// ExitIf is called when production if is exited.
+func (s *BaseLangListener) ExitIf(ctx *IfContext) {}
 
 // EnterLoop is called when production loop is entered.
 func (s *BaseLangListener) EnterLoop(ctx *LoopContext) {}
@@ -99,17 +93,71 @@ func (s *BaseLangListener) EnterRepeat(ctx *RepeatContext) {}
 // ExitRepeat is called when production repeat is exited.
 func (s *BaseLangListener) ExitRepeat(ctx *RepeatContext) {}
 
+// EnterBreak is called when production break is entered.
+func (s *BaseLangListener) EnterBreak(ctx *BreakContext) {}
+
+// ExitBreak is called when production break is exited.
+func (s *BaseLangListener) ExitBreak(ctx *BreakContext) {}
+
+// EnterExpression is called when production expression is entered.
+func (s *BaseLangListener) EnterExpression(ctx *ExpressionContext) {}
+
+// ExitExpression is called when production expression is exited.
+func (s *BaseLangListener) ExitExpression(ctx *ExpressionContext) {}
+
 // EnterBlock is called when production block is entered.
 func (s *BaseLangListener) EnterBlock(ctx *BlockContext) {}
 
 // ExitBlock is called when production block is exited.
 func (s *BaseLangListener) ExitBlock(ctx *BlockContext) {}
 
-// EnterIf is called when production if is entered.
-func (s *BaseLangListener) EnterIf(ctx *IfContext) {}
+// EnterIfExpr is called when production ifExpr is entered.
+func (s *BaseLangListener) EnterIfExpr(ctx *IfExprContext) {}
 
-// ExitIf is called when production if is exited.
-func (s *BaseLangListener) ExitIf(ctx *IfContext) {}
+// ExitIfExpr is called when production ifExpr is exited.
+func (s *BaseLangListener) ExitIfExpr(ctx *IfExprContext) {}
+
+// EnterIfThen is called when production ifThen is entered.
+func (s *BaseLangListener) EnterIfThen(ctx *IfThenContext) {}
+
+// ExitIfThen is called when production ifThen is exited.
+func (s *BaseLangListener) ExitIfThen(ctx *IfThenContext) {}
+
+// EnterIfElse is called when production ifElse is entered.
+func (s *BaseLangListener) EnterIfElse(ctx *IfElseContext) {}
+
+// ExitIfElse is called when production ifElse is exited.
+func (s *BaseLangListener) ExitIfElse(ctx *IfElseContext) {}
+
+// EnterWhileExpr is called when production whileExpr is entered.
+func (s *BaseLangListener) EnterWhileExpr(ctx *WhileExprContext) {}
+
+// ExitWhileExpr is called when production whileExpr is exited.
+func (s *BaseLangListener) ExitWhileExpr(ctx *WhileExprContext) {}
+
+// EnterWhileBody is called when production whileBody is entered.
+func (s *BaseLangListener) EnterWhileBody(ctx *WhileBodyContext) {}
+
+// ExitWhileBody is called when production whileBody is exited.
+func (s *BaseLangListener) ExitWhileBody(ctx *WhileBodyContext) {}
+
+// EnterUntilStatement is called when production untilStatement is entered.
+func (s *BaseLangListener) EnterUntilStatement(ctx *UntilStatementContext) {}
+
+// ExitUntilStatement is called when production untilStatement is exited.
+func (s *BaseLangListener) ExitUntilStatement(ctx *UntilStatementContext) {}
+
+// EnterUntilExpr is called when production untilExpr is entered.
+func (s *BaseLangListener) EnterUntilExpr(ctx *UntilExprContext) {}
+
+// ExitUntilExpr is called when production untilExpr is exited.
+func (s *BaseLangListener) ExitUntilExpr(ctx *UntilExprContext) {}
+
+// EnterBlockBody is called when production blockBody is entered.
+func (s *BaseLangListener) EnterBlockBody(ctx *BlockBodyContext) {}
+
+// ExitBlockBody is called when production blockBody is exited.
+func (s *BaseLangListener) ExitBlockBody(ctx *BlockBodyContext) {}
 
 // EnterCall is called when production call is entered.
 func (s *BaseLangListener) EnterCall(ctx *CallContext) {}

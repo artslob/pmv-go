@@ -31,13 +31,25 @@ built: 'bool'|'byte'|'int'|'uint'|'long'|'ulong'|'char'|'string';
 
 /******** STATEMENT ********/
 
-statement: 'if' expr 'then' statement ('else' statement)? 'end'  # if
-         | ('while'|'until') expr statement* 'end'               # loop
-         | statement ('while'|'until') expr ';'                  # repeat
-         | 'break' ';'                                           # break
-         | expr ';'                                              # expression
-         | ('begin'|'{') statement* ('end'|'}')                  # block
+statement: ifExpr ifThen ifElse? 'end'          # if
+         | whileExpr whileBody 'end'            # loop
+         | untilStatement untilExpr ';'         # repeat
+         | 'break' ';'                          # break
+         | expr ';'                             # expression
+         | ('begin'|'{') blockBody ('end'|'}')  # block
          ;
+
+ifExpr: 'if' expr ;
+ifThen: 'then' statement ;
+ifElse: 'else' statement ;
+
+whileExpr: ('while'|'until') expr ;
+whileBody: statement* ;
+
+untilStatement: 'do' statement ;
+untilExpr: ('while'|'until') expr ;
+
+blockBody: statement* ;
 
 /******** EXPR ********/
 

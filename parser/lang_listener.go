@@ -35,11 +35,8 @@ type LangListener interface {
 	// EnterBuilt is called when entering the built production.
 	EnterBuilt(c *BuiltContext)
 
-	// EnterExpression is called when entering the expression production.
-	EnterExpression(c *ExpressionContext)
-
-	// EnterBreak is called when entering the break production.
-	EnterBreak(c *BreakContext)
+	// EnterIf is called when entering the if production.
+	EnterIf(c *IfContext)
 
 	// EnterLoop is called when entering the loop production.
 	EnterLoop(c *LoopContext)
@@ -47,11 +44,38 @@ type LangListener interface {
 	// EnterRepeat is called when entering the repeat production.
 	EnterRepeat(c *RepeatContext)
 
+	// EnterBreak is called when entering the break production.
+	EnterBreak(c *BreakContext)
+
+	// EnterExpression is called when entering the expression production.
+	EnterExpression(c *ExpressionContext)
+
 	// EnterBlock is called when entering the block production.
 	EnterBlock(c *BlockContext)
 
-	// EnterIf is called when entering the if production.
-	EnterIf(c *IfContext)
+	// EnterIfExpr is called when entering the ifExpr production.
+	EnterIfExpr(c *IfExprContext)
+
+	// EnterIfThen is called when entering the ifThen production.
+	EnterIfThen(c *IfThenContext)
+
+	// EnterIfElse is called when entering the ifElse production.
+	EnterIfElse(c *IfElseContext)
+
+	// EnterWhileExpr is called when entering the whileExpr production.
+	EnterWhileExpr(c *WhileExprContext)
+
+	// EnterWhileBody is called when entering the whileBody production.
+	EnterWhileBody(c *WhileBodyContext)
+
+	// EnterUntilStatement is called when entering the untilStatement production.
+	EnterUntilStatement(c *UntilStatementContext)
+
+	// EnterUntilExpr is called when entering the untilExpr production.
+	EnterUntilExpr(c *UntilExprContext)
+
+	// EnterBlockBody is called when entering the blockBody production.
+	EnterBlockBody(c *BlockBodyContext)
 
 	// EnterCall is called when entering the call production.
 	EnterCall(c *CallContext)
@@ -104,11 +128,8 @@ type LangListener interface {
 	// ExitBuilt is called when exiting the built production.
 	ExitBuilt(c *BuiltContext)
 
-	// ExitExpression is called when exiting the expression production.
-	ExitExpression(c *ExpressionContext)
-
-	// ExitBreak is called when exiting the break production.
-	ExitBreak(c *BreakContext)
+	// ExitIf is called when exiting the if production.
+	ExitIf(c *IfContext)
 
 	// ExitLoop is called when exiting the loop production.
 	ExitLoop(c *LoopContext)
@@ -116,11 +137,38 @@ type LangListener interface {
 	// ExitRepeat is called when exiting the repeat production.
 	ExitRepeat(c *RepeatContext)
 
+	// ExitBreak is called when exiting the break production.
+	ExitBreak(c *BreakContext)
+
+	// ExitExpression is called when exiting the expression production.
+	ExitExpression(c *ExpressionContext)
+
 	// ExitBlock is called when exiting the block production.
 	ExitBlock(c *BlockContext)
 
-	// ExitIf is called when exiting the if production.
-	ExitIf(c *IfContext)
+	// ExitIfExpr is called when exiting the ifExpr production.
+	ExitIfExpr(c *IfExprContext)
+
+	// ExitIfThen is called when exiting the ifThen production.
+	ExitIfThen(c *IfThenContext)
+
+	// ExitIfElse is called when exiting the ifElse production.
+	ExitIfElse(c *IfElseContext)
+
+	// ExitWhileExpr is called when exiting the whileExpr production.
+	ExitWhileExpr(c *WhileExprContext)
+
+	// ExitWhileBody is called when exiting the whileBody production.
+	ExitWhileBody(c *WhileBodyContext)
+
+	// ExitUntilStatement is called when exiting the untilStatement production.
+	ExitUntilStatement(c *UntilStatementContext)
+
+	// ExitUntilExpr is called when exiting the untilExpr production.
+	ExitUntilExpr(c *UntilExprContext)
+
+	// ExitBlockBody is called when exiting the blockBody production.
+	ExitBlockBody(c *BlockBodyContext)
 
 	// ExitCall is called when exiting the call production.
 	ExitCall(c *CallContext)

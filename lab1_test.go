@@ -27,8 +27,8 @@ func TestTreePrintListener(t *testing.T) {
 					if q == 3 then break; end
 				} end
 			} end
-			a += 1; until a < 10;
-			{
+			do a += 1; until a < 10;
+			do {
 				a += 5;
 				if a > 100 then break; end
 				a ^= xor;
@@ -52,7 +52,7 @@ func TestTreePrintListener(t *testing.T) {
 			while a < 1 end
 			{}
 			begin end
-			begin end until a > 3;
+			do begin end until a > 3;
 		end
 		`,
 	}
