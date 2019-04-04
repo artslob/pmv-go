@@ -16,6 +16,8 @@ sourceItem: funcDef;
 
 funcDef: 'def' funcSignature statement* 'end';
 
+/******** FUNC SIGNATURE ********/
+
 funcSignature: IDENTIFIER '(' (arg (',' arg)*)? ')' ('of' typeRef)?;
 
 arg: IDENTIFIER ('of' typeRef)?;
@@ -27,6 +29,8 @@ typeRef: built                        # builtin
 
 built: 'bool'|'byte'|'int'|'uint'|'long'|'ulong'|'char'|'string';
 
+/******** STATEMENT ********/
+
 statement: 'if' expr 'then' statement ('else' statement)? 'end'  # if
          | ('while'|'until') expr statement* 'end'               # loop
          | statement ('while'|'until') expr ';'                  # repeat
@@ -34,6 +38,8 @@ statement: 'if' expr 'then' statement ('else' statement)? 'end'  # if
          | expr ';'                                              # expression
          | ('begin'|'{') statement* ('end'|'}')                  # block
          ;
+
+/******** EXPR ********/
 
 expr: expr BIN_OP expr                      # binary
     | UN_OP expr                            # unary
