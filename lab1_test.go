@@ -47,6 +47,14 @@ func TestTreePrintListener(t *testing.T) {
 			a = true & false;
 		end
 		`,
+		`
+		def q() of void
+			while a < 1 end
+			{}
+			begin end
+			begin end until a > 3;
+		end
+		`,
 	}
 	for i, input := range tables {
 		parsed := parseAstToString(input)
