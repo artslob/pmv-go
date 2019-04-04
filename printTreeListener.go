@@ -65,7 +65,3 @@ func (s *treePrintListener) VisitTerminal(node antlr.TerminalNode) {
 		s.println(fmt.Sprintf("  [line %d, offset: %d]", token.GetLine(), token.GetColumn()))
 	}
 }
-
-func (s *treePrintListener) ExitTerminal(node antlr.TerminalNode) {
-	s.level--
-}
