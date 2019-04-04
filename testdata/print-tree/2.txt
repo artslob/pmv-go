@@ -124,5 +124,66 @@ source
             end
           }
         end
+      statement
+        statement
+          expr
+            expr
+              a  [line 11, offset: 3]
+            +=  [line 11, offset: 5]
+            expr
+              1  [line 11, offset: 8]
+          ;
+        until
+        expr
+          expr
+            a  [line 11, offset: 17]
+          <  [line 11, offset: 19]
+          expr
+            10  [line 11, offset: 21]
+        ;
+      statement
+        statement
+          {
+          statement
+            expr
+              expr
+                a  [line 13, offset: 4]
+              +=  [line 13, offset: 6]
+              expr
+                5  [line 13, offset: 9]
+            ;
+          statement
+            if
+            expr
+              expr
+                a  [line 14, offset: 7]
+              >  [line 14, offset: 9]
+              expr
+                100  [line 14, offset: 11]
+            then
+            statement
+              break
+              ;
+            end
+          statement
+            expr
+              expr
+                a  [line 15, offset: 4]
+              ^=  [line 15, offset: 6]
+              expr
+                xor  [line 15, offset: 9]
+            ;
+          }
+        until
+        expr
+          expr
+            expr
+              call  [line 16, offset: 11]
+            (
+            )
+          ==  [line 16, offset: 18]
+          expr
+            0  [line 16, offset: 21]
+        ;
       end
   <EOF>
