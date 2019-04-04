@@ -26,7 +26,7 @@ func printCFG(head *Block, builder *strings.Builder) {
 	}
 	if head.branch != nil {
 		builder.WriteString(fmt.Sprintf("%d->%d\n", head.id, head.branch.id))
-		printCFG(head.next, builder)
+		printCFG(head.branch, builder)
 	}
 }
 
