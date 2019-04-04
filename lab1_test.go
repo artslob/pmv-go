@@ -71,9 +71,9 @@ func TestTreePrintListener(t *testing.T) {
 		}
 		expected := string(content)
 		if parsed != expected {
+			t.Errorf("parsed input not equal to expected in test %d", i+1)
 			t.Logf("%q\n", expected)
 			t.Logf("%q\n", parsed)
-			t.Error("parsed input not equal to expected")
 		}
 	}
 }
