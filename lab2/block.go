@@ -11,10 +11,11 @@ const (
 )
 
 type Block struct {
-	id    int
-	text  string
-	next  *Block
-	class BlockClass
+	id     int
+	text   string
+	next   *Block
+	branch *Block
+	class  BlockClass
 }
 
 func (b *Block) String() string {
