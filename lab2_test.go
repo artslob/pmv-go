@@ -11,14 +11,17 @@ import (
 
 func TestCfgListener(t *testing.T) {
 	var tables = []string{
+		`def func() end`,
 		`
 		def func()
 			t = 1;
-			c = 3;
-			if t < 2 then
-				t += 2;
-			end
-			print(t);
+		end
+		`,
+		`
+		def func()
+			t = 1;
+			a = 3;
+			c = a + t;
 		end
 		`,
 	}

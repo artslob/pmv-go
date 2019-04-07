@@ -1,0 +1,11 @@
+digraph G {
+-1 [label="START"]
+-1 ->  1
+ 1 [label="t=1;"]
+ 1 ->  2
+ 2 [label="a=3;"]
+ 2 ->  3
+ 3 [label="c=a+t;"]
+ 3 -> -2
+-2 [label="END"]
+}
