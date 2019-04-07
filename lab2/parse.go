@@ -19,9 +19,9 @@ func PrintCFG(block *Block, builder *strings.Builder) {
 		builder.WriteString("digraph G {\n")
 		defer func() { builder.WriteString("}\n") }()
 	}
-	builder.WriteString(fmt.Sprintf("%d[label=\"%s\"]\n", block.id, block.text))
+	builder.WriteString(block.String())
 	if block.next != nil {
-		builder.WriteString(fmt.Sprintf("%d->%d\n", block.id, block.next.id))
+		builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.id, block.next.id))
 		PrintCFG(block.next, builder)
 	}
 	//if block.branch != nil {
