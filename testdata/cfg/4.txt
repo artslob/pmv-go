@@ -1,0 +1,17 @@
+digraph G {
+-1 [label="START"]
+-1 ->  1
+ 1 [label="t=1;"]
+ 1 ->  2
+ 2 [label="a==1"]
+ 2 ->  3
+ 3 [label="a=2;"]
+ 3 ->  4
+ 4 [label="c=3;"]
+ 4 -> -2
+-2 [label="END"]
+ 2 ->  4 [style=dotted]
+ 4 [label="c=3;"]
+ 4 -> -2
+-2 [label="END"]
+}

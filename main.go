@@ -39,6 +39,7 @@ func main() {
 	input := `
 		def func()
 			t = 1;
+			if a == 1 then a = 2; end
 			c = 3;
 		end
 	`

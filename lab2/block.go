@@ -8,6 +8,7 @@ const (
 	DEFAULT BlockClass = iota
 	START
 	END
+	IF
 )
 
 type Block struct {
@@ -16,6 +17,7 @@ type Block struct {
 	next   *Block
 	branch *Block
 	class  BlockClass
+	level  int
 }
 
 func (b *Block) String() string {
@@ -38,6 +40,9 @@ func (s *BlockStack) Push(b *Block) {
 }
 
 func (s *BlockStack) Pop() *Block {
+	if len(*s) == 0 {
+		panic("empty stack")
+	}
 	res := (*s)[len(*s)-1]
 	*s = (*s)[:len(*s)-1]
 	return res
