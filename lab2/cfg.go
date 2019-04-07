@@ -7,7 +7,6 @@ import (
 type CFGListener struct {
 	*parser.BaseLangListener
 	currentId    int
-	level        int
 	currentBlock *Block
 	start        *Block
 	end          *Block
@@ -27,8 +26,8 @@ func (s *CFGListener) nextId() int {
 }
 
 func (s *CFGListener) EnterExpression(ctx *parser.ExpressionContext) {
-	block := &Block{id: s.nextId(), text: ctx.GetText(), level: s.level}
-	if s.currentBlock.level == block.level && s.currentBlock.next == nil {
+	block := &Block{id: s.nextId(), text: ctx.GetText()}
+	if s.currentBlock.next == nil {
 		s.currentBlock.next = block
 	}
 	s.currentBlock = block

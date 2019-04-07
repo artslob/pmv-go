@@ -14,7 +14,6 @@ type Block struct {
 	id    int
 	text  string
 	next  *Block
-	level int
 	class BlockClass
 }
 
