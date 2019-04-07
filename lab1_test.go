@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/artslob/pmv-go/lab1"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
@@ -57,7 +58,7 @@ func TestTreePrintListener(t *testing.T) {
 		`,
 	}
 	for i, input := range tables {
-		parsed := parseAstToString(input)
+		parsed := lab1.ParseAstToString(input)
 		file := filepath.Join("testdata", "print-tree", fmt.Sprintf("%d.txt", i+1))
 		if *update {
 			t.Logf("update golden file %s", file)

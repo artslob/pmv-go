@@ -3,27 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/artslob/pmv-go/parser"
+	"github.com/artslob/pmv-go/lab1"
 	"io/ioutil"
 	"log"
 	"os"
 	"strings"
 )
-
-func getParser(input string) *parser.LangParser {
-	is := antlr.NewInputStream(input)
-	lexer := parser.NewLangLexer(is)
-	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-	return parser.NewLangParser(stream)
-}
-
-func parseAstToString(input string) string {
-	p := getParser(input)
-	listener := newTreePrintListener(p.GetRuleNames())
-	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
-	return listener.String()
-}
 
 func checkError(e error) {
 	if e != nil {
@@ -32,7 +17,7 @@ func checkError(e error) {
 	}
 }
 
-func lab1() {
+func lab1_main() {
 	CommandLine := flag.NewFlagSet("lab1", flag.ExitOnError)
 	inputFilename := CommandLine.String("i", "input.txt", "Input file with text of a program to parse.")
 	outputFilename := CommandLine.String("o", "", "Output file where parsed tree will be written. Default - stdout.")
@@ -40,7 +25,7 @@ func lab1() {
 	data, err := ioutil.ReadFile(*inputFilename)
 	checkError(err)
 	input := string(data)
-	output := parseAstToString(input)
+	output := lab1.ParseAstToString(input)
 	if *outputFilename == "" {
 		fmt.Print(output)
 	} else {
