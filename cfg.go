@@ -102,7 +102,7 @@ func (s *CFGListener) EnterIfExpr(ctx *parser.IfExprContext) {
 		s.lastBlock().next = block
 		s.pushBlock(block)
 	}
-	fmt.Println(text)
+	//fmt.Println(text)
 	s.currentBlock(block)
 }
 
@@ -117,8 +117,8 @@ func (s *CFGListener) ExitIfThen(ctx *parser.IfThenContext) {
 func (s *CFGListener) EnterExpression(ctx *parser.ExpressionContext) {
 	s.increaseId()
 	block := &Block{id: s.currentId, text: ctx.GetText(), level: s.currentLevel}
-	fmt.Print("expr ", s.currentId, " ")
-	fmt.Println(ctx.GetText())
+	//fmt.Print("expr ", s.currentId, " ")
+	//fmt.Println(ctx.GetText())
 	s.currentBlock(block)
 	if s.lastBlock() == nil {
 		s.pushBlock(block)
