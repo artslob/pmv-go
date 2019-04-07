@@ -11,20 +11,20 @@ import (
 
 func TestCfgListener(t *testing.T) {
 	var tables = []string{
-		`def func() end`,
-		`
+		0: `def func() end`,
+		1: `
 		def func()
 			t = 1;
 		end
 		`,
-		`
+		2: `
 		def func()
 			t = 1;
 			a = 3;
 			c = a + t;
 		end
 		`,
-		`
+		3: `
 		def func()
 			t = 1;
 			if a == 1 then
@@ -33,7 +33,7 @@ func TestCfgListener(t *testing.T) {
 			c = 3;
 		end
 		`,
-		`
+		4: `
 		def func()
 			if a == 1 then
 				a = 2;
@@ -42,7 +42,7 @@ func TestCfgListener(t *testing.T) {
 		end
 		`,
 		// FIXME
-		`
+		5: `
 		def func()
 			t = 1;
 			if a == 1 then
@@ -51,7 +51,7 @@ func TestCfgListener(t *testing.T) {
 		end
 		`,
 		// FIXME
-		`
+		6: `
 		def func()
 			if a == 1 then
 				a = 2;
