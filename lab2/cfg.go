@@ -25,7 +25,7 @@ func (s *CFGListener) nextId() int {
 	return s.currentId
 }
 
-func (s *CFGListener) EnterExpression(ctx *parser.ExpressionContext) {
+func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
 	block := &Block{id: s.nextId(), text: ctx.GetText()}
 	if s.currentBlock.next == nil {
 		s.currentBlock.next = block
