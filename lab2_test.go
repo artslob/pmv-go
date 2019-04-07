@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/artslob/pmv-go/lab2"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
@@ -22,9 +23,9 @@ func TestCfgListener(t *testing.T) {
 		`,
 	}
 	for i, input := range tables {
-		head := parseInputToCFG(input)
+		head := lab2.ParseInputToCFG(input)
 		var builder strings.Builder
-		printCFG(head, &builder)
+		lab2.PrintCFG(head, &builder)
 		parsed := builder.String()
 		file := filepath.Join("testdata", "cfg", fmt.Sprintf("%d.txt", i+1))
 		if *update {

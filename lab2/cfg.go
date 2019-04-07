@@ -1,4 +1,4 @@
-package main
+package lab2
 
 import (
 	"fmt"
@@ -8,14 +8,14 @@ import (
 	"strings"
 )
 
-func parseInputToCFG(input string) *Block {
+func ParseInputToCFG(input string) *Block {
 	p := lab1.GetParser(input)
 	listener := newCFGListener()
 	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
 	return listener.head
 }
 
-func printCFG(head *Block, builder *strings.Builder) {
+func PrintCFG(head *Block, builder *strings.Builder) {
 	if builder.Len() == 0 {
 		builder.WriteString("digraph G {\n")
 		defer func() { builder.WriteString("}\n") }()
@@ -23,11 +23,11 @@ func printCFG(head *Block, builder *strings.Builder) {
 	builder.WriteString(fmt.Sprintf("%d[label=\"%s\"]\n", head.id, head.text))
 	if head.next != nil {
 		builder.WriteString(fmt.Sprintf("%d->%d\n", head.id, head.next.id))
-		printCFG(head.next, builder)
+		PrintCFG(head.next, builder)
 	}
 	if head.branch != nil {
 		builder.WriteString(fmt.Sprintf("%d->%d [style=dotted]\n", head.id, head.branch.id))
-		printCFG(head.branch, builder)
+		PrintCFG(head.branch, builder)
 	}
 }
 

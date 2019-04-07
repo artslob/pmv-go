@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/artslob/pmv-go/lab1"
+	"github.com/artslob/pmv-go/lab2"
 	"io/ioutil"
 	"log"
 	"os"
@@ -46,9 +47,9 @@ func main() {
 		end
 	`
 	//fmt.Print(parseAstToString(input))
-	head := parseInputToCFG(input)
+	head := lab2.ParseInputToCFG(input)
 	var builder strings.Builder
-	printCFG(head, &builder)
+	lab2.PrintCFG(head, &builder)
 	fmt.Println("\n ")
 	fmt.Print(builder.String())
 }
