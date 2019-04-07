@@ -6,17 +6,17 @@ import (
 
 type CFGListener struct {
 	*parser.BaseLangListener
-	currentId    int
-	currentBlock *Block
-	start        *Block
-	end          *Block
+	currentId int
+	start     *Block
+	end       *Block
+	blocks    BlockStack
 }
 
 func NewCFGListener() *CFGListener {
 	l := &CFGListener{}
 	l.start = &Block{class: START, id: -1}
 	l.end = &Block{class: END, id: -2}
-	l.currentBlock = l.start
+	l.blocks.Push(l.start)
 	return l
 }
 
@@ -27,12 +27,13 @@ func (s *CFGListener) nextId() int {
 
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
 	block := &Block{id: s.nextId(), text: ctx.GetText()}
-	if s.currentBlock.next == nil {
-		s.currentBlock.next = block
+	topBlock := s.blocks.Pop()
+	if topBlock.next == nil {
+		topBlock.next = block
 	}
-	s.currentBlock = block
+	s.blocks.Push(block)
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
-	s.currentBlock.next = s.end
+	s.blocks.Pop().next = s.end
 }
