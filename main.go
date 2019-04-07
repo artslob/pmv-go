@@ -40,10 +40,6 @@ func main() {
 		def func()
 			t = 1;
 			c = 3;
-			if t < 2 then
-				t += 2;
-			end
-			print(t);
 		end
 	`
 	//fmt.Print(parseAstToString(input))
