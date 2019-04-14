@@ -56,6 +56,46 @@ func TestCfgListener(t *testing.T) {
 			end
 		end
 		`,
+		7: `
+		def func()
+			t = 1;
+			if a == 1 then
+				a = 2;
+			else
+				z = 10;
+			end
+			c = 3;
+		end
+		`,
+		8: `
+		def func()
+			if a == 1 then
+				a = 2;
+			else
+				x = 0;
+			end
+			c = 3;
+		end
+		`,
+		9: `
+		def func()
+			t = 1;
+			if a == 1 then
+				a = 2;
+			else
+				print(f);
+			end
+		end
+		`,
+		10: `
+		def func()
+			if a == 1 then
+				a = 2;
+			else
+				q = 3;
+			end
+		end
+		`,
 	}
 	for i, input := range tables {
 		head := lab2.ParseInputToCFG(input)

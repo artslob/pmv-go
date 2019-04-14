@@ -46,16 +46,17 @@ func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
 }
 
 func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
-	withElse := ctx.IfElse() != nil
-	// on stack: n: else, n-1: then, n-2: if
-	if withElse == true {
-		// TODO
-		return
+	var else_ block.Block
+	if ctx.IfElse() == nil {
+		// stack with only then:   [n]: then, [n-1]: if
+		else_ = &block.SimpleBlock{Id: s.nextId()}
+
+	} else {
+		// with else: [n]: else, [n-1]: then, [n-2]: if
+		else_ = s.blocks.Pop()
 	}
-	// on stack: n: then, n-1: if
 	then := s.blocks.Pop()
 	expr := s.blocks.Pop()
-	else_ := &block.SimpleBlock{Id: s.nextId()}
 	end := &block.SimpleBlock{Id: s.nextId()}
 	expr.Append(then)
 	expr.SetBranch(else_)

@@ -41,6 +41,8 @@ func main() {
 			t = 1;
 			if a == 3 then
 				b = 4;
+			else
+				c = 5;
 			end
 			print(a);
 		end
