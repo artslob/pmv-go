@@ -18,7 +18,7 @@ func ParseInputToCFG(input string) block.Block {
 func PrintCFG(block block.Block, builder *strings.Builder) {
 	if builder.Len() == 0 {
 		builder.WriteString("digraph G {\n")
-		defer func() { builder.WriteString("}\n") }()
+		defer builder.WriteString("}\n")
 	}
 	builder.WriteString(block.String())
 	if block.GetNext() != nil {
