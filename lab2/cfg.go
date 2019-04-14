@@ -10,7 +10,7 @@ type CFGListener struct {
 	currentId int
 	start     block.Block
 	end       block.Block
-	blocks    block.BlockStack
+	blocks    block.Stack
 	level     int
 }
 

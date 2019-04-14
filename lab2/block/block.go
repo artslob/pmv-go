@@ -38,15 +38,13 @@ func (b *SimpleBlock) String() string {
 	return fmt.Sprintf("%2d [label=\"%s\"]\n", b.Id, b.Text)
 }
 
-/*** BLOCK STACK ***/
+type Stack []Block
 
-type BlockStack []Block
-
-func (s *BlockStack) Push(b Block) {
+func (s *Stack) Push(b Block) {
 	*s = append(*s, b)
 }
 
-func (s *BlockStack) Pop() Block {
+func (s *Stack) Pop() Block {
 	if len(*s) == 0 {
 		panic("empty stack")
 	}
@@ -55,17 +53,17 @@ func (s *BlockStack) Pop() Block {
 	return res
 }
 
-func (s *BlockStack) Peek() Block {
+func (s *Stack) Peek() Block {
 	if len(*s) == 0 {
 		return nil
 	}
 	return (*s)[len(*s)-1]
 }
 
-func (s *BlockStack) Size() int {
+func (s *Stack) Size() int {
 	return len(*s)
 }
 
-func (s *BlockStack) Empty() bool {
+func (s *Stack) Empty() bool {
 	return s.Size() == 0
 }
