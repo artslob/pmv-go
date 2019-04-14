@@ -1,41 +1,41 @@
-package lab2
+package block
 
 import "fmt"
 
 type Block interface {
 	fmt.Stringer
-	getAddress() Block
-	append(Block)
-	getNext() Block
-	getId() int
+	GetAddress() Block
+	Append(Block)
+	GetNext() Block
+	GetId() int
 }
 
 type SimpleBlock struct {
-	id     int
-	text   string
-	next   Block
-	branch Block
-	level  int
+	Id     int
+	Text   string
+	Next   Block
+	Branch Block
+	Level  int
 }
 
-func (b *SimpleBlock) getAddress() Block {
+func (b *SimpleBlock) GetAddress() Block {
 	return b
 }
 
-func (b *SimpleBlock) append(next Block) {
-	b.next = next
+func (b *SimpleBlock) Append(next Block) {
+	b.Next = next
 }
 
-func (b *SimpleBlock) getNext() Block {
-	return b.next
+func (b *SimpleBlock) GetNext() Block {
+	return b.Next
 }
 
-func (b *SimpleBlock) getId() int {
-	return b.id
+func (b *SimpleBlock) GetId() int {
+	return b.Id
 }
 
 func (b *SimpleBlock) String() string {
-	return fmt.Sprintf("%2d [label=\"%s\"]\n", b.id, b.text)
+	return fmt.Sprintf("%2d [label=\"%s\"]\n", b.Id, b.Text)
 }
 
 /*** BLOCK STACK ***/
