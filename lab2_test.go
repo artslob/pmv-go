@@ -24,40 +24,40 @@ func TestCfgListener(t *testing.T) {
 			c = a + t;
 		end
 		`,
-		3: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			end
-			c = 3;
-		end
-		`,
-		4: `
-		def func()
-			if a == 1 then
-				a = 2;
-			end
-			c = 3;
-		end
-		`,
-		// FIXME
-		5: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			end
-		end
-		`,
-		// FIXME
-		6: `
-		def func()
-			if a == 1 then
-				a = 2;
-			end
-		end
-		`,
+		//3: `
+		//def func()
+		//	t = 1;
+		//	if a == 1 then
+		//		a = 2;
+		//	end
+		//	c = 3;
+		//end
+		//`,
+		//4: `
+		//def func()
+		//	if a == 1 then
+		//		a = 2;
+		//	end
+		//	c = 3;
+		//end
+		//`,
+		//// FIXME
+		//5: `
+		//def func()
+		//	t = 1;
+		//	if a == 1 then
+		//		a = 2;
+		//	end
+		//end
+		//`,
+		//// FIXME
+		//6: `
+		//def func()
+		//	if a == 1 then
+		//		a = 2;
+		//	end
+		//end
+		//`,
 	}
 	for i, input := range tables {
 		head := lab2.ParseInputToCFG(input)
