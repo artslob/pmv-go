@@ -15,18 +15,31 @@ func ParseInputToCFG(input string) block.Block {
 	return listener.start
 }
 
-func PrintCFG(block block.Block, builder *strings.Builder) {
+type cfgPrinter struct {
+	visitedIds map[int]bool
+}
+
+func NewCfgPrinter() *cfgPrinter {
+	return &cfgPrinter{visitedIds: map[int]bool{}}
+}
+
+func (printer *cfgPrinter) Print(block block.Block, builder *strings.Builder) {
 	if builder.Len() == 0 {
 		builder.WriteString("digraph G {\n")
 		defer builder.WriteString("}\n")
 	}
+	if visited := printer.visitedIds[block.GetId()]; visited {
+		return
+	} else {
+		printer.visitedIds[block.GetId()] = true
+	}
 	builder.WriteString(block.String())
 	if block.GetNext() != nil {
 		builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
-		PrintCFG(block.GetNext(), builder)
+		printer.Print(block.GetNext(), builder)
 	}
 	if block.GetBranch() != nil {
 		builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), block.GetBranch().GetId()))
-		PrintCFG(block.GetBranch(), builder)
+		printer.Print(block.GetBranch(), builder)
 	}
 }

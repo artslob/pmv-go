@@ -50,7 +50,8 @@ func main() {
 	//fmt.Print(parseAstToString(input))
 	head := lab2.ParseInputToCFG(input)
 	var builder strings.Builder
-	lab2.PrintCFG(head, &builder)
+	printer := lab2.NewCfgPrinter()
+	printer.Print(head, &builder)
 	fmt.Println("\n ")
 	fmt.Print(builder.String())
 }

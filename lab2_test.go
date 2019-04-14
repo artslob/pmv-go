@@ -100,7 +100,8 @@ func TestCfgListener(t *testing.T) {
 	for i, input := range tables {
 		head := lab2.ParseInputToCFG(input)
 		var builder strings.Builder
-		lab2.PrintCFG(head, &builder)
+		printer := lab2.NewCfgPrinter()
+		printer.Print(head, &builder)
 		parsed := builder.String()
 		file := filepath.Join("testdata", "cfg", fmt.Sprintf("%d.txt", i+1))
 		if *update {

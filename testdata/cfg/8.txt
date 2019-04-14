@@ -15,9 +15,4 @@ digraph G {
  2 ->  4 [style=dotted]
  4 [label="z=10;"]
  4 ->  5
- 5 [label=""]
- 5 ->  7
- 7 [label="c=3;"]
- 7 -> -2
--2 [label="END"]
 }
