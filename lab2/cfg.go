@@ -28,8 +28,7 @@ func (s *CFGListener) nextId() int {
 }
 
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
-	b := block.SimpleBlock{Id: s.nextId(), Text: ctx.GetText()}
-	s.blocks.Push(&b)
+	s.blocks.Push(&block.SimpleBlock{Id: s.nextId(), Text: ctx.GetText()})
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
@@ -43,8 +42,7 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 }
 
 func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
-	ifExpr := block.IfExpr{Id: s.nextId(), Text: ctx.Expr().GetText()}
-	s.blocks.Push(&ifExpr)
+	s.blocks.Push(&block.IfExpr{Id: s.nextId(), Text: ctx.Expr().GetText()})
 }
 
 func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
