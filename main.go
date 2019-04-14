@@ -39,7 +39,10 @@ func main() {
 	input := `
 		def func()
 			t = 1;
-			c = 3;
+			if a == 3 then
+				b = 4;
+			end
+			print(a);
 		end
 	`
 	//fmt.Print(parseAstToString(input))

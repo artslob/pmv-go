@@ -25,8 +25,8 @@ func PrintCFG(block block.Block, builder *strings.Builder) {
 		builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
 		PrintCFG(block.GetNext(), builder)
 	}
-	//if block.branch != nil {
-	//	builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.id, block.branch.id))
-	//	PrintCFG(block.branch, builder)
-	//}
+	if block.GetBranch() != nil {
+		builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), block.GetBranch().GetId()))
+		PrintCFG(block.GetBranch(), builder)
+	}
 }

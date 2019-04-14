@@ -38,6 +38,37 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 		last := s.blocks.Pop()
 		second := s.blocks.Pop()
 		second.Append(last)
-		s.blocks.Push(second)
+		s.blocks.Push(second.GetAddress())
 	}
+}
+
+func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
+	ifExpr := block.IfExpr{Id: s.nextId(), Text: ctx.Expr().GetText()}
+	s.blocks.Push(&ifExpr)
+}
+
+func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
+	withElse := ctx.IfElse() != nil
+	// on stack: n: else, n-1: then, n-2: if
+	if withElse == true {
+		// TODO
+		return
+	}
+	// on stack: n: then, n-1: if
+	then := s.blocks.Pop()
+	expr := s.blocks.Pop()
+	else_ := &block.SimpleBlock{Id: s.nextId()}
+	end := &block.SimpleBlock{Id: s.nextId()}
+	expr.Append(then)
+	expr.SetBranch(else_)
+	then.Append(end)
+	else_.Append(end)
+	ifBlock := block.IfBlock{
+		Id:    s.nextId(),
+		Expr:  expr,
+		Then:  then,
+		Else_: else_,
+		End:   end,
+	}
+	s.blocks.Push(&ifBlock)
 }
