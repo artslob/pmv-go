@@ -103,7 +103,7 @@ func TestCfgListener(t *testing.T) {
 		printer := lab2.NewCfgPrinter()
 		printer.Print(head, &builder)
 		parsed := builder.String()
-		file := filepath.Join("testdata", "cfg", fmt.Sprintf("%d.txt", i+1))
+		file := filepath.Join("testdata", "cfg-output", fmt.Sprintf("%d.txt", i+1))
 		if *update {
 			t.Logf("update golden file %s", file)
 			if err := ioutil.WriteFile(file, []byte(parsed), 0644); err != nil {
