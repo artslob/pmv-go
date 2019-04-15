@@ -10,95 +10,13 @@ import (
 )
 
 func TestCfgListener(t *testing.T) {
-	var tables = []string{
-		0: `def func() end`,
-		1: `
-		def func()
-			t = 1;
-		end
-		`,
-		2: `
-		def func()
-			t = 1;
-			a = 3;
-			c = a + t;
-		end
-		`,
-		3: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			end
-			c = 3;
-		end
-		`,
-		4: `
-		def func()
-			if a == 1 then
-				a = 2;
-			end
-			c = 3;
-		end
-		`,
-		5: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			end
-		end
-		`,
-		6: `
-		def func()
-			if a == 1 then
-				a = 2;
-			end
-		end
-		`,
-		7: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			else
-				z = 10;
-			end
-			c = 3;
-		end
-		`,
-		8: `
-		def func()
-			if a == 1 then
-				a = 2;
-			else
-				x = 0;
-			end
-			c = 3;
-		end
-		`,
-		9: `
-		def func()
-			t = 1;
-			if a == 1 then
-				a = 2;
-			else
-				print(f);
-			end
-		end
-		`,
-		10: `
-		def func()
-			if a == 1 then
-				a = 2;
-			else
-				q = 3;
-			end
-		end
-		`,
-	}
-	for i, input := range tables {
-		head := lab2.ParseInputToCFG(input)
+	for i := 0; i < 11; i++ {
+		inputFile := filepath.Join("testdata", "cfg-input", fmt.Sprintf("%d.txt", i+1))
+		input, err := ioutil.ReadFile(inputFile)
+		if err != nil {
+			t.Fatalf("failed to read test %d input: %s", i+1, err)
+		}
+		head := lab2.ParseInputToCFG(string(input))
 		var builder strings.Builder
 		printer := lab2.NewCfgPrinter()
 		printer.Print(head, &builder)

@@ -1,0 +1,7 @@
+def func()
+    if a == 1 then
+        a = 2;
+    else
+        q = 3;
+    end
+end
