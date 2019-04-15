@@ -10,18 +10,18 @@ import (
 )
 
 func TestCfgListener(t *testing.T) {
-	for i := 0; i < 11; i++ {
-		inputFile := filepath.Join("testdata", "cfg-input", fmt.Sprintf("%d.txt", i+1))
+	for i := 1; i <= 11; i++ {
+		inputFile := filepath.Join("testdata", "cfg-input", fmt.Sprintf("%d.txt", i))
 		input, err := ioutil.ReadFile(inputFile)
 		if err != nil {
-			t.Fatalf("failed to read test %d input: %s", i+1, err)
+			t.Fatalf("failed to read test %d input: %s", i, err)
 		}
 		head := lab2.ParseInputToCFG(string(input))
 		var builder strings.Builder
 		printer := lab2.NewCfgPrinter()
 		printer.Print(head, &builder)
 		parsed := builder.String()
-		file := filepath.Join("testdata", "cfg-output", fmt.Sprintf("%d.txt", i+1))
+		file := filepath.Join("testdata", "cfg-output", fmt.Sprintf("%d.txt", i))
 		if *update {
 			t.Logf("update golden file %s", file)
 			if err := ioutil.WriteFile(file, []byte(parsed), 0644); err != nil {
@@ -34,7 +34,7 @@ func TestCfgListener(t *testing.T) {
 		}
 		expected := string(content)
 		if parsed != expected {
-			t.Errorf("parsed input not equal to expected in test %d", i+1)
+			t.Errorf("parsed input not equal to expected in test %d", i)
 			t.Logf("%q\n", expected)
 			t.Logf("%q\n", parsed)
 		}
