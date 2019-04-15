@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/artslob/pmv-go/lab1"
-	"github.com/artslob/pmv-go/lab2/block"
+	"github.com/artslob/pmv-go/lab2/blocks"
 	"strings"
 )
 
-func ParseInputToCFG(input string) block.Block {
+func ParseInputToCFG(input string) blocks.Block {
 	p := lab1.GetParser(input)
 	listener := NewCFGListener()
 	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
@@ -23,7 +23,7 @@ func NewCfgPrinter() *cfgPrinter {
 	return &cfgPrinter{visitedIds: map[int]bool{}}
 }
 
-func (printer *cfgPrinter) Print(block block.Block, builder *strings.Builder) {
+func (printer *cfgPrinter) Print(block blocks.Block, builder *strings.Builder) {
 	if builder.Len() == 0 {
 		builder.WriteString("digraph G {\n")
 		defer builder.WriteString("}\n")

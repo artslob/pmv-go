@@ -1,4 +1,4 @@
-package block
+package blocks
 
 type Stack []Block
 
