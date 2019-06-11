@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/artslob/pmv-go/lab2"
 	"io/ioutil"
 	"path/filepath"
@@ -9,17 +8,25 @@ import (
 )
 
 func TestCfgListener(t *testing.T) {
-	for i := 1; i <= 13; i++ {
-		inputFile := filepath.Join("testdata", "cfg-input", fmt.Sprintf("%d.txt", i))
-		input, err := ioutil.ReadFile(inputFile)
+	cfgInputDir := filepath.Join("testdata", "cfg-input")
+	tests, err := ioutil.ReadDir(cfgInputDir)
+	if err != nil {
+		t.Fatalf("failed to read files in dir %q: %q", cfgInputDir, err)
+	}
+	for _, testFile := range tests {
+		if testFile.IsDir() {
+			continue
+		}
+		testName := testFile.Name()
+		input, err := ioutil.ReadFile(filepath.Join(cfgInputDir, testName))
 		if err != nil {
-			t.Fatalf("failed to read test %d input: %s", i, err)
+			t.Fatalf("failed to read test %q: %s", testName, err)
 		}
 		head := lab2.ParseInputToCFG(string(input))
 		printer := lab2.NewCfgPrinter()
 		printer.Print(head)
 		parsed := printer.String()
-		file := filepath.Join("testdata", "cfg-output", fmt.Sprintf("%d.txt", i))
+		file := filepath.Join("testdata", "cfg-output", testName)
 		if *update {
 			t.Logf("update golden file %s", file)
 			if err := ioutil.WriteFile(file, []byte(parsed), 0644); err != nil {
@@ -32,7 +39,7 @@ func TestCfgListener(t *testing.T) {
 		}
 		expected := string(content)
 		if parsed != expected {
-			t.Errorf("parsed input not equal to expected in test %d", i)
+			t.Errorf("parsed input not equal to expected in test %q", testName)
 			t.Logf("%q\n", expected)
 			t.Logf("%q\n", parsed)
 		}
