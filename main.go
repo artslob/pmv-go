@@ -35,23 +35,22 @@ func lab1_main() {
 	}
 }
 
+var input = `
+def func()
+	t = 1;
+	if a == 3 then
+		b = 4;
+	else
+		c = 5;
+	end
+	print(a);
+end
+`
+
 func main() {
-	input := `
-		def func()
-			t = 1;
-			if a == 3 then
-				b = 4;
-			else
-				c = 5;
-			end
-			print(a);
-		end
-	`
-	//fmt.Print(parseAstToString(input))
 	head := lab2.ParseInputToCFG(input)
 	var builder strings.Builder
 	printer := lab2.NewCfgPrinter()
 	printer.Print(head, &builder)
-	fmt.Println("\n ")
 	fmt.Print(builder.String())
 }
