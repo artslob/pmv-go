@@ -1,0 +1,31 @@
+def func()
+    if a == 3 then
+        if b > 1 then
+            if a == b then
+                a += b;
+            else
+                a *= 2;
+            end
+        else
+            if q < 3 then
+                q = 1;
+            else
+                q = 0;
+            end
+        end
+    else
+        if q == 3 then
+            if f == 3 then
+                f -= 10;
+            else
+                b = 2;
+            end
+        else
+            if a == 1 then
+                a = 2;
+            else
+                a = 3;
+            end
+        end
+    end
+end

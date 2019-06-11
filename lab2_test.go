@@ -10,7 +10,7 @@ import (
 )
 
 func TestCfgListener(t *testing.T) {
-	for i := 1; i <= 11; i++ {
+	for i := 1; i <= 13; i++ {
 		inputFile := filepath.Join("testdata", "cfg-input", fmt.Sprintf("%d.txt", i))
 		input, err := ioutil.ReadFile(inputFile)
 		if err != nil {

@@ -39,9 +39,15 @@ var input = `
 def func()
 	t = 1;
 	if a == 3 then
-		b = 4;
+		if b > 1 then
+			a += b;
+		else
+			a = 2;
+		end
 	else
-		c = 5;
+		if q == 3 then
+			q = 2;
+		end
 	end
 	print(a);
 end

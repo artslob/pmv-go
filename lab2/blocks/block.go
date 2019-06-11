@@ -98,7 +98,7 @@ func (b *IfBlock) String() string {
 }
 
 func (b *IfBlock) GetAddress() Block {
-	return b.Expr
+	return b.Expr.GetAddress()
 }
 
 func (b *IfBlock) Append(block Block) {
