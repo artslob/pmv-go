@@ -5,7 +5,6 @@ import (
 	"github.com/artslob/pmv-go/lab2"
 	"io/ioutil"
 	"path/filepath"
-	"strings"
 	"testing"
 )
 
@@ -17,10 +16,9 @@ func TestCfgListener(t *testing.T) {
 			t.Fatalf("failed to read test %d input: %s", i, err)
 		}
 		head := lab2.ParseInputToCFG(string(input))
-		var builder strings.Builder
 		printer := lab2.NewCfgPrinter()
-		printer.Print(head, &builder)
-		parsed := builder.String()
+		printer.Print(head)
+		parsed := printer.String()
 		file := filepath.Join("testdata", "cfg-output", fmt.Sprintf("%d.txt", i))
 		if *update {
 			t.Logf("update golden file %s", file)

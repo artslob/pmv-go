@@ -17,29 +17,34 @@ func ParseInputToCFG(input string) blocks.Block {
 
 type cfgPrinter struct {
 	visitedIds map[int]bool
+	builder    *strings.Builder
+}
+
+func (p cfgPrinter) String() string {
+	return p.builder.String()
 }
 
 func NewCfgPrinter() *cfgPrinter {
-	return &cfgPrinter{visitedIds: map[int]bool{}}
+	return &cfgPrinter{visitedIds: map[int]bool{}, builder: &strings.Builder{}}
 }
 
-func (printer *cfgPrinter) Print(block blocks.Block, builder *strings.Builder) {
-	if builder.Len() == 0 {
-		builder.WriteString("digraph G {\n")
-		defer builder.WriteString("}\n")
+func (p *cfgPrinter) Print(block blocks.Block) {
+	if p.builder.Len() == 0 {
+		p.builder.WriteString("digraph G {\n")
+		defer p.builder.WriteString("}\n")
 	}
-	if visited := printer.visitedIds[block.GetId()]; visited {
+	if visited := p.visitedIds[block.GetId()]; visited {
 		return
 	} else {
-		printer.visitedIds[block.GetId()] = true
+		p.visitedIds[block.GetId()] = true
 	}
-	builder.WriteString(block.String())
+	p.builder.WriteString(block.String())
 	if block.GetNext() != nil {
-		builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
-		printer.Print(block.GetNext(), builder)
+		p.builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
+		p.Print(block.GetNext())
 	}
 	if block.GetBranch() != nil {
-		builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), block.GetBranch().GetId()))
-		printer.Print(block.GetBranch(), builder)
+		p.builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), block.GetBranch().GetId()))
+		p.Print(block.GetBranch())
 	}
 }

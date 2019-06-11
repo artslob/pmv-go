@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"strings"
 )
 
 func checkError(e error) {
@@ -55,8 +54,7 @@ end
 
 func main() {
 	head := lab2.ParseInputToCFG(input)
-	var builder strings.Builder
 	printer := lab2.NewCfgPrinter()
-	printer.Print(head, &builder)
-	fmt.Print(builder.String())
+	printer.Print(head)
+	fmt.Print(printer.String())
 }
