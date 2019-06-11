@@ -36,7 +36,7 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 	for s.blocks.Size() > 1 {
 		last := s.blocks.Pop()
 		second := s.blocks.Pop()
-		second.Append(last.GetAddress())
+		second.SetNext(last.GetAddress())
 		s.blocks.Push(second.GetAddress())
 	}
 }
@@ -58,10 +58,10 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	then := s.blocks.Pop()
 	expr := s.blocks.Pop()
 	end := &blocks.SimpleBlock{Id: s.nextId()}
-	expr.Append(then.GetAddress())
+	expr.SetNext(then.GetAddress())
 	expr.SetBranch(else_.GetAddress())
-	then.Append(end.GetAddress())
-	else_.Append(end.GetAddress())
+	then.SetNext(end.GetAddress())
+	else_.SetNext(end.GetAddress())
 	ifBlock := blocks.IfBlock{
 		Id:    s.nextId(),
 		Expr:  expr,

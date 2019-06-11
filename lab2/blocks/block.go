@@ -5,7 +5,7 @@ import "fmt"
 type Block interface {
 	fmt.Stringer
 	GetAddress() Block
-	Append(Block)
+	SetNext(Block)
 	GetNext() Block
 	SetBranch(Block)
 	GetBranch() Block
@@ -24,7 +24,7 @@ func (b *SimpleBlock) GetAddress() Block {
 	return b
 }
 
-func (b *SimpleBlock) Append(next Block) {
+func (b *SimpleBlock) SetNext(next Block) {
 	b.Next = next
 }
 
@@ -64,7 +64,7 @@ func (b *IfExpr) GetAddress() Block {
 	return b
 }
 
-func (b *IfExpr) Append(block Block) {
+func (b *IfExpr) SetNext(block Block) {
 	b.Next = block
 }
 
@@ -101,8 +101,8 @@ func (b *IfBlock) GetAddress() Block {
 	return b.Expr.GetAddress()
 }
 
-func (b *IfBlock) Append(block Block) {
-	b.End.Append(block)
+func (b *IfBlock) SetNext(block Block) {
+	b.End.SetNext(block)
 }
 
 func (b *IfBlock) GetNext() Block {
