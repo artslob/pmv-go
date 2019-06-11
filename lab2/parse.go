@@ -16,7 +16,7 @@ func ParseInputToCFG(input string) blocks.Block {
 }
 
 type cfgPrinter struct {
-	visitedIds map[int]bool
+	visitedIds map[int]struct{}
 	builder    *strings.Builder
 }
 
@@ -25,7 +25,7 @@ func (p cfgPrinter) String() string {
 }
 
 func NewCfgPrinter() *cfgPrinter {
-	return &cfgPrinter{visitedIds: map[int]bool{}, builder: &strings.Builder{}}
+	return &cfgPrinter{visitedIds: map[int]struct{}{}, builder: &strings.Builder{}}
 }
 
 func (p *cfgPrinter) Print(block blocks.Block) {
@@ -33,11 +33,10 @@ func (p *cfgPrinter) Print(block blocks.Block) {
 		p.builder.WriteString("digraph G {\n")
 		defer p.builder.WriteString("}\n")
 	}
-	if visited := p.visitedIds[block.GetId()]; visited {
+	if _, visited := p.visitedIds[block.GetId()]; visited {
 		return
-	} else {
-		p.visitedIds[block.GetId()] = true
 	}
+	p.visitedIds[block.GetId()] = struct{}{}
 	p.builder.WriteString(block.String())
 	if block.GetNext() != nil {
 		p.builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
