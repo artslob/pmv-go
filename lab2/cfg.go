@@ -16,8 +16,8 @@ type CFGListener struct {
 
 func NewCFGListener() *CFGListener {
 	l := &CFGListener{}
-	l.start = &blocks.SimpleBlock{Id: -1, Text: "START"}
-	l.end = &blocks.SimpleBlock{Id: -2, Text: "END"}
+	l.start = &blocks.DefaultBlock{Id: -1, Text: "START"}
+	l.end = &blocks.DefaultBlock{Id: -2, Text: "END"}
 	l.blocks.Push(l.start)
 	return l
 }
@@ -28,7 +28,7 @@ func (s *CFGListener) nextId() int {
 }
 
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
-	s.blocks.Push(&blocks.SimpleBlock{Id: s.nextId(), Text: ctx.GetText()})
+	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText()})
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
@@ -43,7 +43,7 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 
 func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
 	s.blocks.Push(&blocks.IfExpr{
-		SimpleBlock: blocks.SimpleBlock{
+		DefaultBlock: blocks.DefaultBlock{
 			Id:   s.nextId(),
 			Text: ctx.Expr().GetText(),
 		},
@@ -67,11 +67,11 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	then.SetNext(end)
 	else_.SetNext(end)
 	ifBlock := blocks.IfBlock{
-		SimpleBlock: blocks.SimpleBlock{Id: s.nextId()},
-		Expr:        expr,
-		Then:        then,
-		Else_:       else_,
-		End:         end,
+		DefaultBlock: blocks.DefaultBlock{Id: s.nextId()},
+		Expr:         expr,
+		Then:         then,
+		Else_:        else_,
+		End:          end,
 	}
 	s.blocks.Push(&ifBlock)
 }

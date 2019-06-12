@@ -14,46 +14,46 @@ type Block interface {
 	GetBranch() Block
 }
 
-type SimpleBlock struct {
+type DefaultBlock struct {
 	Id   int
 	Text string
 	next Block
 }
 
-func (b *SimpleBlock) GetAddress() Block {
+func (b *DefaultBlock) GetAddress() Block {
 	return b
 }
 
-func (b *SimpleBlock) SetNext(next Block) {
+func (b *DefaultBlock) SetNext(next Block) {
 	b.next = next.GetAddress()
 }
 
-func (b *SimpleBlock) GetNext() Block {
+func (b *DefaultBlock) GetNext() Block {
 	return b.next
 }
 
-func (b *SimpleBlock) SetBranch(Block) {
+func (b *DefaultBlock) SetBranch(Block) {
 	panic("simple block do not provide branching")
 }
 
-func (b *SimpleBlock) GetBranch() Block {
+func (b *DefaultBlock) GetBranch() Block {
 	return nil
 }
 
-func (b *SimpleBlock) GetId() int {
+func (b *DefaultBlock) GetId() int {
 	return b.Id
 }
 
-func (b *SimpleBlock) String() string {
+func (b *DefaultBlock) String() string {
 	return fmt.Sprintf("%2d [label=\"%s\"]\n", b.Id, b.Text)
 }
 
 func NewEmptyBlock(id int) Block {
-	return &SimpleBlock{Id: id}
+	return &DefaultBlock{Id: id}
 }
 
 type IfExpr struct {
-	SimpleBlock
+	DefaultBlock
 	branch Block
 }
 
@@ -70,7 +70,7 @@ func (b *IfExpr) GetBranch() Block {
 }
 
 type IfBlock struct {
-	SimpleBlock
+	DefaultBlock
 	Expr, Then, Else_, End Block
 }
 
