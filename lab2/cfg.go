@@ -75,3 +75,15 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	}
 	s.blocks.Push(&ifBlock)
 }
+
+func (s *CFGListener) ExitBlockBody(ctx *parser.BlockBodyContext) {
+	if ctx.AllStatement() == nil || len(ctx.AllStatement()) == 0 {
+		s.blocks.Push(blocks.NewEmptyBlock(s.nextId()))
+		return
+	}
+	group := blocks.Group{}
+	for range ctx.AllStatement() {
+		group.AddBlock(s.blocks.Pop())
+	}
+	s.blocks.Push(&group)
+}
