@@ -6,10 +6,10 @@ type Block interface {
 	fmt.Stringer
 	GetAddress() Block
 	GetId() int
-	// SetNext should call GetAddress() on his argument
+	// SetNext must call GetAddress() on his argument
 	SetNext(Block)
 	GetNext() Block
-	// SetBranch should call GetAddress() on his argument
+	// SetBranch must call GetAddress() on his argument
 	SetBranch(Block)
 	GetBranch() Block
 }
