@@ -54,14 +54,14 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	var else_ blocks.Block
 	if ctx.IfElse() == nil {
 		// stack with only then:   [n]: then, [n-1]: if
-		else_ = &blocks.SimpleBlock{Id: s.nextId()}
+		else_ = blocks.NewEmptyBlock(s.nextId())
 	} else {
 		// with else: [n]: else, [n-1]: then, [n-2]: if
 		else_ = s.blocks.Pop()
 	}
 	then := s.blocks.Pop()
 	expr := s.blocks.Pop()
-	end := &blocks.SimpleBlock{Id: s.nextId()}
+	end := blocks.NewEmptyBlock(s.nextId())
 	expr.SetNext(then)
 	expr.SetBranch(else_)
 	then.SetNext(end)

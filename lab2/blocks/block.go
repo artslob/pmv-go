@@ -48,6 +48,10 @@ func (b *SimpleBlock) String() string {
 	return fmt.Sprintf("%2d [label=\"%s\"]\n", b.Id, b.Text)
 }
 
+func NewEmptyBlock(id int) Block {
+	return &SimpleBlock{Id: id}
+}
+
 type IfExpr struct {
 	SimpleBlock
 	branch Block
