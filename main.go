@@ -34,16 +34,14 @@ func lab1_main() {
 	}
 }
 
-var input = `
-def func()
+var input = `def func()
 	t = 1;
-	while a < b
-		a += 1;
-		b /= 2;
-	end
+	while a < b {
+        a += 5;
+        b >>= 1;
+	} end
 	b = 2;
-end
-`
+end`
 
 func main() {
 	head := lab2.ParseInputToCFG(input)
