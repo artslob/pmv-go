@@ -1,0 +1,4 @@
+def func()
+    do { };
+	until a < 10;
+end

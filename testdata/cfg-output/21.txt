@@ -1,0 +1,10 @@
+digraph G {
+-1 [label="START"]
+-1 ->  1
+ 1 [label=""]
+ 1 ->  2
+ 2 [label="a<10"]
+ 2 -> -2
+-2 [label="END"]
+ 2 ->  1 [style=dotted]
+}

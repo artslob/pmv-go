@@ -36,12 +36,13 @@ func lab1_main() {
 
 var input = `
 def func()
-    do {
-		a += 1;
-		b /= 2;
-		c *= 10;
-	}
-    until a < 10;
+    do begin
+		if a > 10 then {
+			t *= 2;
+			a += a;
+		} end
+	end until a < 5;
+	print(a);
 end
 `
 
