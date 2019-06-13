@@ -1,0 +1,6 @@
+def func()
+	if a < 3 then {
+
+	}
+	end
+end
