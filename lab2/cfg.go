@@ -42,7 +42,7 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 }
 
 func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
-	s.blocks.Push(&blocks.IfExpr{
+	s.blocks.Push(&blocks.BranchBlock{
 		DefaultBlock: blocks.DefaultBlock{
 			Id:   s.nextId(),
 			Text: ctx.Expr().GetText(),

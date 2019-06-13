@@ -1,18 +1,18 @@
 package blocks
 
-type IfExpr struct {
+type BranchBlock struct {
 	DefaultBlock
 	branch Block
 }
 
-func (b *IfExpr) GetAddress() Block {
+func (b *BranchBlock) GetAddress() Block {
 	return b
 }
 
-func (b *IfExpr) SetBranch(block Block) {
+func (b *BranchBlock) SetBranch(block Block) {
 	b.branch = block.GetAddress()
 }
 
-func (b *IfExpr) GetBranch() Block {
+func (b *BranchBlock) GetBranch() Block {
 	return b.branch
 }
