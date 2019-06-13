@@ -110,7 +110,13 @@ func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
 	expr := s.blocks.Pop()
 	expr.SetBranch(body)
 	body.SetNext(expr)
-	s.blocks.Push(expr)
+
+	while := &blocks.While{
+		DefaultBlock: blocks.DefaultBlock{Id: s.nextId()},
+		Expression:   expr,
+		Body:         body,
+	}
+	s.blocks.Push(while)
 }
 
 func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
