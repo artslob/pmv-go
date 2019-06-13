@@ -5,6 +5,10 @@ type IfBlock struct {
 	Expr, Then, Else_, End Block
 }
 
+func (b *IfBlock) String() string {
+	panic("if block does not support Stringer")
+}
+
 func (b *IfBlock) GetAddress() Block {
 	return b.Expr.GetAddress()
 }
