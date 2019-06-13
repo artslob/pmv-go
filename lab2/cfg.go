@@ -112,3 +112,22 @@ func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
 	body.SetNext(expr)
 	s.blocks.Push(expr)
 }
+
+func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
+	s.blocks.Push(&blocks.BranchBlock{DefaultBlock: blocks.DefaultBlock{Id: s.nextId(), Text: ctx.Expr().GetText()}})
+}
+
+func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
+	// TODO breaks
+	expression := s.blocks.Pop()
+	statement := s.blocks.Pop()
+	statement.SetNext(expression)
+	expression.SetBranch(statement)
+
+	until := &blocks.Until{
+		DefaultBlock: blocks.DefaultBlock{Id: s.nextId()},
+		Statement:    statement,
+		Expression:   expression,
+	}
+	s.blocks.Push(until)
+}
