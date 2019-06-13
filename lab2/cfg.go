@@ -87,3 +87,28 @@ func (s *CFGListener) ExitBlockBody(ctx *parser.BlockBodyContext) {
 	}
 	s.blocks.Push(&group)
 }
+
+func (s *CFGListener) ExitWhileBody(ctx *parser.WhileBodyContext) {
+	// TODO breaks
+	if ctx.AllStatement() == nil || len(ctx.AllStatement()) == 0 {
+		s.blocks.Push(blocks.NewEmptyBlock(s.nextId()))
+		return
+	}
+	group := blocks.Group{}
+	for range ctx.AllStatement() {
+		group.AddBlock(s.blocks.Pop())
+	}
+	s.blocks.Push(&group)
+}
+
+func (s *CFGListener) ExitWhileExpr(ctx *parser.WhileExprContext) {
+	s.blocks.Push(&blocks.BranchBlock{DefaultBlock: blocks.DefaultBlock{Id: s.nextId(), Text: ctx.Expr().GetText()}})
+}
+
+func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
+	body := s.blocks.Pop()
+	expr := s.blocks.Pop()
+	expr.SetBranch(body)
+	body.SetNext(expr)
+	s.blocks.Push(expr)
+}

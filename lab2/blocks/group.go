@@ -35,6 +35,7 @@ func (g *Group) GetBranch() Block {
 }
 
 func (g *Group) AddBlock(block Block) {
+	// TODO fix order
 	if len(g.statements) > 0 {
 		g.SetNext(block)
 	}
