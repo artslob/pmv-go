@@ -1,0 +1,9 @@
+def func()
+    while a < 10
+		t = 3;
+		if b > 10 then
+			break;
+		end
+	end
+	print(t);
+end

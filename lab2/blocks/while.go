@@ -4,6 +4,7 @@ type While struct {
 	DefaultBlock
 	Expression Block
 	Body       Block
+	Breaks     []Block
 }
 
 func (b *While) String() string {
@@ -16,6 +17,12 @@ func (b *While) GetAddress() Block {
 
 func (b *While) SetNext(block Block) {
 	b.Expression.SetNext(block)
+	if len(b.Breaks) == 0 {
+		return
+	}
+	for _, br := range b.Breaks {
+		br.SetNext(block)
+	}
 }
 
 func (b *While) GetNext() Block {

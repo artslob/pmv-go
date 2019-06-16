@@ -1,0 +1,15 @@
+def func()
+    while a < 10
+		t = 3;
+		while r != 2
+            r -= 1;
+            if r == 5 then
+                break;
+            end
+        end
+		if b > 10 then
+			break;
+		end
+	end
+	print(t);
+end

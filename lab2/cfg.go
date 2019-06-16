@@ -3,19 +3,25 @@ package lab2
 import (
 	"github.com/artslob/pmv-go/lab2/blocks"
 	"github.com/artslob/pmv-go/parser"
+	"github.com/artslob/pmv-go/utils"
 )
 
 type CFGListener struct {
 	*parser.BaseLangListener
-	currentId int
-	start     blocks.Block
-	end       blocks.Block
-	blocks    blocks.Stack
-	level     int
+	currentId   int
+	start       blocks.Block
+	end         blocks.Block
+	blocks      blocks.Stack
+	level       int
+	loopId      int
+	loopIdStack utils.IntStack
+	breaks      map[int][]blocks.Block
 }
 
 func NewCFGListener() *CFGListener {
-	l := &CFGListener{}
+	l := &CFGListener{
+		breaks: map[int][]blocks.Block{},
+	}
 	l.start = &blocks.DefaultBlock{Id: -1, Text: "START"}
 	l.end = &blocks.DefaultBlock{Id: -2, Text: "END"}
 	l.blocks.Push(l.start)
@@ -25,6 +31,11 @@ func NewCFGListener() *CFGListener {
 func (s *CFGListener) nextId() int {
 	s.currentId++
 	return s.currentId
+}
+
+func (s *CFGListener) nextLoopId() int {
+	s.loopId++
+	return s.loopId
 }
 
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
@@ -106,6 +117,7 @@ func (s *CFGListener) ExitWhileExpr(ctx *parser.WhileExprContext) {
 }
 
 func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
+	currentLoopId := s.loopIdStack.Pop()
 	body := s.blocks.Pop()
 	expr := s.blocks.Pop()
 	expr.SetBranch(body)
@@ -115,8 +127,10 @@ func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
 		DefaultBlock: blocks.DefaultBlock{Id: s.nextId()},
 		Expression:   expr,
 		Body:         body,
+		Breaks:       s.breaks[currentLoopId],
 	}
 	s.blocks.Push(while)
+	delete(s.breaks, currentLoopId)
 }
 
 func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
@@ -136,4 +150,18 @@ func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
 		Expression:   expression,
 	}
 	s.blocks.Push(until)
+}
+
+func (s *CFGListener) ExitBreak(ctx *parser.BreakContext) {
+	if s.loopIdStack.Empty() {
+		panic("encounter break while being outside of loop")
+	}
+	breakBlock := &blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText()}
+	s.blocks.Push(breakBlock)
+	currentLoopId := *s.loopIdStack.Peek()
+	s.breaks[currentLoopId] = append(s.breaks[currentLoopId], breakBlock)
+}
+
+func (s *CFGListener) EnterLoop(ctx *parser.LoopContext) {
+	s.loopIdStack.Push(s.nextLoopId())
 }

@@ -1,0 +1,21 @@
+digraph G {
+-1 [label="START"]
+-1 ->  1
+ 1 [label="a<10"]
+ 1 ->  9
+ 9 [label="print(t);"]
+ 9 -> -2
+-2 [label="END"]
+ 1 ->  2 [style=dotted]
+ 2 [label="t=3;"]
+ 2 ->  3
+ 3 [label="b>10"]
+ 3 ->  4
+ 4 [label="break;"]
+ 4 ->  9
+ 3 ->  5 [style=dotted]
+ 5 [label=""]
+ 5 ->  6
+ 6 [label=""]
+ 6 ->  1
+}
