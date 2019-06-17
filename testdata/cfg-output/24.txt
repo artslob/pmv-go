@@ -6,7 +6,7 @@ digraph G {
 17 [label="print(t);"]
 17 -> -2
 -2 [label="END"]
- 1 ->  2 [style=dotted]
+ 1 ->  2 [color=blue1]
  2 [label="t=3;"]
  2 ->  3
  3 [label="r!=2",shape=diamond]
@@ -17,10 +17,10 @@ digraph G {
 13 -> 14
 14 [label=""]
 14 ->  1
-11 -> 12 [style=dotted]
+11 -> 12 [color=blue1]
 12 [label="break;"]
 12 -> 17
- 3 ->  4 [style=dotted]
+ 3 ->  4 [color=blue1]
  4 [label="r-=1;"]
  4 ->  5
  5 [label="r==5",shape=diamond]
@@ -29,7 +29,7 @@ digraph G {
  7 ->  8
  8 [label=""]
  8 ->  3
- 5 ->  6 [style=dotted]
+ 5 ->  6 [color=blue1]
  6 [label="break;"]
  6 -> 11
 }

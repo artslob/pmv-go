@@ -43,7 +43,7 @@ func (p *cfgPrinter) Print(block blocks.Block) {
 		p.Print(block.GetNext())
 	}
 	if block.GetBranch() != nil {
-		p.builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), block.GetBranch().GetId()))
+		p.builder.WriteString(fmt.Sprintf("%2d -> %2d [color=blue1]\n", block.GetId(), block.GetBranch().GetId()))
 		p.Print(block.GetBranch())
 	}
 }

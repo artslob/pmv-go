@@ -16,24 +16,24 @@ digraph G {
 19 [label="print(a);"]
 19 -> -2
 -2 [label="END"]
-12 -> 13 [style=dotted]
+12 -> 13 [color=blue1]
 13 [label="q=2;"]
 13 -> 15
- 2 ->  3 [style=dotted]
+ 2 ->  3 [color=blue1]
  3 [label="b>1",shape=diamond]
  3 ->  9
  9 [label="a=2;"]
  9 -> 10
 10 [label=""]
 10 -> 17
- 3 ->  4 [style=dotted]
+ 3 ->  4 [color=blue1]
  4 [label="a==b",shape=diamond]
  4 ->  6
  6 [label=""]
  6 ->  7
  7 [label=""]
  7 -> 10
- 4 ->  5 [style=dotted]
+ 4 ->  5 [color=blue1]
  5 [label="a+=b;"]
  5 ->  7
 }

@@ -42,6 +42,10 @@ def func()
 			break;
 		end
 	end
+	do {
+		a += b;
+		b *= 2;
+	} until a < 3;
 	print(t);
 end
 `

@@ -12,8 +12,8 @@ digraph G {
  9 [label="print(a);"]
  9 -> -2
 -2 [label="END"]
- 7 ->  1 [style=dotted]
- 1 ->  2 [style=dotted]
+ 7 ->  1 [color=blue1]
+ 1 ->  2 [color=blue1]
  2 [label="t*=2;"]
  2 ->  3
  3 [label="a+=a;"]

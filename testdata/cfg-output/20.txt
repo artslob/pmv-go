@@ -10,5 +10,5 @@ digraph G {
  5 [label="c=0;"]
  5 -> -2
 -2 [label="END"]
- 3 ->  2 [style=dotted]
+ 3 ->  2 [color=blue1]
 }
