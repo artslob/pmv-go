@@ -73,8 +73,8 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	then := s.blocks.Pop()
 	expr := s.blocks.Pop()
 	end := blocks.NewEmptyBlock(s.nextId())
-	expr.SetNext(then)
-	expr.SetBranch(else_)
+	expr.SetBranch(then)
+	expr.SetNext(else_)
 	then.SetNext(end)
 	else_.SetNext(end)
 	ifBlock := blocks.IfBlock{
