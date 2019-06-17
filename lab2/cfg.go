@@ -100,7 +100,6 @@ func (s *CFGListener) ExitBlockBody(ctx *parser.BlockBodyContext) {
 }
 
 func (s *CFGListener) ExitWhileBody(ctx *parser.WhileBodyContext) {
-	// TODO breaks
 	if ctx.AllStatement() == nil || len(ctx.AllStatement()) == 0 {
 		s.blocks.Push(blocks.NewEmptyBlock(s.nextId()))
 		return
@@ -138,7 +137,7 @@ func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
 }
 
 func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
-	// TODO breaks
+	currentLoopId := s.loopIdStack.Pop()
 	expression := s.blocks.Pop()
 	statement := s.blocks.Pop()
 	statement.SetNext(expression)
@@ -148,8 +147,10 @@ func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
 		DefaultBlock: blocks.DefaultBlock{Id: s.nextId()},
 		Statement:    statement,
 		Expression:   expression,
+		Breaks:       s.breaks[currentLoopId],
 	}
 	s.blocks.Push(until)
+	delete(s.breaks, currentLoopId)
 }
 
 func (s *CFGListener) ExitBreak(ctx *parser.BreakContext) {
@@ -163,5 +164,9 @@ func (s *CFGListener) ExitBreak(ctx *parser.BreakContext) {
 }
 
 func (s *CFGListener) EnterLoop(ctx *parser.LoopContext) {
+	s.loopIdStack.Push(s.nextLoopId())
+}
+
+func (s *CFGListener) EnterRepeat(ctx *parser.RepeatContext) {
 	s.loopIdStack.Push(s.nextLoopId())
 }
