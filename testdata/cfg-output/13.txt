@@ -1,11 +1,11 @@
 digraph G {
 -1 [label="START"]
 -1 ->  1
- 1 [label="a==3"]
+ 1 [label="a==3",shape=diamond]
  1 ->  2
- 2 [label="b>1"]
+ 2 [label="b>1",shape=diamond]
  2 ->  3
- 3 [label="a==b"]
+ 3 [label="a==b",shape=diamond]
  3 ->  4
  4 [label="a+=b;"]
  4 ->  6
@@ -20,7 +20,7 @@ digraph G {
  5 [label="a*=2;"]
  5 ->  6
  2 ->  8 [style=dotted]
- 8 [label="q<3"]
+ 8 [label="q<3",shape=diamond]
  8 ->  9
  9 [label="q=1;"]
  9 -> 11
@@ -30,9 +30,9 @@ digraph G {
 10 [label="q=0;"]
 10 -> 11
  1 -> 15 [style=dotted]
-15 [label="q==3"]
+15 [label="q==3",shape=diamond]
 15 -> 16
-16 [label="f==3"]
+16 [label="f==3",shape=diamond]
 16 -> 17
 17 [label="f-=10;"]
 17 -> 19
@@ -44,7 +44,7 @@ digraph G {
 18 [label="b=2;"]
 18 -> 19
 15 -> 21 [style=dotted]
-21 [label="a==1"]
+21 [label="a==1",shape=diamond]
 21 -> 22
 22 [label="a=2;"]
 22 -> 24

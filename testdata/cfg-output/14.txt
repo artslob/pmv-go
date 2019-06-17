@@ -1,7 +1,7 @@
 digraph G {
 -1 [label="START"]
 -1 ->  1
- 1 [label="a<3"]
+ 1 [label="a<3",shape=diamond]
  1 ->  2
  2 [label=""]
  2 ->  4
