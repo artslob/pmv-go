@@ -7,8 +7,6 @@ import (
 	"testing"
 )
 
-// TODO check 24 test
-
 func TestCfgListener(t *testing.T) {
 	cfgInputDir := filepath.Join("testdata", "cfg-input")
 	tests, err := ioutil.ReadDir(cfgInputDir)
