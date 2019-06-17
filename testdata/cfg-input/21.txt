@@ -1,4 +1,3 @@
 def func()
-    do { };
-	until a < 10;
+    do { } until a < 10;
 end
