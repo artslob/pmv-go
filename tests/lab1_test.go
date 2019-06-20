@@ -1,13 +1,10 @@
 package tests
 
 import (
-	"flag"
 	"github.com/artslob/pmv-go/lab1"
 	"path/filepath"
 	"testing"
 )
-
-var update = flag.Bool("update", false, "update .golden files")
 
 type TreePrintParser struct {
 }

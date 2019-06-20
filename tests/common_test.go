@@ -1,10 +1,13 @@
 package tests
 
 import (
+	"flag"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
 )
+
+var update = flag.Bool("update", false, "update .golden files")
 
 type TestParser interface {
 	// use method under test to process input data
