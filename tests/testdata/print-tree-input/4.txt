@@ -1,0 +1,7 @@
+
+		def q() of void
+			while a < 1 end
+			{}
+			begin end
+			do begin end until a > 3;
+		end
