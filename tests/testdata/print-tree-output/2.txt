@@ -3,24 +3,24 @@ source
     funcDef
       def
       funcSignature
-        f  [line 2, offset: 6]
+        f  [line 1, offset: 4]
         (
         arg
-          first  [line 2, offset: 8]
+          first  [line 1, offset: 6]
           of
           typeRef
             built
               int
         ,
         arg
-          arr  [line 2, offset: 22]
+          arr  [line 1, offset: 20]
           of
           typeRef
             typeRef
-              File  [line 2, offset: 29]
+              File  [line 1, offset: 27]
             array
             [
-            5  [line 2, offset: 41]
+            5  [line 1, offset: 39]
             ]
         )
         of
@@ -32,10 +32,10 @@ source
           if
           expr
             expr
-              a  [line 3, offset: 6]
-            <  [line 3, offset: 8]
+              a  [line 2, offset: 7]
+            <  [line 2, offset: 9]
             expr
-              3  [line 3, offset: 10]
+              3  [line 2, offset: 11]
         ifThen
           then
           statement
@@ -49,35 +49,35 @@ source
                         expr
                           expr
                             expr
-                              a  [line 4, offset: 4]
-                            +=  [line 4, offset: 6]
+                              a  [line 3, offset: 8]
+                            +=  [line 3, offset: 10]
                             expr
-                              3  [line 4, offset: 9]
-                          *  [line 4, offset: 11]
+                              3  [line 3, offset: 13]
+                          *  [line 3, offset: 15]
                           expr
-                            arr  [line 4, offset: 13]
+                            arr  [line 3, offset: 17]
                         [
                         ranges
                           expr
-                            0  [line 4, offset: 17]
+                            0  [line 3, offset: 21]
                           ..
                           expr
-                            2  [line 4, offset: 20]
+                            2  [line 3, offset: 24]
                         ,
                         ranges
                           expr
-                            4  [line 4, offset: 23]
+                            4  [line 3, offset: 27]
                         ]
-                      +  [line 4, offset: 26]
+                      +  [line 3, offset: 30]
                       expr
-                        ~  [line 4, offset: 28]
+                        ~  [line 3, offset: 32]
                         expr
-                          default  [line 4, offset: 29]
+                          default  [line 3, offset: 33]
                     (
                     )
-                  &  [line 4, offset: 39]
+                  &  [line 3, offset: 43]
                   expr
-                    0x0F  [line 4, offset: 41]
+                    0x0F  [line 3, offset: 45]
                 ;
             }
         ifElse
@@ -90,10 +90,10 @@ source
                   while
                   expr
                     expr
-                      a  [line 6, offset: 10]
-                    >  [line 6, offset: 12]
+                      a  [line 5, offset: 14]
+                    >  [line 5, offset: 16]
                     expr
-                      0  [line 6, offset: 14]
+                      0  [line 5, offset: 18]
                 whileBody
                   statement
                     {
@@ -103,15 +103,15 @@ source
                           expr
                             expr
                               expr
-                                a  [line 7, offset: 5]
-                              =  [line 7, offset: 7]
+                                a  [line 6, offset: 12]
+                              =  [line 6, offset: 14]
                               expr
-                                a  [line 7, offset: 9]
-                            -  [line 7, offset: 11]
+                                a  [line 6, offset: 16]
+                            -  [line 6, offset: 18]
                             expr
-                              !  [line 7, offset: 13]
+                              !  [line 6, offset: 20]
                               expr
-                                b  [line 7, offset: 15]
+                                b  [line 6, offset: 22]
                           (
                           )
                         ;
@@ -120,10 +120,10 @@ source
                           if
                           expr
                             expr
-                              q  [line 8, offset: 8]
-                            ==  [line 8, offset: 10]
+                              q  [line 7, offset: 15]
+                            ==  [line 7, offset: 17]
                             expr
-                              3  [line 8, offset: 13]
+                              3  [line 7, offset: 20]
                         ifThen
                           then
                           statement
@@ -140,19 +140,19 @@ source
           statement
             expr
               expr
-                a  [line 11, offset: 6]
-              +=  [line 11, offset: 8]
+                a  [line 10, offset: 7]
+              +=  [line 10, offset: 9]
               expr
-                1  [line 11, offset: 11]
+                1  [line 10, offset: 12]
             ;
         untilExpr
           until
           expr
             expr
-              a  [line 11, offset: 20]
-            <  [line 11, offset: 22]
+              a  [line 10, offset: 21]
+            <  [line 10, offset: 23]
             expr
-              10  [line 11, offset: 24]
+              10  [line 10, offset: 25]
         ;
       statement
         untilStatement
@@ -163,20 +163,20 @@ source
               statement
                 expr
                   expr
-                    a  [line 13, offset: 4]
-                  +=  [line 13, offset: 6]
+                    a  [line 12, offset: 8]
+                  +=  [line 12, offset: 10]
                   expr
-                    5  [line 13, offset: 9]
+                    5  [line 12, offset: 13]
                 ;
               statement
                 ifExpr
                   if
                   expr
                     expr
-                      a  [line 14, offset: 7]
-                    >  [line 14, offset: 9]
+                      a  [line 13, offset: 11]
+                    >  [line 13, offset: 13]
                     expr
-                      100  [line 14, offset: 11]
+                      100  [line 13, offset: 15]
                 ifThen
                   then
                   statement
@@ -186,10 +186,10 @@ source
               statement
                 expr
                   expr
-                    a  [line 15, offset: 4]
-                  ^=  [line 15, offset: 6]
+                    a  [line 14, offset: 8]
+                  ^=  [line 14, offset: 10]
                   expr
-                    xor  [line 15, offset: 9]
+                    xor  [line 14, offset: 13]
                 ;
             }
         untilExpr
@@ -197,12 +197,12 @@ source
           expr
             expr
               expr
-                call  [line 16, offset: 11]
+                call  [line 15, offset: 12]
               (
               )
-            ==  [line 16, offset: 18]
+            ==  [line 15, offset: 19]
             expr
-              0  [line 16, offset: 21]
+              0  [line 15, offset: 22]
         ;
       end
   <EOF>

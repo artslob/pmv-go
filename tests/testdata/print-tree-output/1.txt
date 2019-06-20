@@ -3,7 +3,7 @@ source
     funcDef
       def
       funcSignature
-        testing  [line 2, offset: 6]
+        testing  [line 1, offset: 4]
         (
         )
         of
@@ -15,17 +15,17 @@ source
     funcDef
       def
       funcSignature
-        func  [line 4, offset: 6]
+        func  [line 3, offset: 4]
         (
         arg
-          first  [line 4, offset: 11]
+          first  [line 3, offset: 9]
           of
           typeRef
             built
               byte
         ,
         arg
-          second  [line 4, offset: 26]
+          second  [line 3, offset: 24]
         )
         of
         typeRef
@@ -34,7 +34,7 @@ source
               bool
           array
           [
-          10  [line 4, offset: 48]
+          10  [line 3, offset: 46]
           ]
       end
   <EOF>

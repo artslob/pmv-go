@@ -1,17 +1,16 @@
-
-		def f(first of int, arr of File array [5]) of string
-			if a < 3 then {
-				a += 3 * arr[0..2, 4] + ~default() & 0x0F;
-			} else {
-				while a > 0 {
-					a = a - ! b();
-					if q == 3 then break; end
-				} end
-			} end
-			do a += 1; until a < 10;
-			do {
-				a += 5;
-				if a > 100 then break; end
-				a ^= xor;
-			} until call() == 0;
-		end
+def f(first of int, arr of File array [5]) of string
+    if a < 3 then {
+        a += 3 * arr[0..2, 4] + ~default() & 0x0F;
+    } else {
+        while a > 0 {
+            a = a - ! b();
+            if q == 3 then break; end
+        } end
+    } end
+    do a += 1; until a < 10;
+    do {
+        a += 5;
+        if a > 100 then break; end
+        a ^= xor;
+    } until call() == 0;
+end

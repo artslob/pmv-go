@@ -1,11 +1,10 @@
-
-		def q() of void
-			_a = a_b_1;
-			a = ident;
-			a = "str with \n escapes \t";
-			a = 'a';
-			a = 0x1FA0;
-			a = 0b0110;
-			a = 010;
-			a = true & false;
-		end
+def q() of void
+    _a = a_b_1;
+    a = ident;
+    a = "str with \n escapes \t";
+    a = 'a';
+    a = 0x1FA0;
+    a = 0b0110;
+    a = 010;
+    a = true & false;
+end

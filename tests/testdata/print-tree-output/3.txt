@@ -3,79 +3,79 @@ source
     funcDef
       def
       funcSignature
-        q  [line 2, offset: 6]
+        q  [line 1, offset: 4]
         (
         )
         of
         typeRef
-          void  [line 2, offset: 13]
+          void  [line 1, offset: 11]
       statement
         expr
           expr
-            _a  [line 3, offset: 3]
+            _a  [line 2, offset: 4]
+          =  [line 2, offset: 7]
+          expr
+            a_b_1  [line 2, offset: 9]
+        ;
+      statement
+        expr
+          expr
+            a  [line 3, offset: 4]
           =  [line 3, offset: 6]
           expr
-            a_b_1  [line 3, offset: 8]
+            ident  [line 3, offset: 8]
         ;
       statement
         expr
           expr
-            a  [line 4, offset: 3]
-          =  [line 4, offset: 5]
+            a  [line 4, offset: 4]
+          =  [line 4, offset: 6]
           expr
-            ident  [line 4, offset: 7]
+            "str with \n escapes \t"  [line 4, offset: 8]
         ;
       statement
         expr
           expr
-            a  [line 5, offset: 3]
-          =  [line 5, offset: 5]
+            a  [line 5, offset: 4]
+          =  [line 5, offset: 6]
           expr
-            "str with \n escapes \t"  [line 5, offset: 7]
+            'a'  [line 5, offset: 8]
         ;
       statement
         expr
           expr
-            a  [line 6, offset: 3]
-          =  [line 6, offset: 5]
+            a  [line 6, offset: 4]
+          =  [line 6, offset: 6]
           expr
-            'a'  [line 6, offset: 7]
+            0x1FA0  [line 6, offset: 8]
         ;
       statement
         expr
           expr
-            a  [line 7, offset: 3]
-          =  [line 7, offset: 5]
+            a  [line 7, offset: 4]
+          =  [line 7, offset: 6]
           expr
-            0x1FA0  [line 7, offset: 7]
+            0b0110  [line 7, offset: 8]
         ;
       statement
         expr
           expr
-            a  [line 8, offset: 3]
-          =  [line 8, offset: 5]
+            a  [line 8, offset: 4]
+          =  [line 8, offset: 6]
           expr
-            0b0110  [line 8, offset: 7]
-        ;
-      statement
-        expr
-          expr
-            a  [line 9, offset: 3]
-          =  [line 9, offset: 5]
-          expr
-            010  [line 9, offset: 7]
+            010  [line 8, offset: 8]
         ;
       statement
         expr
           expr
             expr
-              a  [line 10, offset: 3]
-            =  [line 10, offset: 5]
+              a  [line 9, offset: 4]
+            =  [line 9, offset: 6]
             expr
-              true  [line 10, offset: 7]
-          &  [line 10, offset: 12]
+              true  [line 9, offset: 8]
+          &  [line 9, offset: 13]
           expr
-            false  [line 10, offset: 14]
+            false  [line 9, offset: 15]
         ;
       end
   <EOF>
