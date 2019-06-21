@@ -44,44 +44,44 @@ source
               statement
                 expr
                   expr
+                    a  [line 3, offset: 8]
+                  =
+                  expr
                     expr
                       expr
                         expr
+                          a  [line 3, offset: 12]
+                        +
+                        expr
+                          expr
+                            3  [line 3, offset: 16]
+                          *
                           expr
                             expr
+                              arr  [line 3, offset: 20]
+                            [
+                            ranges
                               expr
-                                a  [line 3, offset: 8]
-                              =  [line 3, offset: 10]
+                                0  [line 3, offset: 24]
+                              ..
                               expr
-                                a  [line 3, offset: 12]
-                            +  [line 3, offset: 14]
-                            expr
-                              3  [line 3, offset: 16]
-                          *  [line 3, offset: 18]
-                          expr
-                            arr  [line 3, offset: 20]
-                        [
-                        ranges
-                          expr
-                            0  [line 3, offset: 24]
-                          ..
-                          expr
-                            2  [line 3, offset: 27]
-                        ,
-                        ranges
-                          expr
-                            4  [line 3, offset: 30]
-                        ]
-                      +  [line 3, offset: 33]
+                                2  [line 3, offset: 27]
+                            ,
+                            ranges
+                              expr
+                                4  [line 3, offset: 30]
+                            ]
+                      +
                       expr
                         ~  [line 3, offset: 35]
                         expr
-                          default  [line 3, offset: 36]
-                    (
-                    )
-                  &  [line 3, offset: 46]
-                  expr
-                    0x0F  [line 3, offset: 48]
+                          expr
+                            default  [line 3, offset: 36]
+                          (
+                          )
+                    &
+                    expr
+                      0x0F  [line 3, offset: 48]
                 ;
             }
         ifElse
@@ -105,19 +105,19 @@ source
                       statement
                         expr
                           expr
+                            a  [line 6, offset: 12]
+                          =
+                          expr
                             expr
-                              expr
-                                a  [line 6, offset: 12]
-                              =  [line 6, offset: 14]
-                              expr
-                                a  [line 6, offset: 16]
-                            -  [line 6, offset: 18]
+                              a  [line 6, offset: 16]
+                            -
                             expr
                               !  [line 6, offset: 20]
                               expr
-                                b  [line 6, offset: 22]
-                          (
-                          )
+                                expr
+                                  b  [line 6, offset: 22]
+                                (
+                                )
                         ;
                       statement
                         ifExpr
@@ -125,7 +125,7 @@ source
                           expr
                             expr
                               q  [line 7, offset: 15]
-                            ==  [line 7, offset: 17]
+                            ==
                             expr
                               3  [line 7, offset: 20]
                         ifThen
@@ -144,14 +144,14 @@ source
           statement
             expr
               expr
-                expr
-                  a  [line 10, offset: 7]
-                =  [line 10, offset: 9]
+                a  [line 10, offset: 7]
+              =
+              expr
                 expr
                   a  [line 10, offset: 11]
-              +  [line 10, offset: 13]
-              expr
-                1  [line 10, offset: 15]
+                +
+                expr
+                  1  [line 10, offset: 15]
             ;
         untilExpr
           until
@@ -171,14 +171,14 @@ source
               statement
                 expr
                   expr
-                    expr
-                      a  [line 12, offset: 8]
-                    =  [line 12, offset: 10]
+                    a  [line 12, offset: 8]
+                  =
+                  expr
                     expr
                       a  [line 12, offset: 12]
-                  +  [line 12, offset: 14]
-                  expr
-                    5  [line 12, offset: 16]
+                    +
+                    expr
+                      5  [line 12, offset: 16]
                 ;
               statement
                 ifExpr
@@ -198,14 +198,14 @@ source
               statement
                 expr
                   expr
-                    expr
-                      a  [line 14, offset: 8]
-                    =  [line 14, offset: 10]
+                    a  [line 14, offset: 8]
+                  =
+                  expr
                     expr
                       a  [line 14, offset: 12]
-                  ^  [line 14, offset: 14]
-                  expr
-                    xor  [line 14, offset: 16]
+                    ^
+                    expr
+                      xor  [line 14, offset: 16]
                 ;
             }
         untilExpr
@@ -216,7 +216,7 @@ source
                 call  [line 15, offset: 12]
               (
               )
-            ==  [line 15, offset: 19]
+            ==
             expr
               0  [line 15, offset: 22]
         ;

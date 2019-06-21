@@ -77,26 +77,56 @@ type LangListener interface {
 	// EnterBlockBody is called when entering the blockBody production.
 	EnterBlockBody(c *BlockBodyContext)
 
-	// EnterCall is called when entering the call production.
-	EnterCall(c *CallContext)
+	// EnterMulDivMod is called when entering the mulDivMod production.
+	EnterMulDivMod(c *MulDivModContext)
 
-	// EnterSlice is called when entering the slice production.
-	EnterSlice(c *SliceContext)
+	// EnterOr is called when entering the or production.
+	EnterOr(c *OrContext)
 
-	// EnterBinary is called when entering the binary production.
-	EnterBinary(c *BinaryContext)
+	// EnterAndLogical is called when entering the andLogical production.
+	EnterAndLogical(c *AndLogicalContext)
+
+	// EnterShift is called when entering the shift production.
+	EnterShift(c *ShiftContext)
+
+	// EnterCompareArrow is called when entering the compareArrow production.
+	EnterCompareArrow(c *CompareArrowContext)
+
+	// EnterAddSub is called when entering the addSub production.
+	EnterAddSub(c *AddSubContext)
+
+	// EnterCompareEqual is called when entering the compareEqual production.
+	EnterCompareEqual(c *CompareEqualContext)
 
 	// EnterUnary is called when entering the unary production.
 	EnterUnary(c *UnaryContext)
-
-	// EnterPlace is called when entering the place production.
-	EnterPlace(c *PlaceContext)
 
 	// EnterBraces is called when entering the braces production.
 	EnterBraces(c *BracesContext)
 
 	// EnterLiteral is called when entering the literal production.
 	EnterLiteral(c *LiteralContext)
+
+	// EnterCall is called when entering the call production.
+	EnterCall(c *CallContext)
+
+	// EnterOrLogical is called when entering the orLogical production.
+	EnterOrLogical(c *OrLogicalContext)
+
+	// EnterSlice is called when entering the slice production.
+	EnterSlice(c *SliceContext)
+
+	// EnterAnd is called when entering the and production.
+	EnterAnd(c *AndContext)
+
+	// EnterXor is called when entering the xor production.
+	EnterXor(c *XorContext)
+
+	// EnterPlace is called when entering the place production.
+	EnterPlace(c *PlaceContext)
+
+	// EnterAssign is called when entering the assign production.
+	EnterAssign(c *AssignContext)
 
 	// EnterRanges is called when entering the ranges production.
 	EnterRanges(c *RangesContext)
@@ -170,26 +200,56 @@ type LangListener interface {
 	// ExitBlockBody is called when exiting the blockBody production.
 	ExitBlockBody(c *BlockBodyContext)
 
-	// ExitCall is called when exiting the call production.
-	ExitCall(c *CallContext)
+	// ExitMulDivMod is called when exiting the mulDivMod production.
+	ExitMulDivMod(c *MulDivModContext)
 
-	// ExitSlice is called when exiting the slice production.
-	ExitSlice(c *SliceContext)
+	// ExitOr is called when exiting the or production.
+	ExitOr(c *OrContext)
 
-	// ExitBinary is called when exiting the binary production.
-	ExitBinary(c *BinaryContext)
+	// ExitAndLogical is called when exiting the andLogical production.
+	ExitAndLogical(c *AndLogicalContext)
+
+	// ExitShift is called when exiting the shift production.
+	ExitShift(c *ShiftContext)
+
+	// ExitCompareArrow is called when exiting the compareArrow production.
+	ExitCompareArrow(c *CompareArrowContext)
+
+	// ExitAddSub is called when exiting the addSub production.
+	ExitAddSub(c *AddSubContext)
+
+	// ExitCompareEqual is called when exiting the compareEqual production.
+	ExitCompareEqual(c *CompareEqualContext)
 
 	// ExitUnary is called when exiting the unary production.
 	ExitUnary(c *UnaryContext)
-
-	// ExitPlace is called when exiting the place production.
-	ExitPlace(c *PlaceContext)
 
 	// ExitBraces is called when exiting the braces production.
 	ExitBraces(c *BracesContext)
 
 	// ExitLiteral is called when exiting the literal production.
 	ExitLiteral(c *LiteralContext)
+
+	// ExitCall is called when exiting the call production.
+	ExitCall(c *CallContext)
+
+	// ExitOrLogical is called when exiting the orLogical production.
+	ExitOrLogical(c *OrLogicalContext)
+
+	// ExitSlice is called when exiting the slice production.
+	ExitSlice(c *SliceContext)
+
+	// ExitAnd is called when exiting the and production.
+	ExitAnd(c *AndContext)
+
+	// ExitXor is called when exiting the xor production.
+	ExitXor(c *XorContext)
+
+	// ExitPlace is called when exiting the place production.
+	ExitPlace(c *PlaceContext)
+
+	// ExitAssign is called when exiting the assign production.
+	ExitAssign(c *AssignContext)
 
 	// ExitRanges is called when exiting the ranges production.
 	ExitRanges(c *RangesContext)

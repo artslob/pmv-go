@@ -159,35 +159,53 @@ func (s *BaseLangListener) EnterBlockBody(ctx *BlockBodyContext) {}
 // ExitBlockBody is called when production blockBody is exited.
 func (s *BaseLangListener) ExitBlockBody(ctx *BlockBodyContext) {}
 
-// EnterCall is called when production call is entered.
-func (s *BaseLangListener) EnterCall(ctx *CallContext) {}
+// EnterMulDivMod is called when production mulDivMod is entered.
+func (s *BaseLangListener) EnterMulDivMod(ctx *MulDivModContext) {}
 
-// ExitCall is called when production call is exited.
-func (s *BaseLangListener) ExitCall(ctx *CallContext) {}
+// ExitMulDivMod is called when production mulDivMod is exited.
+func (s *BaseLangListener) ExitMulDivMod(ctx *MulDivModContext) {}
 
-// EnterSlice is called when production slice is entered.
-func (s *BaseLangListener) EnterSlice(ctx *SliceContext) {}
+// EnterOr is called when production or is entered.
+func (s *BaseLangListener) EnterOr(ctx *OrContext) {}
 
-// ExitSlice is called when production slice is exited.
-func (s *BaseLangListener) ExitSlice(ctx *SliceContext) {}
+// ExitOr is called when production or is exited.
+func (s *BaseLangListener) ExitOr(ctx *OrContext) {}
 
-// EnterBinary is called when production binary is entered.
-func (s *BaseLangListener) EnterBinary(ctx *BinaryContext) {}
+// EnterAndLogical is called when production andLogical is entered.
+func (s *BaseLangListener) EnterAndLogical(ctx *AndLogicalContext) {}
 
-// ExitBinary is called when production binary is exited.
-func (s *BaseLangListener) ExitBinary(ctx *BinaryContext) {}
+// ExitAndLogical is called when production andLogical is exited.
+func (s *BaseLangListener) ExitAndLogical(ctx *AndLogicalContext) {}
+
+// EnterShift is called when production shift is entered.
+func (s *BaseLangListener) EnterShift(ctx *ShiftContext) {}
+
+// ExitShift is called when production shift is exited.
+func (s *BaseLangListener) ExitShift(ctx *ShiftContext) {}
+
+// EnterCompareArrow is called when production compareArrow is entered.
+func (s *BaseLangListener) EnterCompareArrow(ctx *CompareArrowContext) {}
+
+// ExitCompareArrow is called when production compareArrow is exited.
+func (s *BaseLangListener) ExitCompareArrow(ctx *CompareArrowContext) {}
+
+// EnterAddSub is called when production addSub is entered.
+func (s *BaseLangListener) EnterAddSub(ctx *AddSubContext) {}
+
+// ExitAddSub is called when production addSub is exited.
+func (s *BaseLangListener) ExitAddSub(ctx *AddSubContext) {}
+
+// EnterCompareEqual is called when production compareEqual is entered.
+func (s *BaseLangListener) EnterCompareEqual(ctx *CompareEqualContext) {}
+
+// ExitCompareEqual is called when production compareEqual is exited.
+func (s *BaseLangListener) ExitCompareEqual(ctx *CompareEqualContext) {}
 
 // EnterUnary is called when production unary is entered.
 func (s *BaseLangListener) EnterUnary(ctx *UnaryContext) {}
 
 // ExitUnary is called when production unary is exited.
 func (s *BaseLangListener) ExitUnary(ctx *UnaryContext) {}
-
-// EnterPlace is called when production place is entered.
-func (s *BaseLangListener) EnterPlace(ctx *PlaceContext) {}
-
-// ExitPlace is called when production place is exited.
-func (s *BaseLangListener) ExitPlace(ctx *PlaceContext) {}
 
 // EnterBraces is called when production braces is entered.
 func (s *BaseLangListener) EnterBraces(ctx *BracesContext) {}
@@ -200,6 +218,48 @@ func (s *BaseLangListener) EnterLiteral(ctx *LiteralContext) {}
 
 // ExitLiteral is called when production literal is exited.
 func (s *BaseLangListener) ExitLiteral(ctx *LiteralContext) {}
+
+// EnterCall is called when production call is entered.
+func (s *BaseLangListener) EnterCall(ctx *CallContext) {}
+
+// ExitCall is called when production call is exited.
+func (s *BaseLangListener) ExitCall(ctx *CallContext) {}
+
+// EnterOrLogical is called when production orLogical is entered.
+func (s *BaseLangListener) EnterOrLogical(ctx *OrLogicalContext) {}
+
+// ExitOrLogical is called when production orLogical is exited.
+func (s *BaseLangListener) ExitOrLogical(ctx *OrLogicalContext) {}
+
+// EnterSlice is called when production slice is entered.
+func (s *BaseLangListener) EnterSlice(ctx *SliceContext) {}
+
+// ExitSlice is called when production slice is exited.
+func (s *BaseLangListener) ExitSlice(ctx *SliceContext) {}
+
+// EnterAnd is called when production and is entered.
+func (s *BaseLangListener) EnterAnd(ctx *AndContext) {}
+
+// ExitAnd is called when production and is exited.
+func (s *BaseLangListener) ExitAnd(ctx *AndContext) {}
+
+// EnterXor is called when production xor is entered.
+func (s *BaseLangListener) EnterXor(ctx *XorContext) {}
+
+// ExitXor is called when production xor is exited.
+func (s *BaseLangListener) ExitXor(ctx *XorContext) {}
+
+// EnterPlace is called when production place is entered.
+func (s *BaseLangListener) EnterPlace(ctx *PlaceContext) {}
+
+// ExitPlace is called when production place is exited.
+func (s *BaseLangListener) ExitPlace(ctx *PlaceContext) {}
+
+// EnterAssign is called when production assign is entered.
+func (s *BaseLangListener) EnterAssign(ctx *AssignContext) {}
+
+// ExitAssign is called when production assign is exited.
+func (s *BaseLangListener) ExitAssign(ctx *AssignContext) {}
 
 // EnterRanges is called when production ranges is entered.
 func (s *BaseLangListener) EnterRanges(ctx *RangesContext) {}
