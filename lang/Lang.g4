@@ -53,32 +53,32 @@ blockBody: statement* ;
 
 /******** EXPR ********/
 
-expr: expr BIN_OP expr                      # binary
-    | UN_OP expr                            # unary
-    | '(' expr ')'                          # braces
-    | expr '(' (expr (',' expr)*)? ')'      # call
+expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr '[' (ranges (',' ranges)*)? ']'  # slice
+    | UN_OP expr                            # unary
+    | expr op=('*'|'/'|'%') expr            # mulDivMod
+    | expr op=('+'|'-')     expr            # addSub
+    | expr op=SHIFT_OP      expr            # shift
+    | expr op=CMP_ARR_OP    expr            # compareArrow
+    | expr op=('=='|'!=')   expr            # compareEqual
+    | expr op='&'  expr                     # and
+    | expr op='^'  expr                     # xor
+    | expr op='|'  expr                     # or
+    | expr op='&&' expr                     # andLogical
+    | expr op='||' expr                     # orLogical
+    | expr op='='  expr                     # assign
+    // TODO: add assign and var creation
+    | '(' expr ')'                          # braces
     | (BOOL|STR|CHAR|HEX|BITS|DEC)          # literal
     | IDENTIFIER                            # place
     ;
 
 ranges: expr ('..' expr)?;
 
-BIN_OP: '<<=' | '>>='
-      | '&=' | '|='
-      | '^=' | '%='
-      | '='
-      | '==' | '!='
-      | '*=' | '/='
-      | '+=' | '-='
-      | '<<' | '>>'
-      | '&&' | '||'
-      | '*' | '%'
-      | '^' | '/'
-      | '&' | '|'
-      | '+' | '-'
-      | '<=' | '>='
-      | '<' | '>'
-      ;
+SHIFT_OP: '<<' | '>>' ;
+
+CMP_ARR_OP: '<' | '<='
+          | '>' | '>='
+          ;
 
 UN_OP: '+' | '-' | '~' | '!' ;
