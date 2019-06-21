@@ -21,7 +21,7 @@ digraph G {
 12 [label="break;"]
 12 -> 17
  3 ->  4 [color=blue1]
- 4 [label="r-=1;"]
+ 4 [label="r=r-1;"]
  4 ->  5
  5 [label="r==5",shape=diamond]
  5 ->  7

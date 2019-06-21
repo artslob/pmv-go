@@ -1,19 +1,19 @@
 def func()
 	do {
-		a += b;
+		a = a + b;
 		if b > 10 then
 			break;
 		else
 		    break;
 		end
 		do {
-			b += a;
+			b = b + a;
 			if b == 10 then
 				break;
 			end
 		}
 		until b < 42;
-		b *= 2;
+		b = b * 2;
 	} until a < 3;
 	print(t);
 end

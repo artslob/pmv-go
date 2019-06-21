@@ -1,10 +1,10 @@
 def func()
 	do {
-		a += b;
+		a = a + b;
 		if b > 10 then
 			break;
 		end
-		b *= 2;
+		b = b * 2;
 	} until a < 3;
 	print(t);
 end

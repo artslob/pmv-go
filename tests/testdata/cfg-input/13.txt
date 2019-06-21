@@ -2,9 +2,9 @@ def func()
     if a == 3 then
         if b > 1 then
             if a == b then
-                a += b;
+                a = a + b;
             else
-                a *= 2;
+                a = a * 2;
             end
         else
             if q < 3 then
@@ -16,7 +16,7 @@ def func()
     else
         if q == 3 then
             if f == 3 then
-                f -= 10;
+                f = f - 10;
             else
                 b = 2;
             end

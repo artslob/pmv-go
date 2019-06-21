@@ -1,5 +1,5 @@
 def func()
     a = 2;
-    do a += 1; until a < 10;
+    do a = a + 1; until a < 10;
     c = 0;
 end

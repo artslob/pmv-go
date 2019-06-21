@@ -49,35 +49,39 @@ source
                         expr
                           expr
                             expr
-                              a  [line 3, offset: 8]
-                            +=  [line 3, offset: 10]
+                              expr
+                                a  [line 3, offset: 8]
+                              =  [line 3, offset: 10]
+                              expr
+                                a  [line 3, offset: 12]
+                            +  [line 3, offset: 14]
                             expr
-                              3  [line 3, offset: 13]
-                          *  [line 3, offset: 15]
+                              3  [line 3, offset: 16]
+                          *  [line 3, offset: 18]
                           expr
-                            arr  [line 3, offset: 17]
+                            arr  [line 3, offset: 20]
                         [
                         ranges
                           expr
-                            0  [line 3, offset: 21]
+                            0  [line 3, offset: 24]
                           ..
                           expr
-                            2  [line 3, offset: 24]
+                            2  [line 3, offset: 27]
                         ,
                         ranges
                           expr
-                            4  [line 3, offset: 27]
+                            4  [line 3, offset: 30]
                         ]
-                      +  [line 3, offset: 30]
+                      +  [line 3, offset: 33]
                       expr
-                        ~  [line 3, offset: 32]
+                        ~  [line 3, offset: 35]
                         expr
-                          default  [line 3, offset: 33]
+                          default  [line 3, offset: 36]
                     (
                     )
-                  &  [line 3, offset: 43]
+                  &  [line 3, offset: 46]
                   expr
-                    0x0F  [line 3, offset: 45]
+                    0x0F  [line 3, offset: 48]
                 ;
             }
         ifElse
@@ -140,19 +144,23 @@ source
           statement
             expr
               expr
-                a  [line 10, offset: 7]
-              +=  [line 10, offset: 9]
+                expr
+                  a  [line 10, offset: 7]
+                =  [line 10, offset: 9]
+                expr
+                  a  [line 10, offset: 11]
+              +  [line 10, offset: 13]
               expr
-                1  [line 10, offset: 12]
+                1  [line 10, offset: 15]
             ;
         untilExpr
           until
           expr
             expr
-              a  [line 10, offset: 21]
-            <  [line 10, offset: 23]
+              a  [line 10, offset: 24]
+            <  [line 10, offset: 26]
             expr
-              10  [line 10, offset: 25]
+              10  [line 10, offset: 28]
         ;
       statement
         untilStatement
@@ -163,10 +171,14 @@ source
               statement
                 expr
                   expr
-                    a  [line 12, offset: 8]
-                  +=  [line 12, offset: 10]
+                    expr
+                      a  [line 12, offset: 8]
+                    =  [line 12, offset: 10]
+                    expr
+                      a  [line 12, offset: 12]
+                  +  [line 12, offset: 14]
                   expr
-                    5  [line 12, offset: 13]
+                    5  [line 12, offset: 16]
                 ;
               statement
                 ifExpr
@@ -186,10 +198,14 @@ source
               statement
                 expr
                   expr
-                    a  [line 14, offset: 8]
-                  ^=  [line 14, offset: 10]
+                    expr
+                      a  [line 14, offset: 8]
+                    =  [line 14, offset: 10]
+                    expr
+                      a  [line 14, offset: 12]
+                  ^  [line 14, offset: 14]
                   expr
-                    xor  [line 14, offset: 13]
+                    xor  [line 14, offset: 16]
                 ;
             }
         untilExpr
