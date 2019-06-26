@@ -11,6 +11,6 @@ $ alias antlr='java -jar "${HOME}/bin/antlr-4.7.2-complete.jar"'
 Command to generate parser:
 ```bash
 # in project root
-cd lagg
+cd lang
 antlr -Dlanguage=Go -o ../parser Lang.g4
 ```
