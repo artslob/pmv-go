@@ -21,6 +21,12 @@ func (s *BaseLangListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseLangListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
+// EnterBoolRule is called when production boolRule is entered.
+func (s *BaseLangListener) EnterBoolRule(ctx *BoolRuleContext) {}
+
+// ExitBoolRule is called when production boolRule is exited.
+func (s *BaseLangListener) ExitBoolRule(ctx *BoolRuleContext) {}
+
 // EnterSource is called when production source is entered.
 func (s *BaseLangListener) EnterSource(ctx *SourceContext) {}
 

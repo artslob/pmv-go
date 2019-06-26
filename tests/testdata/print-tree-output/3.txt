@@ -64,10 +64,12 @@ source
           =
           expr
             expr
-              true  [line 9, offset: 8]
+              boolRule
+                true
             &
             expr
-              false  [line 9, offset: 15]
+              boolRule
+                false
         ;
       end
   <EOF>

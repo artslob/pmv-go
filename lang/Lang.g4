@@ -8,7 +8,7 @@ CHAR        : '\'' ~('\'') '\'' ;
 HEX         : '0'[xX][0-9A-Fa-f]+ ;
 BITS        : '0'[bB][01]+ ;
 DEC         : [0-9]+ ;
-BOOL        : 'true' | 'false' ;
+boolRule    : 'true' | 'false' ;
 
 source : sourceItem* EOF;
 
@@ -56,8 +56,6 @@ variable: 'var' name=IDENTIFIER typeRef ('=' expr )? ';' ;
 
 /******** EXPR ********/
 
-// FIXME: 'var a bool = true;' :: parsed as place, not bool
-
 expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr '[' (ranges (',' ranges)*)? ']'  # slice
     | op=('+'|'-'|'~'|'!')  expr  # unary
@@ -73,7 +71,7 @@ expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr op='||' expr           # orLogical
     | name=IDENTIFIER op='=' expr # assign
     | '(' expr ')'                # braces
-    | BOOL                        # literalBool
+    | boolRule                    # literalBool
     | STR                         # literalStr
     | CHAR                        # literalChar
     | HEX                         # literalHex

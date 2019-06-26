@@ -79,7 +79,8 @@ source
               bool
           =
           expr
-            true  [line 10, offset: 17]
+            boolRule
+              true
           ;
       statement
         variable

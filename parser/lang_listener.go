@@ -8,6 +8,9 @@ import "github.com/antlr/antlr4/runtime/Go/antlr"
 type LangListener interface {
 	antlr.ParseTreeListener
 
+	// EnterBoolRule is called when entering the boolRule production.
+	EnterBoolRule(c *BoolRuleContext)
+
 	// EnterSource is called when entering the source production.
 	EnterSource(c *SourceContext)
 
@@ -151,6 +154,9 @@ type LangListener interface {
 
 	// EnterRanges is called when entering the ranges production.
 	EnterRanges(c *RangesContext)
+
+	// ExitBoolRule is called when exiting the boolRule production.
+	ExitBoolRule(c *BoolRuleContext)
 
 	// ExitSource is called when exiting the source production.
 	ExitSource(c *SourceContext)
