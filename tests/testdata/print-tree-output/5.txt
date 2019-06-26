@@ -8,8 +8,7 @@ source
         )
       statement
         expr
-          expr
-            a  [line 2, offset: 4]
+          a  [line 2, offset: 4]
           =
           expr
             expr
@@ -24,8 +23,7 @@ source
         ;
       statement
         expr
-          expr
-            a  [line 3, offset: 4]
+          a  [line 3, offset: 4]
           =
           expr
             expr
@@ -48,8 +46,7 @@ source
         ;
       statement
         expr
-          expr
-            a  [line 4, offset: 4]
+          a  [line 4, offset: 4]
           =
           expr
             expr
@@ -81,8 +78,7 @@ source
         ;
       statement
         expr
-          expr
-            a  [line 5, offset: 4]
+          a  [line 5, offset: 4]
           =
           expr
             expr
@@ -127,8 +123,7 @@ source
         ;
       statement
         expr
-          expr
-            a  [line 6, offset: 4]
+          a  [line 6, offset: 4]
           =
           expr
             expr

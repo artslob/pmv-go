@@ -43,8 +43,7 @@ source
             blockBody
               statement
                 expr
-                  expr
-                    a  [line 3, offset: 8]
+                  a  [line 3, offset: 8]
                   =
                   expr
                     expr
@@ -104,8 +103,7 @@ source
                     blockBody
                       statement
                         expr
-                          expr
-                            a  [line 6, offset: 12]
+                          a  [line 6, offset: 12]
                           =
                           expr
                             expr
@@ -143,8 +141,7 @@ source
           do
           statement
             expr
-              expr
-                a  [line 10, offset: 7]
+              a  [line 10, offset: 7]
               =
               expr
                 expr
@@ -170,8 +167,7 @@ source
             blockBody
               statement
                 expr
-                  expr
-                    a  [line 12, offset: 8]
+                  a  [line 12, offset: 8]
                   =
                   expr
                     expr
@@ -197,8 +193,7 @@ source
                 end
               statement
                 expr
-                  expr
-                    a  [line 14, offset: 8]
+                  a  [line 14, offset: 8]
                   =
                   expr
                     expr

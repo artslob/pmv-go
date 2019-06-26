@@ -66,7 +66,7 @@ expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr op='|'  expr           # or
     | expr op='&&' expr           # andLogical
     | expr op='||' expr           # orLogical
-    | expr op='='  expr           # assign
+    | name=IDENTIFIER op='=' expr # assign
     // TODO: add assign and var creation
     | '(' expr ')'                # braces
     | BOOL                        # literalBool
