@@ -55,22 +55,27 @@ blockBody: statement* ;
 
 expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr '[' (ranges (',' ranges)*)? ']'  # slice
-    | UN_OP expr                            # unary
-    | expr op=('*'|'/'|'%') expr            # mulDivMod
-    | expr op=('+'|'-')     expr            # addSub
-    | expr op=SHIFT_OP      expr            # shift
-    | expr op=CMP_ARR_OP    expr            # compareArrow
-    | expr op=('=='|'!=')   expr            # compareEqual
-    | expr op='&'  expr                     # and
-    | expr op='^'  expr                     # xor
-    | expr op='|'  expr                     # or
-    | expr op='&&' expr                     # andLogical
-    | expr op='||' expr                     # orLogical
-    | expr op='='  expr                     # assign
+    | UN_OP expr                  # unary
+    | expr op=('*'|'/'|'%') expr  # mulDivMod
+    | expr op=('+'|'-')     expr  # addSub
+    | expr op=SHIFT_OP      expr  # shift
+    | expr op=CMP_ARR_OP    expr  # compareArrow
+    | expr op=('=='|'!=')   expr  # compareEqual
+    | expr op='&'  expr           # and
+    | expr op='^'  expr           # xor
+    | expr op='|'  expr           # or
+    | expr op='&&' expr           # andLogical
+    | expr op='||' expr           # orLogical
+    | expr op='='  expr           # assign
     // TODO: add assign and var creation
-    | '(' expr ')'                          # braces
-    | (BOOL|STR|CHAR|HEX|BITS|DEC)          # literal
-    | IDENTIFIER                            # place
+    | '(' expr ')'                # braces
+    | BOOL                        # literalBool
+    | STR                         # literalStr
+    | CHAR                        # literalChar
+    | HEX                         # literalHex
+    | BITS                        # literalBits
+    | DEC                         # literalDec
+    | IDENTIFIER                  # place
     ;
 
 ranges: expr ('..' expr)?;

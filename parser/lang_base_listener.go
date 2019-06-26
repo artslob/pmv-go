@@ -177,11 +177,23 @@ func (s *BaseLangListener) EnterAndLogical(ctx *AndLogicalContext) {}
 // ExitAndLogical is called when production andLogical is exited.
 func (s *BaseLangListener) ExitAndLogical(ctx *AndLogicalContext) {}
 
+// EnterLiteralBits is called when production literalBits is entered.
+func (s *BaseLangListener) EnterLiteralBits(ctx *LiteralBitsContext) {}
+
+// ExitLiteralBits is called when production literalBits is exited.
+func (s *BaseLangListener) ExitLiteralBits(ctx *LiteralBitsContext) {}
+
 // EnterShift is called when production shift is entered.
 func (s *BaseLangListener) EnterShift(ctx *ShiftContext) {}
 
 // ExitShift is called when production shift is exited.
 func (s *BaseLangListener) ExitShift(ctx *ShiftContext) {}
+
+// EnterLiteralBool is called when production literalBool is entered.
+func (s *BaseLangListener) EnterLiteralBool(ctx *LiteralBoolContext) {}
+
+// ExitLiteralBool is called when production literalBool is exited.
+func (s *BaseLangListener) ExitLiteralBool(ctx *LiteralBoolContext) {}
 
 // EnterCompareArrow is called when production compareArrow is entered.
 func (s *BaseLangListener) EnterCompareArrow(ctx *CompareArrowContext) {}
@@ -213,11 +225,17 @@ func (s *BaseLangListener) EnterBraces(ctx *BracesContext) {}
 // ExitBraces is called when production braces is exited.
 func (s *BaseLangListener) ExitBraces(ctx *BracesContext) {}
 
-// EnterLiteral is called when production literal is entered.
-func (s *BaseLangListener) EnterLiteral(ctx *LiteralContext) {}
+// EnterLiteralDec is called when production literalDec is entered.
+func (s *BaseLangListener) EnterLiteralDec(ctx *LiteralDecContext) {}
 
-// ExitLiteral is called when production literal is exited.
-func (s *BaseLangListener) ExitLiteral(ctx *LiteralContext) {}
+// ExitLiteralDec is called when production literalDec is exited.
+func (s *BaseLangListener) ExitLiteralDec(ctx *LiteralDecContext) {}
+
+// EnterLiteralHex is called when production literalHex is entered.
+func (s *BaseLangListener) EnterLiteralHex(ctx *LiteralHexContext) {}
+
+// ExitLiteralHex is called when production literalHex is exited.
+func (s *BaseLangListener) ExitLiteralHex(ctx *LiteralHexContext) {}
 
 // EnterCall is called when production call is entered.
 func (s *BaseLangListener) EnterCall(ctx *CallContext) {}
@@ -243,6 +261,12 @@ func (s *BaseLangListener) EnterAnd(ctx *AndContext) {}
 // ExitAnd is called when production and is exited.
 func (s *BaseLangListener) ExitAnd(ctx *AndContext) {}
 
+// EnterLiteralChar is called when production literalChar is entered.
+func (s *BaseLangListener) EnterLiteralChar(ctx *LiteralCharContext) {}
+
+// ExitLiteralChar is called when production literalChar is exited.
+func (s *BaseLangListener) ExitLiteralChar(ctx *LiteralCharContext) {}
+
 // EnterXor is called when production xor is entered.
 func (s *BaseLangListener) EnterXor(ctx *XorContext) {}
 
@@ -254,6 +278,12 @@ func (s *BaseLangListener) EnterPlace(ctx *PlaceContext) {}
 
 // ExitPlace is called when production place is exited.
 func (s *BaseLangListener) ExitPlace(ctx *PlaceContext) {}
+
+// EnterLiteralStr is called when production literalStr is entered.
+func (s *BaseLangListener) EnterLiteralStr(ctx *LiteralStrContext) {}
+
+// ExitLiteralStr is called when production literalStr is exited.
+func (s *BaseLangListener) ExitLiteralStr(ctx *LiteralStrContext) {}
 
 // EnterAssign is called when production assign is entered.
 func (s *BaseLangListener) EnterAssign(ctx *AssignContext) {}

@@ -86,8 +86,14 @@ type LangListener interface {
 	// EnterAndLogical is called when entering the andLogical production.
 	EnterAndLogical(c *AndLogicalContext)
 
+	// EnterLiteralBits is called when entering the literalBits production.
+	EnterLiteralBits(c *LiteralBitsContext)
+
 	// EnterShift is called when entering the shift production.
 	EnterShift(c *ShiftContext)
+
+	// EnterLiteralBool is called when entering the literalBool production.
+	EnterLiteralBool(c *LiteralBoolContext)
 
 	// EnterCompareArrow is called when entering the compareArrow production.
 	EnterCompareArrow(c *CompareArrowContext)
@@ -104,8 +110,11 @@ type LangListener interface {
 	// EnterBraces is called when entering the braces production.
 	EnterBraces(c *BracesContext)
 
-	// EnterLiteral is called when entering the literal production.
-	EnterLiteral(c *LiteralContext)
+	// EnterLiteralDec is called when entering the literalDec production.
+	EnterLiteralDec(c *LiteralDecContext)
+
+	// EnterLiteralHex is called when entering the literalHex production.
+	EnterLiteralHex(c *LiteralHexContext)
 
 	// EnterCall is called when entering the call production.
 	EnterCall(c *CallContext)
@@ -119,11 +128,17 @@ type LangListener interface {
 	// EnterAnd is called when entering the and production.
 	EnterAnd(c *AndContext)
 
+	// EnterLiteralChar is called when entering the literalChar production.
+	EnterLiteralChar(c *LiteralCharContext)
+
 	// EnterXor is called when entering the xor production.
 	EnterXor(c *XorContext)
 
 	// EnterPlace is called when entering the place production.
 	EnterPlace(c *PlaceContext)
+
+	// EnterLiteralStr is called when entering the literalStr production.
+	EnterLiteralStr(c *LiteralStrContext)
 
 	// EnterAssign is called when entering the assign production.
 	EnterAssign(c *AssignContext)
@@ -209,8 +224,14 @@ type LangListener interface {
 	// ExitAndLogical is called when exiting the andLogical production.
 	ExitAndLogical(c *AndLogicalContext)
 
+	// ExitLiteralBits is called when exiting the literalBits production.
+	ExitLiteralBits(c *LiteralBitsContext)
+
 	// ExitShift is called when exiting the shift production.
 	ExitShift(c *ShiftContext)
+
+	// ExitLiteralBool is called when exiting the literalBool production.
+	ExitLiteralBool(c *LiteralBoolContext)
 
 	// ExitCompareArrow is called when exiting the compareArrow production.
 	ExitCompareArrow(c *CompareArrowContext)
@@ -227,8 +248,11 @@ type LangListener interface {
 	// ExitBraces is called when exiting the braces production.
 	ExitBraces(c *BracesContext)
 
-	// ExitLiteral is called when exiting the literal production.
-	ExitLiteral(c *LiteralContext)
+	// ExitLiteralDec is called when exiting the literalDec production.
+	ExitLiteralDec(c *LiteralDecContext)
+
+	// ExitLiteralHex is called when exiting the literalHex production.
+	ExitLiteralHex(c *LiteralHexContext)
 
 	// ExitCall is called when exiting the call production.
 	ExitCall(c *CallContext)
@@ -242,11 +266,17 @@ type LangListener interface {
 	// ExitAnd is called when exiting the and production.
 	ExitAnd(c *AndContext)
 
+	// ExitLiteralChar is called when exiting the literalChar production.
+	ExitLiteralChar(c *LiteralCharContext)
+
 	// ExitXor is called when exiting the xor production.
 	ExitXor(c *XorContext)
 
 	// ExitPlace is called when exiting the place production.
 	ExitPlace(c *PlaceContext)
+
+	// ExitLiteralStr is called when exiting the literalStr production.
+	ExitLiteralStr(c *LiteralStrContext)
 
 	// ExitAssign is called when exiting the assign production.
 	ExitAssign(c *AssignContext)
