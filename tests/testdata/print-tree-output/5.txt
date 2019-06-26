@@ -1,0 +1,149 @@
+source
+  sourceItem
+    funcDef
+      def
+      funcSignature
+        qwe  [line 1, offset: 4]
+        (
+        )
+      statement
+        expr
+          expr
+            a  [line 2, offset: 4]
+          =
+          expr
+            expr
+              expr
+                3  [line 2, offset: 8]
+              *
+              expr
+                r  [line 2, offset: 12]
+            &
+            expr
+              8  [line 2, offset: 16]
+        ;
+      statement
+        expr
+          expr
+            a  [line 3, offset: 4]
+          =
+          expr
+            expr
+              a  [line 3, offset: 8]
+            *
+            expr
+              expr
+                b  [line 3, offset: 12]
+              (
+              expr
+                expr
+                  1  [line 3, offset: 14]
+                *
+                expr
+                  5  [line 3, offset: 18]
+              ,
+              expr
+                2  [line 3, offset: 21]
+              )
+        ;
+      statement
+        expr
+          expr
+            a  [line 4, offset: 4]
+          =
+          expr
+            expr
+              expr
+                a  [line 4, offset: 8]
+              (
+              expr
+                expr
+                  b  [line 4, offset: 10]
+                *
+                expr
+                  8  [line 4, offset: 14]
+              )
+            [
+            ranges
+              expr
+                1  [line 4, offset: 17]
+              ..
+              expr
+                2  [line 4, offset: 20]
+            ,
+            ranges
+              expr
+                i  [line 4, offset: 23]
+              ..
+              expr
+                j  [line 4, offset: 26]
+            ]
+        ;
+      statement
+        expr
+          expr
+            a  [line 5, offset: 4]
+          =
+          expr
+            expr
+              expr
+                expr
+                  expr
+                    expr
+                      !  [line 5, offset: 8]
+                      expr
+                        a  [line 5, offset: 9]
+                    *
+                    expr
+                      !  [line 5, offset: 13]
+                      expr
+                        b  [line 5, offset: 14]
+                  +
+                  expr
+                    expr
+                      ~  [line 5, offset: 18]
+                      expr
+                        z  [line 5, offset: 19]
+                    /
+                    expr
+                      a  [line 5, offset: 23]
+                &
+                expr
+                  1  [line 5, offset: 27]
+              &&
+              expr
+                a  [line 5, offset: 32]
+            ||
+            expr
+              expr
+                b  [line 5, offset: 37]
+              ^
+              expr
+                expr
+                  0b1  [line 5, offset: 41]
+                <<  [line 5, offset: 45]
+                expr
+                  2  [line 5, offset: 48]
+        ;
+      statement
+        expr
+          expr
+            a  [line 6, offset: 4]
+          =
+          expr
+            expr
+              a  [line 6, offset: 8]
+            <  [line 6, offset: 10]
+            expr
+              expr
+                b  [line 6, offset: 12]
+              +
+              expr
+                expr
+                  z  [line 6, offset: 16]
+                %
+                expr
+                  5  [line 6, offset: 20]
+        ;
+      end
+  <EOF>
