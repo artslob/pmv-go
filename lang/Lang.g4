@@ -57,11 +57,10 @@ variable: 'var' name=IDENTIFIER typeRef ('=' expr )? ';' ;
 /******** EXPR ********/
 
 // FIXME: 'var a bool = true;' :: parsed as place, not bool
-// FIXME: 'var a int = -1;' :: minus not parsed
 
 expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr '[' (ranges (',' ranges)*)? ']'  # slice
-    | UN_OP expr                  # unary
+    | op=('+'|'-'|'~'|'!')  expr  # unary
     | expr op=('*'|'/'|'%') expr  # mulDivMod
     | expr op=('+'|'-')     expr  # addSub
     | expr op=SHIFT_OP      expr  # shift
@@ -90,5 +89,3 @@ SHIFT_OP: '<<' | '>>' ;
 CMP_ARR_OP: '<' | '<='
           | '>' | '>='
           ;
-
-UN_OP: '+' | '-' | '~' | '!' ;

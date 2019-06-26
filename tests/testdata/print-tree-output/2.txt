@@ -72,7 +72,7 @@ source
                             ]
                       +
                       expr
-                        ~  [line 3, offset: 35]
+                        ~
                         expr
                           expr
                             default  [line 3, offset: 36]
@@ -110,7 +110,7 @@ source
                               a  [line 6, offset: 16]
                             -
                             expr
-                              !  [line 6, offset: 20]
+                              !
                               expr
                                 expr
                                   b  [line 6, offset: 22]

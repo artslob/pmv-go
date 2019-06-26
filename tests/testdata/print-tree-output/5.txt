@@ -86,18 +86,18 @@ source
                 expr
                   expr
                     expr
-                      !  [line 5, offset: 8]
+                      !
                       expr
                         a  [line 5, offset: 9]
                     *
                     expr
-                      !  [line 5, offset: 13]
+                      !
                       expr
                         b  [line 5, offset: 14]
                   +
                   expr
                     expr
-                      ~  [line 5, offset: 18]
+                      ~
                       expr
                         z  [line 5, offset: 19]
                     /
@@ -139,6 +139,49 @@ source
                 %
                 expr
                   5  [line 6, offset: 20]
+        ;
+      statement
+        expr
+          a  [line 7, offset: 4]
+          =
+          expr
+            -
+            expr
+              1  [line 7, offset: 9]
+        ;
+      statement
+        expr
+          a  [line 8, offset: 4]
+          =
+          expr
+            expr
+              a  [line 8, offset: 8]
+            +
+            expr
+              -
+              expr
+                1  [line 8, offset: 13]
+        ;
+      statement
+        expr
+          a  [line 9, offset: 4]
+          =
+          expr
+            expr
+              a  [line 9, offset: 8]
+            +
+            expr
+              -
+              expr
+                -
+                expr
+                  -
+                  expr
+                    -
+                    expr
+                      -
+                      expr
+                        1  [line 9, offset: 17]
         ;
       end
   <EOF>
