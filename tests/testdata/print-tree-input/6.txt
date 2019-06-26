@@ -1,0 +1,20 @@
+def qwe()
+    var a bool;
+    var a byte;
+    var a int;
+    var a uint;
+    var a long;
+    var a ulong;
+    var a char;
+    var a string;
+    var a bool = true;
+    var a byte = 255;
+    var a int = 42;
+    var a uint = 3;
+    var a long = 1;
+    var a ulong = 1;
+    var a char = 'c';
+    var a string = "some \n string";
+    var a customType = 1;
+    var _some_var int array[10] array[10] = 1;
+end
