@@ -34,29 +34,32 @@ func lab1_main() {
 	}
 }
 
-var input = `
+func lab2_main() {
+	var input = `
 def func()
 	do {
-		a += b;
+		a = a + b;
 		if b > 10 then
 			break;
 		end
 		do {
-			b += a;
+			b = b + a;
 			if b == 10 then
 				break;
 			end
 		}
 		until b < 42;
-		b *= 2;
+		b = b * 2;
 	} until a < 3;
 	print(t);
 end
 `
-
-func main() {
 	head := lab2.ParseInputToCFG(input)
 	printer := lab2.NewCfgPrinter()
 	printer.Print(head)
 	fmt.Print(printer.String())
+}
+
+func main() {
+	lab2_main()
 }
