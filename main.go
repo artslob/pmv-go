@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/artslob/pmv-go/lab1"
 	"github.com/artslob/pmv-go/lab2"
+	"github.com/artslob/pmv-go/lab3"
 	"io/ioutil"
 	"log"
 	"os"
@@ -66,6 +67,16 @@ end
 	fmt.Print(printer.String())
 }
 
+func lab3Main() {
+	var input = `
+def func()
+	a = (5 + 10) * (4 / 2);
+end
+`
+	listener := lab3.GenerateCode(input)
+	_ = listener
+}
+
 func main() {
-	lab2Main()
+	lab3Main()
 }
