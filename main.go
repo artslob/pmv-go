@@ -12,8 +12,8 @@ import (
 
 var (
 	// to disable warning about unused functions
-	_ = lab1_main
-	_ = lab2_main
+	_ = lab1Main
+	_ = lab2Main
 )
 
 func checkError(e error) {
@@ -23,7 +23,7 @@ func checkError(e error) {
 	}
 }
 
-func lab1_main() {
+func lab1Main() {
 	CommandLine := flag.NewFlagSet("lab1", flag.ExitOnError)
 	inputFilename := CommandLine.String("i", "input.txt", "Input file with text of a program to parse.")
 	outputFilename := CommandLine.String("o", "", "Output file where parsed tree will be written. Default - stdout.")
@@ -40,7 +40,7 @@ func lab1_main() {
 	}
 }
 
-func lab2_main() {
+func lab2Main() {
 	var input = `
 def func()
 	do {
@@ -67,5 +67,5 @@ end
 }
 
 func main() {
-	lab2_main()
+	lab2Main()
 }
