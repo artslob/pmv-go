@@ -10,6 +10,12 @@ import (
 	"os"
 )
 
+var (
+	// to disable warning about unused functions
+	_ = lab1_main
+	_ = lab2_main
+)
+
 func checkError(e error) {
 	if e != nil {
 		log.Println(e)
