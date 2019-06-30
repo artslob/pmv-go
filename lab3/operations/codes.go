@@ -34,8 +34,14 @@ const (
 	Or  = iota
 	Xor = iota
 
-	PushChar = iota
-	PushInt  = iota
+	// push 1 byte to stack from command argument
+	PushByte = iota
+	// push 4 bytes to stack from command argument
+	PushInt = iota
+	// push 8 bytes to stack from command argument
+	PushLong = iota
+	// push 4 bytes to stack from command argument
+	PushReference = iota
 
 	// store 1 byte from stack to local variable with #index
 	StoreByte = iota
