@@ -1,10 +1,14 @@
 package commands
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type PushCommand struct {
-	code   Code
-	length int
+	code      Code
+	length    int
+	argString string
 }
 
 func (cmd PushCommand) GetOpCode() Code {
@@ -16,7 +20,10 @@ func (cmd PushCommand) Length() int {
 }
 
 func (cmd PushCommand) String() string {
-	return cmd.code.String()
+	if cmd.argString == "" {
+		return cmd.GetOpCode().String()
+	}
+	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), cmd.argString)
 }
 
 type PushByteCommand struct {
@@ -25,11 +32,7 @@ type PushByteCommand struct {
 }
 
 func NewPushByteCommand(arg byte) *PushByteCommand {
-	return &PushByteCommand{PushCommand: PushCommand{code: PushByte, length: 2}, Arg: arg}
-}
-
-func (cmd PushByteCommand) String() string {
-	return fmt.Sprintf("%s %d", cmd.GetOpCode().String(), cmd.Arg)
+	return &PushByteCommand{PushCommand: PushCommand{code: PushByte, length: 2, argString: strconv.Itoa(int(arg))}, Arg: arg}
 }
 
 type PushIntCommand struct {
@@ -38,11 +41,7 @@ type PushIntCommand struct {
 }
 
 func NewPushIntCommand(arg int32) *PushIntCommand {
-	return &PushIntCommand{PushCommand: PushCommand{code: PushInt, length: 5}, Arg: arg}
-}
-
-func (cmd PushIntCommand) String() string {
-	return fmt.Sprintf("%s %d", cmd.GetOpCode().String(), cmd.Arg)
+	return &PushIntCommand{PushCommand: PushCommand{code: PushInt, length: 5, argString: strconv.Itoa(int(arg))}, Arg: arg}
 }
 
 type PushLongCommand struct {
@@ -51,11 +50,7 @@ type PushLongCommand struct {
 }
 
 func NewPushLongCommand(arg int64) *PushLongCommand {
-	return &PushLongCommand{PushCommand: PushCommand{code: PushLong, length: 9}, Arg: arg}
-}
-
-func (cmd PushLongCommand) String() string {
-	return fmt.Sprintf("%s %d", cmd.GetOpCode().String(), cmd.Arg)
+	return &PushLongCommand{PushCommand: PushCommand{code: PushLong, length: 9, argString: strconv.FormatInt(arg, 10)}, Arg: arg}
 }
 
 type PushReferenceCommand struct {
@@ -64,9 +59,5 @@ type PushReferenceCommand struct {
 }
 
 func NewPushReferenceCommand(arg int32) *PushReferenceCommand {
-	return &PushReferenceCommand{PushCommand: PushCommand{code: PushReference, length: 5}, Arg: arg}
-}
-
-func (cmd PushReferenceCommand) String() string {
-	return fmt.Sprintf("%s %d", cmd.GetOpCode().String(), cmd.Arg)
+	return &PushReferenceCommand{PushCommand: PushCommand{code: PushReference, length: 5, argString: strconv.Itoa(int(arg))}, Arg: arg}
 }
