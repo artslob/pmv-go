@@ -6,7 +6,13 @@ const (
 	Nop  Code = iota
 	Halt      = iota
 
-	Neg = iota
+	// negate 1 byte on the stack
+	NegByte = iota
+	// negate 4 bytes on the stack
+	NegInt = iota
+	// negate 8 bytes on the stack
+	NegLong = iota
+
 	Not = iota
 
 	Mul = iota
