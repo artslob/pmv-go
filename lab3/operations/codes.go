@@ -6,11 +6,11 @@ const (
 	Nop  Code = iota
 	Halt      = iota
 
-	// negate 1 byte on the stack
+	// negate byte on the stack
 	NegByte = iota
-	// negate 4 bytes on the stack
+	// negate int on the stack
 	NegInt = iota
-	// negate 8 bytes on the stack
+	// negate long on the stack
 	NegLong = iota
 
 	Not = iota
@@ -40,30 +40,30 @@ const (
 	Or  = iota
 	Xor = iota
 
-	// push 1 byte to stack from command argument
+	// push byte to stack from command argument
 	PushByte = iota
-	// push 4 bytes to stack from command argument
+	// push int to stack from command argument
 	PushInt = iota
-	// push 8 bytes to stack from command argument
+	// push long to stack from command argument
 	PushLong = iota
-	// push 4 bytes to stack from command argument
+	// push reference to stack from command argument
 	PushReference = iota
 
-	// store 1 byte from stack to local variable with #index
+	// store byte from stack to local variable with #index
 	StoreByte = iota
-	// store 4 bytes from stack to local variable with #index
+	// store int from stack to local variable with #index
 	StoreInt = iota
-	// store 8 bytes from stack to local variable with #index
+	// store long from stack to local variable with #index
 	StoreLong = iota
-	// store 4 bytes from stack to local variable with #index
+	// store reference from stack to local variable with #index
 	StoreReference = iota
 
-	// fetch 1 byte from local variable with #index onto the stack
+	// fetch byte from local variable with #index onto the stack
 	FetchByte = iota
-	// fetch 4 bytes from local variable with #index onto the stack
+	// fetch int from local variable with #index onto the stack
 	FetchInt = iota
-	// fetch 8 bytes from local variable with #index onto the stack
+	// fetch long from local variable with #index onto the stack
 	FetchLong = iota
-	// fetch 4 bytes from local variable with #index onto the stack
+	// fetch reference from local variable with #index onto the stack
 	FetchReference = iota
 )
