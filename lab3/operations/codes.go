@@ -37,6 +37,21 @@ const (
 	PushChar = iota
 	PushInt  = iota
 
-	StoreChar = iota
-	StoreInt  = iota
+	// store 1 byte from stack to local variable with #index
+	StoreByte = iota
+	// store 4 bytes from stack to local variable with #index
+	StoreInt = iota
+	// store 8 bytes from stack to local variable with #index
+	StoreLong = iota
+	// store 4 bytes from stack to local variable with #index
+	StoreReference = iota
+
+	// fetch 1 byte from local variable with #index onto the stack
+	FetchByte = iota
+	// fetch 4 bytes from local variable with #index onto the stack
+	FetchInt = iota
+	// fetch 8 bytes from local variable with #index onto the stack
+	FetchLong = iota
+	// fetch 4 bytes from local variable with #index onto the stack
+	FetchReference = iota
 )
