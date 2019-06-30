@@ -1,4 +1,4 @@
-package operations
+package commands
 
 type Code byte
 
