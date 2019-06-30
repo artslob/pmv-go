@@ -3,67 +3,67 @@ package operations
 type Code byte
 
 const (
-	Nop  Code = iota
-	Halt      = iota
+	Nop Code = iota
+	Halt
 
 	// negate byte on the stack
-	NegByte = iota
+	NegByte
 	// negate int on the stack
-	NegInt = iota
+	NegInt
 	// negate long on the stack
-	NegLong = iota
+	NegLong
 
-	Not = iota
+	Not
 
-	Mul = iota
-	Div = iota
-	Mod = iota
+	Mul
+	Div
+	Mod
 
-	Add = iota
-	Sub = iota
+	Add
+	Sub
 
-	IfEqZero     = iota
-	IfNotEqZero  = iota
-	IfLessZero   = iota
-	IfLessEqZero = iota
-	IfGtZero     = iota
-	IfGtEqZero   = iota
+	IfEqZero
+	IfNotEqZero
+	IfLessZero
+	IfLessEqZero
+	IfGtZero
+	IfGtEqZero
 
-	IfEq     = iota
-	IfNotEq  = iota
-	IfLess   = iota
-	IfLessEq = iota
-	IfGt     = iota
-	IfGtEq   = iota
+	IfEq
+	IfNotEq
+	IfLess
+	IfLessEq
+	IfGt
+	IfGtEq
 
-	And = iota
-	Or  = iota
-	Xor = iota
+	And
+	Or
+	Xor
 
 	// push byte to stack from command argument
-	PushByte = iota
+	PushByte
 	// push int to stack from command argument
-	PushInt = iota
+	PushInt
 	// push long to stack from command argument
-	PushLong = iota
+	PushLong
 	// push reference to stack from command argument
-	PushReference = iota
+	PushReference
 
 	// store byte from stack to local variable with #index
-	StoreByte = iota
+	StoreByte
 	// store int from stack to local variable with #index
-	StoreInt = iota
+	StoreInt
 	// store long from stack to local variable with #index
-	StoreLong = iota
+	StoreLong
 	// store reference from stack to local variable with #index
-	StoreReference = iota
+	StoreReference
 
 	// fetch byte from local variable with #index onto the stack
-	FetchByte = iota
+	FetchByte
 	// fetch int from local variable with #index onto the stack
-	FetchInt = iota
+	FetchInt
 	// fetch long from local variable with #index onto the stack
-	FetchLong = iota
+	FetchLong
 	// fetch reference from local variable with #index onto the stack
-	FetchReference = iota
+	FetchReference
 )
