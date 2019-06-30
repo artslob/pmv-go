@@ -2,16 +2,30 @@ package commands
 
 import "fmt"
 
+type PushCommand struct {
+	code   Code
+	length int
+}
+
+func (cmd PushCommand) GetOpCode() Code {
+	return cmd.code
+}
+
+func (cmd PushCommand) Length() int {
+	return cmd.length
+}
+
+func (cmd PushCommand) String() string {
+	return cmd.code.String()
+}
+
 type PushByteCommand struct {
+	PushCommand
 	Arg byte
 }
 
-func (cmd PushByteCommand) GetOpCode() Code {
-	return PushByte
-}
-
-func (cmd PushByteCommand) Length() int {
-	return 2
+func NewPushByteCommand(arg byte) *PushByteCommand {
+	return &PushByteCommand{PushCommand: PushCommand{code: PushByte, length: 2}, Arg: arg}
 }
 
 func (cmd PushByteCommand) String() string {
@@ -19,15 +33,12 @@ func (cmd PushByteCommand) String() string {
 }
 
 type PushIntCommand struct {
+	PushCommand
 	Arg int32
 }
 
-func (cmd PushIntCommand) GetOpCode() Code {
-	return PushInt
-}
-
-func (cmd PushIntCommand) Length() int {
-	return 5
+func NewPushIntCommand(arg int32) *PushIntCommand {
+	return &PushIntCommand{PushCommand: PushCommand{code: PushInt, length: 5}, Arg: arg}
 }
 
 func (cmd PushIntCommand) String() string {
@@ -35,15 +46,12 @@ func (cmd PushIntCommand) String() string {
 }
 
 type PushLongCommand struct {
+	PushCommand
 	Arg int64
 }
 
-func (cmd PushLongCommand) GetOpCode() Code {
-	return PushLong
-}
-
-func (cmd PushLongCommand) Length() int {
-	return 9
+func NewPushLongCommand(arg int64) *PushLongCommand {
+	return &PushLongCommand{PushCommand: PushCommand{code: PushLong, length: 9}, Arg: arg}
 }
 
 func (cmd PushLongCommand) String() string {
@@ -51,11 +59,12 @@ func (cmd PushLongCommand) String() string {
 }
 
 type PushReferenceCommand struct {
-	PushIntCommand
+	PushCommand
+	Arg int32
 }
 
-func (cmd PushReferenceCommand) GetOpCode() Code {
-	return PushReference
+func NewPushReferenceCommand(arg int32) *PushReferenceCommand {
+	return &PushReferenceCommand{PushCommand: PushCommand{code: PushReference, length: 5}, Arg: arg}
 }
 
 func (cmd PushReferenceCommand) String() string {
