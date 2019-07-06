@@ -4,6 +4,9 @@ import "fmt"
 
 type Command interface {
 	GetOpCode() Code
+	// Length returns size of command in bytes. Every command takes 1 byte minimum - operation code byte.
+	// Then command can have optional argument, that specify for example index. So if argument is 1 byte, then
+	// length is 2 bytes; if argument is int, then length is 5 bytes.
 	Length() int
 	fmt.Stringer
 }
