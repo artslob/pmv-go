@@ -23,7 +23,9 @@ const (
 	AddInt
 	AddLong
 
-	Sub
+	SubByte
+	SubInt
+	SubLong
 
 	IfEqZero
 	IfNotEqZero
