@@ -18,10 +18,14 @@ const (
 	MulByte
 	MulInt
 	MulLong
+
 	DivByte
 	DivInt
 	DivLong
-	Mod
+
+	ModByte
+	ModInt
+	ModLong
 
 	AddByte
 	AddInt
