@@ -4,7 +4,7 @@ type SubByteCommand struct {
 	BaseCommand
 }
 
-func NewSubByteCommand(arg byte) *SubByteCommand {
+func NewSubByteCommand() *SubByteCommand {
 	return &SubByteCommand{BaseCommand: BaseCommand{code: SubByte}}
 }
 
@@ -12,7 +12,7 @@ type SubIntCommand struct {
 	BaseCommand
 }
 
-func NewSubIntCommand(arg int32) *SubIntCommand {
+func NewSubIntCommand() *SubIntCommand {
 	return &SubIntCommand{BaseCommand: BaseCommand{code: SubInt}}
 }
 
@@ -20,6 +20,6 @@ type SubLongCommand struct {
 	BaseCommand
 }
 
-func NewSubLongCommand(arg int64) *SubLongCommand {
+func NewSubLongCommand() *SubLongCommand {
 	return &SubLongCommand{BaseCommand: BaseCommand{code: SubLong}}
 }

@@ -27,10 +27,9 @@ func (s *CodeGeneratorListener) ExitAddSub(ctx *parser.AddSubContext) {
 	op := ctx.GetOp().GetText()
 	switch op {
 	case "+":
-		// FIXME: add and sub commands do not take arguments
-		s.CommandStack.Push(commands.NewAddIntCommand(0))
+		s.CommandStack.Push(commands.NewAddIntCommand())
 	case "-":
-		s.CommandStack.Push(commands.NewSubIntCommand(0))
+		s.CommandStack.Push(commands.NewSubIntCommand())
 	default:
 		panic("unknown operand at add sub command: " + op)
 	}
