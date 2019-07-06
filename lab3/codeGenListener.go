@@ -22,3 +22,16 @@ func (s *CodeGeneratorListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
 	}
 	s.CommandStack.Push(commands.NewPushIntCommand(int32(i)))
 }
+
+func (s *CodeGeneratorListener) ExitAddSub(ctx *parser.AddSubContext) {
+	op := ctx.GetOp().GetText()
+	switch op {
+	case "+":
+		// FIXME: add and sub commands do not take arguments
+		s.CommandStack.Push(commands.NewAddIntCommand(0))
+	case "-":
+		s.CommandStack.Push(commands.NewSubIntCommand(0))
+	default:
+		panic("unknown operand at add sub command: " + op)
+	}
+}
