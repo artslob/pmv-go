@@ -1,51 +1,25 @@
 package commands
 
-import "strconv"
-
 type AddByteCommand struct {
-	ByteCommand
+	BaseCommand
 }
 
 func NewAddByteCommand(arg byte) *AddByteCommand {
-	return &AddByteCommand{
-		ByteCommand: ByteCommand{
-			BaseCommand: BaseCommand{
-				code:        AddByte,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &AddByteCommand{BaseCommand: BaseCommand{code: AddByte}}
 }
 
 type AddIntCommand struct {
-	Int32Command
+	BaseCommand
 }
 
 func NewAddIntCommand(arg int32) *AddIntCommand {
-	return &AddIntCommand{
-		Int32Command: Int32Command{
-			BaseCommand: BaseCommand{
-				code:        AddInt,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &AddIntCommand{BaseCommand: BaseCommand{code: AddInt}}
 }
 
 type AddLongCommand struct {
-	Int64Command
+	BaseCommand
 }
 
 func NewAddLongCommand(arg int64) *AddLongCommand {
-	return &AddLongCommand{
-		Int64Command: Int64Command{
-			BaseCommand: BaseCommand{
-				code:        AddLong,
-				argAsString: strconv.FormatInt(arg, 10),
-			},
-			Arg: arg,
-		},
-	}
+	return &AddLongCommand{BaseCommand: BaseCommand{code: AddLong}}
 }

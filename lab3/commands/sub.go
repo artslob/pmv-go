@@ -1,51 +1,25 @@
 package commands
 
-import "strconv"
-
 type SubByteCommand struct {
-	ByteCommand
+	BaseCommand
 }
 
 func NewSubByteCommand(arg byte) *SubByteCommand {
-	return &SubByteCommand{
-		ByteCommand: ByteCommand{
-			BaseCommand: BaseCommand{
-				code:        SubByte,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &SubByteCommand{BaseCommand: BaseCommand{code: SubByte}}
 }
 
 type SubIntCommand struct {
-	Int32Command
+	BaseCommand
 }
 
 func NewSubIntCommand(arg int32) *SubIntCommand {
-	return &SubIntCommand{
-		Int32Command: Int32Command{
-			BaseCommand: BaseCommand{
-				code:        SubInt,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &SubIntCommand{BaseCommand: BaseCommand{code: SubInt}}
 }
 
 type SubLongCommand struct {
-	Int64Command
+	BaseCommand
 }
 
 func NewSubLongCommand(arg int64) *SubLongCommand {
-	return &SubLongCommand{
-		Int64Command: Int64Command{
-			BaseCommand: BaseCommand{
-				code:        SubLong,
-				argAsString: strconv.FormatInt(arg, 10),
-			},
-			Arg: arg,
-		},
-	}
+	return &SubLongCommand{BaseCommand: BaseCommand{code: SubLong}}
 }

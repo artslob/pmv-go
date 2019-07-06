@@ -70,7 +70,7 @@ end
 func lab3Main() {
 	var input = `
 def func()
-	a = (5 + 10) * (4 / 2);
+	a = (5 + 10) - (4 + 2);
 end
 `
 	listener := lab3.GenerateCode(input)
