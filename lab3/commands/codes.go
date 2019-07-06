@@ -15,7 +15,9 @@ const (
 
 	Not
 
-	Mul
+	MulByte
+	MulInt
+	MulLong
 	Div
 	Mod
 
