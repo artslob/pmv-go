@@ -13,7 +13,6 @@ type Command interface {
 
 type BaseCommand struct {
 	code      Code
-	length    int
 	argString string
 }
 
@@ -22,7 +21,7 @@ func (cmd BaseCommand) GetOpCode() Code {
 }
 
 func (cmd BaseCommand) Length() int {
-	return cmd.length
+	return 1
 }
 
 func (cmd BaseCommand) String() string {
@@ -30,4 +29,31 @@ func (cmd BaseCommand) String() string {
 		return cmd.GetOpCode().String()
 	}
 	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), cmd.argString)
+}
+
+type ByteCommand struct {
+	BaseCommand
+	Arg byte
+}
+
+func (cmd ByteCommand) Length() int {
+	return 2
+}
+
+type Int32Command struct {
+	BaseCommand
+	Arg int32
+}
+
+func (cmd Int32Command) Length() int {
+	return 5
+}
+
+type Int64Command struct {
+	BaseCommand
+	Arg int64
+}
+
+func (cmd Int64Command) Length() int {
+	return 9
 }
