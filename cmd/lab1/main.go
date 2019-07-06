@@ -4,17 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"github.com/artslob/pmv-go/lab1"
-	"github.com/artslob/pmv-go/lab2"
-	"github.com/artslob/pmv-go/lab3"
 	"io/ioutil"
 	"log"
 	"os"
-)
-
-var (
-	// to disable warning about unused functions
-	_ = lab1Main
-	_ = lab2Main
 )
 
 func checkError(e error) {
@@ -24,7 +16,7 @@ func checkError(e error) {
 	}
 }
 
-func lab1Main() {
+func main() {
 	CommandLine := flag.NewFlagSet("lab1", flag.ExitOnError)
 	inputFilename := CommandLine.String("i", "input.txt", "Input file with text of a program to parse.")
 	outputFilename := CommandLine.String("o", "", "Output file where parsed tree will be written. Default - stdout.")
@@ -39,44 +31,4 @@ func lab1Main() {
 		err := ioutil.WriteFile(*outputFilename, []byte(output), 0644)
 		checkError(err)
 	}
-}
-
-func lab2Main() {
-	var input = `
-def func()
-	do {
-		a = a + b;
-		if b > 10 then
-			break;
-		end
-		do {
-			b = b + a;
-			if b == 10 then
-				break;
-			end
-		}
-		until b < 42;
-		b = b * 2;
-	} until a < 3;
-	print(t);
-end
-`
-	head := lab2.ParseInputToCFG(input)
-	printer := lab2.NewCfgPrinter()
-	printer.Print(head)
-	fmt.Print(printer.String())
-}
-
-func lab3Main() {
-	var input = `
-def func()
-	a = (5 + 10) - (4 + 2);
-end
-`
-	listener := lab3.GenerateCode(input)
-	fmt.Println(lab3.GetBytecodeString(*listener))
-}
-
-func main() {
-	lab3Main()
 }
