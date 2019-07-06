@@ -1,23 +1,11 @@
 package commands
 
-import (
-	"strconv"
-)
-
 type PushByteCommand struct {
 	ByteCommand
 }
 
 func NewPushByteCommand(arg byte) *PushByteCommand {
-	return &PushByteCommand{
-		ByteCommand: ByteCommand{
-			BaseCommand: BaseCommand{
-				code:        PushByte,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &PushByteCommand{ByteCommand: *NewByteCommand(PushByte, arg)}
 }
 
 type PushIntCommand struct {
@@ -25,15 +13,7 @@ type PushIntCommand struct {
 }
 
 func NewPushIntCommand(arg int32) *PushIntCommand {
-	return &PushIntCommand{
-		Int32Command: Int32Command{
-			BaseCommand: BaseCommand{
-				code:        PushInt,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &PushIntCommand{Int32Command: *NewInt32Command(PushInt, arg)}
 }
 
 type PushLongCommand struct {
@@ -41,15 +21,7 @@ type PushLongCommand struct {
 }
 
 func NewPushLongCommand(arg int64) *PushLongCommand {
-	return &PushLongCommand{
-		Int64Command: Int64Command{
-			BaseCommand: BaseCommand{
-				code:        PushLong,
-				argAsString: strconv.FormatInt(arg, 10),
-			},
-			Arg: arg,
-		},
-	}
+	return &PushLongCommand{Int64Command: *NewInt64Command(PushLong, arg)}
 }
 
 type PushReferenceCommand struct {
@@ -57,13 +29,5 @@ type PushReferenceCommand struct {
 }
 
 func NewPushReferenceCommand(arg int32) *PushReferenceCommand {
-	return &PushReferenceCommand{
-		Int32Command: Int32Command{
-			BaseCommand: BaseCommand{
-				code:        PushReference,
-				argAsString: strconv.Itoa(int(arg)),
-			},
-			Arg: arg,
-		},
-	}
+	return &PushReferenceCommand{Int32Command: *NewInt32Command(PushReference, arg)}
 }

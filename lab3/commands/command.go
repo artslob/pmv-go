@@ -1,6 +1,9 @@
 package commands
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type Command interface {
 	GetOpCode() Code
@@ -42,6 +45,16 @@ func (cmd ByteCommand) Length() int {
 	return 2
 }
 
+func NewByteCommand(code Code, arg byte) *ByteCommand {
+	return &ByteCommand{
+		BaseCommand: BaseCommand{
+			code:        code,
+			argAsString: strconv.Itoa(int(arg)),
+		},
+		Arg: arg,
+	}
+}
+
 type Int32Command struct {
 	BaseCommand
 	Arg int32
@@ -51,6 +64,16 @@ func (cmd Int32Command) Length() int {
 	return 5
 }
 
+func NewInt32Command(code Code, arg int32) *Int32Command {
+	return &Int32Command{
+		BaseCommand: BaseCommand{
+			code:        code,
+			argAsString: strconv.Itoa(int(arg)),
+		},
+		Arg: arg,
+	}
+}
+
 type Int64Command struct {
 	BaseCommand
 	Arg int64
@@ -58,4 +81,14 @@ type Int64Command struct {
 
 func (cmd Int64Command) Length() int {
 	return 9
+}
+
+func NewInt64Command(code Code, arg int64) *Int64Command {
+	return &Int64Command{
+		BaseCommand: BaseCommand{
+			code:        code,
+			argAsString: strconv.FormatInt(arg, 10),
+		},
+		Arg: arg,
+	}
 }
