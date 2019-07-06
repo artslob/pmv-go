@@ -1,0 +1,7 @@
+PushInt 5
+PushInt 10
+AddInt
+PushInt 4
+PushInt 2
+AddInt
+SubInt
