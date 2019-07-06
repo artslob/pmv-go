@@ -19,7 +19,10 @@ const (
 	Div
 	Mod
 
-	Add
+	AddByte
+	AddInt
+	AddLong
+
 	Sub
 
 	IfEqZero
