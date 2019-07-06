@@ -18,7 +18,9 @@ const (
 	MulByte
 	MulInt
 	MulLong
-	Div
+	DivByte
+	DivInt
+	DivLong
 	Mod
 
 	AddByte
