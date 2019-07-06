@@ -12,8 +12,8 @@ func NewPushByteCommand(arg byte) *PushByteCommand {
 	return &PushByteCommand{
 		ByteCommand: ByteCommand{
 			BaseCommand: BaseCommand{
-				code:      PushByte,
-				argString: strconv.Itoa(int(arg)),
+				code:        PushByte,
+				argAsString: strconv.Itoa(int(arg)),
 			},
 			Arg: arg,
 		},
@@ -28,8 +28,8 @@ func NewPushIntCommand(arg int32) *PushIntCommand {
 	return &PushIntCommand{
 		Int32Command: Int32Command{
 			BaseCommand: BaseCommand{
-				code:      PushInt,
-				argString: strconv.Itoa(int(arg)),
+				code:        PushInt,
+				argAsString: strconv.Itoa(int(arg)),
 			},
 			Arg: arg,
 		},
@@ -44,8 +44,8 @@ func NewPushLongCommand(arg int64) *PushLongCommand {
 	return &PushLongCommand{
 		Int64Command: Int64Command{
 			BaseCommand: BaseCommand{
-				code:      PushLong,
-				argString: strconv.FormatInt(arg, 10),
+				code:        PushLong,
+				argAsString: strconv.FormatInt(arg, 10),
 			},
 			Arg: arg,
 		},
@@ -60,8 +60,8 @@ func NewPushReferenceCommand(arg int32) *PushReferenceCommand {
 	return &PushReferenceCommand{
 		Int32Command: Int32Command{
 			BaseCommand: BaseCommand{
-				code:      PushReference,
-				argString: strconv.Itoa(int(arg)),
+				code:        PushReference,
+				argAsString: strconv.Itoa(int(arg)),
 			},
 			Arg: arg,
 		},
