@@ -74,7 +74,7 @@ def func()
 end
 `
 	listener := lab3.GenerateCode(input)
-	_ = listener
+	fmt.Println(lab3.GetBytecodeString(*listener))
 }
 
 func main() {
