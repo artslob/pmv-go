@@ -12,7 +12,9 @@ type Command interface {
 }
 
 type BaseCommand struct {
-	code        Code
+	code Code
+	// If command length > 1 (it has optional arguments, like index) then this field contains string
+	// representation of this argument.
 	argAsString string
 }
 
