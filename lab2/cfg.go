@@ -12,7 +12,6 @@ type CFGListener struct {
 	start       blocks.Block
 	end         blocks.Block
 	blocks      blocks.Stack
-	level       int
 	loopId      int
 	loopIdStack utils.IntStack
 	breaks      map[int][]blocks.Block
