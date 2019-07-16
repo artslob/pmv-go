@@ -1,18 +1,18 @@
 digraph G {
--1 [label="START"]
--1 ->  1
- 1 [label="t=1;"]
+ 1 [label="func"]
  1 ->  2
- 2 [label="a==1",shape=diamond]
- 2 ->  4
- 4 [label=""]
- 4 ->  5
- 5 [label=""]
- 5 ->  7
- 7 [label="c=3;"]
- 7 -> -2
--2 [label="END"]
- 2 ->  3 [color=blue1]
- 3 [label="a=2;"]
+ 2 [label="t=1;"]
+ 2 ->  3
+ 3 [label="a==1",shape=diamond]
  3 ->  5
+ 5 [label=""]
+ 5 ->  6
+ 6 [label=""]
+ 6 ->  8
+ 8 [label="c=3;"]
+ 8 ->  9
+ 9 [label="END"]
+ 3 ->  4 [color=blue1]
+ 4 [label="a=2;"]
+ 4 ->  6
 }

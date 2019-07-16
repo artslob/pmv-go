@@ -1,21 +1,21 @@
 digraph G {
--1 [label="START"]
--1 ->  1
- 1 [label="a>10",shape=diamond]
- 1 ->  4
- 4 [label=""]
- 4 ->  5
+ 1 [label="func"]
+ 1 ->  2
+ 2 [label="a>10",shape=diamond]
+ 2 ->  5
  5 [label=""]
- 5 ->  7
- 7 [label="a<5",shape=diamond]
- 7 ->  9
- 9 [label="print(a);"]
- 9 -> -2
--2 [label="END"]
- 7 ->  1 [color=blue1]
- 1 ->  2 [color=blue1]
- 2 [label="t=t+2;"]
- 2 ->  3
- 3 [label="a=a+a;"]
- 3 ->  5
+ 5 ->  6
+ 6 [label=""]
+ 6 ->  8
+ 8 [label="a<5",shape=diamond]
+ 8 -> 10
+10 [label="print(a);"]
+10 -> 11
+11 [label="END"]
+ 8 ->  2 [color=blue1]
+ 2 ->  3 [color=blue1]
+ 3 [label="t=t+2;"]
+ 3 ->  4
+ 4 [label="a=a+a;"]
+ 4 ->  6
 }

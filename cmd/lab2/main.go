@@ -24,6 +24,10 @@ def func()
 	} until a < 3;
 	print(t);
 end
+
+def qwe()
+	a = 1;
+end
 `
 	head := lab2.ParseInputToCFG(input)
 	printer := lab2.NewCfgPrinter()

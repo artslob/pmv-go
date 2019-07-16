@@ -8,23 +8,16 @@ import (
 
 type CFGListener struct {
 	*parser.BaseLangListener
-	currentId   int
-	start       blocks.Block
-	end         blocks.Block
-	blocks      blocks.Stack
-	loopId      int
-	loopIdStack utils.IntStack
-	breaks      map[int][]blocks.Block
+	currentId      int
+	blocks         blocks.Stack
+	loopId         int
+	loopIdStack    utils.IntStack
+	breaks         map[int][]blocks.Block
+	functionBlocks blocks.Stack
 }
 
 func NewCFGListener() *CFGListener {
-	l := &CFGListener{
-		breaks: map[int][]blocks.Block{},
-	}
-	l.start = &blocks.DefaultBlock{Id: -1, Text: "START"}
-	l.end = &blocks.DefaultBlock{Id: -2, Text: "END"}
-	l.blocks.Push(l.start)
-	return l
+	return &CFGListener{breaks: map[int][]blocks.Block{}}
 }
 
 func (s *CFGListener) nextId() int {
@@ -41,14 +34,19 @@ func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
 	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText()})
 }
 
+func (s *CFGListener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
+	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.IDENTIFIER().GetText()})
+}
+
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
-	s.blocks.Push(s.end)
+	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: "END"})
 	for s.blocks.Size() > 1 {
 		last := s.blocks.Pop()
 		second := s.blocks.Pop()
 		second.SetNext(last)
 		s.blocks.Push(second)
 	}
+	s.functionBlocks.Push(s.blocks.Pop())
 }
 
 func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {

@@ -1,5 +1,5 @@
 digraph G {
--1 [label="START"]
--1 -> -2
--2 [label="END"]
+ 1 [label="func"]
+ 1 ->  2
+ 2 [label="END"]
 }
