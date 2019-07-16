@@ -35,7 +35,7 @@ func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
 }
 
 func (s *CFGListener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
-	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.IDENTIFIER().GetText()})
+	s.blocks.Push(blocks.NewFunction(s.nextId(), ctx.IDENTIFIER().GetText()))
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
