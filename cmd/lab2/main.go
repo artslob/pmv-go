@@ -16,18 +16,10 @@ func simple() {
 	var input = `
 def func()
 	do {
-		a = a + b;
+		a = a + qwe();
 		if b > 10 then
 			break;
 		end
-		do {
-			b = b + a;
-			if b == 10 then
-				break;
-			end
-		}
-		until b < 42;
-		b = b * 2;
 	} until a < 3;
 	print(t);
 end
@@ -36,10 +28,8 @@ def qwe()
 	a = 1;
 end
 `
-	head := lab2.ParseInputToCFG(input)
-	printer := lab2.NewCfgPrinter()
-	printer.Print(head)
-	fmt.Print(printer.String())
+	functionBlocks := lab2.ParseInputToCFG(input)
+	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks).String())
 }
 
 func checkError(err error) {
@@ -91,10 +81,8 @@ func lab2Main() {
 		content, err := ioutil.ReadFile(file)
 		checkError(err)
 		allContent = append(allContent, content...)
-		head := lab2.ParseInputToCFG(string(content))
-		printer := lab2.NewCfgPrinter()
-		printer.Print(head)
-		output := printer.String()
+		functionBlocks := lab2.ParseInputToCFG(string(content))
+		output := lab2.NewCfgPrinter().Print(functionBlocks).String()
 		err = ioutil.WriteFile(filepath.Join(*dir, fmt.Sprintf("%s.pmv", file)), []byte(output), 0644)
 		checkError(err)
 	}

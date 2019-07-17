@@ -28,7 +28,7 @@ func NewCfgPrinter() *cfgPrinter {
 	return &cfgPrinter{visitedIds: map[int]struct{}{}, builder: &strings.Builder{}}
 }
 
-func (p *cfgPrinter) Print(functionBlocks []blocks.Block) {
+func (p *cfgPrinter) Print(functionBlocks []blocks.Block) *cfgPrinter {
 	if p.builder.Len() == 0 {
 		p.builder.WriteString("digraph G {\n")
 		defer p.builder.WriteString("}\n")
@@ -36,6 +36,7 @@ func (p *cfgPrinter) Print(functionBlocks []blocks.Block) {
 	for _, b := range functionBlocks {
 		p.print(b)
 	}
+	return p
 }
 
 func (p *cfgPrinter) print(block blocks.Block) {
