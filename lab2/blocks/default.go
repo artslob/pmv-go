@@ -5,7 +5,7 @@ import "fmt"
 type DefaultBlock struct {
 	Id            int
 	Text          string
-	FunctionCalls []string
+	FunctionCalls map[string]struct{}
 	next          Block
 }
 

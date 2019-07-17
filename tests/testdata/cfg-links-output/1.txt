@@ -3,7 +3,6 @@ digraph G {
  1 ->  2
  2 [label="a=a+qwe()+qwe();"]
  2 ->  5 [style=dotted]
- 2 ->  5 [style=dotted]
  2 ->  3
  3 [label="print(t);"]
  3 ->  4
@@ -16,7 +15,6 @@ digraph G {
  7 ->  1 [style=dotted]
  7 ->  8
  8 [label="z=func()+test()+func()+t();"]
- 8 ->  1 [style=dotted]
  8 ->  1 [style=dotted]
  8 ->  9
  9 [label="END"]

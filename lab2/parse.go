@@ -56,7 +56,7 @@ func (p *cfgPrinter) print(block blocks.Block) {
 	p.visitedIds[block.GetId()] = struct{}{}
 	p.builder.WriteString(block.String())
 	if defaultBlock, ok := block.(*blocks.DefaultBlock); ok && len(defaultBlock.FunctionCalls) != 0 {
-		for _, name := range defaultBlock.FunctionCalls {
+		for name := range defaultBlock.FunctionCalls {
 			if id, exist := p.functionNames[name]; exist {
 				p.builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), id))
 			}

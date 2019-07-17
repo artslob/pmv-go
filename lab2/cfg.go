@@ -14,7 +14,7 @@ type CFGListener struct {
 	loopIdStack    utils.IntStack
 	breaks         map[int][]blocks.Block
 	functionBlocks blocks.Stack
-	calls          []string
+	calls          map[string]struct{}
 }
 
 func NewCFGListener() *CFGListener {
@@ -31,7 +31,7 @@ func (s *CFGListener) nextLoopId() int {
 	return s.loopId
 }
 
-func (s *CFGListener) getCalls() []string {
+func (s *CFGListener) getCalls() map[string]struct{} {
 	result := s.calls
 	s.calls = nil
 	return result
@@ -46,7 +46,10 @@ func (s *CFGListener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
 }
 
 func (s *CFGListener) ExitCall(ctx *parser.CallContext) {
-	s.calls = append(s.calls, ctx.Expr(0).GetText())
+	if s.calls == nil {
+		s.calls = map[string]struct{}{}
+	}
+	s.calls[ctx.Expr(0).GetText()] = struct{}{}
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
