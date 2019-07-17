@@ -16,8 +16,9 @@ func ParseInputToCFG(input string) []blocks.Block {
 }
 
 type cfgPrinter struct {
-	visitedIds map[int]struct{}
-	builder    *strings.Builder
+	visitedIds    map[int]struct{}
+	builder       *strings.Builder
+	functionNames map[string]int
 }
 
 func (p cfgPrinter) String() string {
@@ -25,13 +26,22 @@ func (p cfgPrinter) String() string {
 }
 
 func NewCfgPrinter() *cfgPrinter {
-	return &cfgPrinter{visitedIds: map[int]struct{}{}, builder: &strings.Builder{}}
+	return &cfgPrinter{
+		visitedIds:    map[int]struct{}{},
+		builder:       &strings.Builder{},
+		functionNames: map[string]int{},
+	}
 }
 
-func (p *cfgPrinter) Print(functionBlocks []blocks.Block) *cfgPrinter {
+func (p *cfgPrinter) Print(functionBlocks []blocks.Block, drawFuncCalls bool) *cfgPrinter {
 	if p.builder.Len() == 0 {
 		p.builder.WriteString("digraph G {\n")
 		defer p.builder.WriteString("}\n")
+	}
+	if drawFuncCalls {
+		for _, b := range functionBlocks {
+			p.functionNames[b.(*blocks.Function).Text] = b.GetId()
+		}
 	}
 	for _, b := range functionBlocks {
 		p.print(b)
@@ -45,6 +55,13 @@ func (p *cfgPrinter) print(block blocks.Block) {
 	}
 	p.visitedIds[block.GetId()] = struct{}{}
 	p.builder.WriteString(block.String())
+	if defaultBlock, ok := block.(*blocks.DefaultBlock); ok && len(defaultBlock.FunctionCalls) != 0 {
+		for _, name := range defaultBlock.FunctionCalls {
+			if id, exist := p.functionNames[name]; exist {
+				p.builder.WriteString(fmt.Sprintf("%2d -> %2d [style=dotted]\n", block.GetId(), id))
+			}
+		}
+	}
 	if block.GetNext() != nil {
 		p.builder.WriteString(fmt.Sprintf("%2d -> %2d\n", block.GetId(), block.GetNext().GetId()))
 		p.print(block.GetNext())

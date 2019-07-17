@@ -29,7 +29,7 @@ def qwe()
 end
 `
 	functionBlocks := lab2.ParseInputToCFG(input)
-	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks).String())
+	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks, false).String())
 }
 
 func checkError(err error) {
@@ -82,7 +82,7 @@ func lab2Main() {
 		checkError(err)
 		allContent = append(allContent, content...)
 		functionBlocks := lab2.ParseInputToCFG(string(content))
-		output := lab2.NewCfgPrinter().Print(functionBlocks).String()
+		output := lab2.NewCfgPrinter().Print(functionBlocks, false).String()
 		err = ioutil.WriteFile(filepath.Join(*dir, fmt.Sprintf("%s.pmv", file)), []byte(output), 0644)
 		checkError(err)
 	}

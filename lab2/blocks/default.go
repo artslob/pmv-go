@@ -3,9 +3,10 @@ package blocks
 import "fmt"
 
 type DefaultBlock struct {
-	Id   int
-	Text string
-	next Block
+	Id            int
+	Text          string
+	FunctionCalls []string
+	next          Block
 }
 
 func (b *DefaultBlock) GetAddress() Block {

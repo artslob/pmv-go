@@ -14,6 +14,7 @@ type CFGListener struct {
 	loopIdStack    utils.IntStack
 	breaks         map[int][]blocks.Block
 	functionBlocks blocks.Stack
+	calls          []string
 }
 
 func NewCFGListener() *CFGListener {
@@ -30,12 +31,22 @@ func (s *CFGListener) nextLoopId() int {
 	return s.loopId
 }
 
+func (s *CFGListener) getCalls() []string {
+	result := s.calls
+	s.calls = nil
+	return result
+}
+
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
-	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText()})
+	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText(), FunctionCalls: s.getCalls()})
 }
 
 func (s *CFGListener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
 	s.blocks.Push(blocks.NewFunction(s.nextId(), ctx.IDENTIFIER().GetText()))
+}
+
+func (s *CFGListener) ExitCall(ctx *parser.CallContext) {
+	s.calls = append(s.calls, ctx.Expr(0).GetText())
 }
 
 func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
@@ -52,8 +63,9 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
 	s.blocks.Push(&blocks.BranchBlock{
 		DefaultBlock: blocks.DefaultBlock{
-			Id:   s.nextId(),
-			Text: ctx.Expr().GetText(),
+			Id:            s.nextId(),
+			Text:          ctx.Expr().GetText(),
+			FunctionCalls: s.getCalls(),
 		},
 	})
 }
@@ -109,7 +121,13 @@ func (s *CFGListener) ExitWhileBody(ctx *parser.WhileBodyContext) {
 }
 
 func (s *CFGListener) ExitWhileExpr(ctx *parser.WhileExprContext) {
-	s.blocks.Push(&blocks.BranchBlock{DefaultBlock: blocks.DefaultBlock{Id: s.nextId(), Text: ctx.Expr().GetText()}})
+	s.blocks.Push(&blocks.BranchBlock{
+		DefaultBlock: blocks.DefaultBlock{
+			Id:            s.nextId(),
+			Text:          ctx.Expr().GetText(),
+			FunctionCalls: s.getCalls(),
+		},
+	})
 }
 
 func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
@@ -130,7 +148,13 @@ func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
 }
 
 func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
-	s.blocks.Push(&blocks.BranchBlock{DefaultBlock: blocks.DefaultBlock{Id: s.nextId(), Text: ctx.Expr().GetText()}})
+	s.blocks.Push(&blocks.BranchBlock{
+		DefaultBlock: blocks.DefaultBlock{
+			Id:            s.nextId(),
+			Text:          ctx.Expr().GetText(),
+			FunctionCalls: s.getCalls(),
+		},
+	})
 }
 
 func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {

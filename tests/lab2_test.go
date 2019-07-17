@@ -11,9 +11,7 @@ type CfgTestParser struct {
 
 func (CfgTestParser) Parse(got string) string {
 	head := lab2.ParseInputToCFG(string(got))
-	printer := lab2.NewCfgPrinter()
-	printer.Print(head)
-	return printer.String()
+	return lab2.NewCfgPrinter().Print(head, false).String()
 }
 
 func (CfgTestParser) InputDir() string {
