@@ -15,21 +15,18 @@ import (
 func simple() {
 	var input = `
 def func()
-	do {
-		a = a + qwe();
-		if b > 10 then
-			break;
-		end
-	} until a < 3;
+	a = a + qwe() + qwe();
 	print(t);
 end
 
 def qwe()
 	a = 1;
+	func();
+	z = func() + test() + func() + t();
 end
 `
 	functionBlocks := lab2.ParseInputToCFG(input)
-	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks, false).String())
+	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks, true).String())
 }
 
 func checkError(err error) {

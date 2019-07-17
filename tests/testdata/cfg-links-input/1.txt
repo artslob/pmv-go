@@ -1,0 +1,10 @@
+def func()
+	a = a + qwe() + qwe();
+	print(t);
+end
+
+def qwe()
+	a = 1;
+	func();
+	z = func() + test() + func() + t();
+end
