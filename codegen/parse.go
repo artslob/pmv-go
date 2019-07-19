@@ -3,6 +3,7 @@ package codegen
 import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/artslob/pmv-go/ast"
+	"github.com/artslob/pmv-go/cfg"
 	"strings"
 )
 
@@ -14,6 +15,15 @@ func GenerateCode(input string) *CodeGeneratorListener {
 }
 
 func GetBytecodeString(listener CodeGeneratorListener) string {
+	var builder strings.Builder
+	for _, cmd := range listener.CommandStack {
+		builder.WriteString(cmd.String())
+		builder.WriteString("\n")
+	}
+	return builder.String()
+}
+
+func GetBytecodeStringFromCfg(listener *cfg.CFGListener) string {
 	var builder strings.Builder
 	for _, cmd := range listener.CommandStack {
 		builder.WriteString(cmd.String())

@@ -1,6 +1,9 @@
 package tests
 
 import (
+	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/artslob/pmv-go/ast"
+	"github.com/artslob/pmv-go/cfg"
 	"github.com/artslob/pmv-go/codegen"
 	"path/filepath"
 	"testing"
@@ -10,8 +13,9 @@ type BytecodeGeneratorTest struct {
 }
 
 func (BytecodeGeneratorTest) Parse(got string) string {
-	listener := codegen.GenerateCode(got)
-	return codegen.GetBytecodeString(*listener)
+	listener := cfg.NewCFGListener()
+	antlr.ParseTreeWalkerDefault.Walk(listener, ast.GetParser(got).Source())
+	return codegen.GetBytecodeStringFromCfg(listener)
 }
 
 func (BytecodeGeneratorTest) InputDir() string {

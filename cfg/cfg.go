@@ -2,8 +2,10 @@ package cfg
 
 import (
 	"github.com/artslob/pmv-go/cfg/blocks"
+	"github.com/artslob/pmv-go/codegen/commands"
 	"github.com/artslob/pmv-go/parser"
 	"github.com/artslob/pmv-go/utils"
+	"strconv"
 )
 
 type CFGListener struct {
@@ -15,6 +17,7 @@ type CFGListener struct {
 	breaks         map[int][]blocks.Block
 	functionBlocks blocks.Stack
 	calls          map[string]struct{}
+	CommandStack   commands.Stack
 }
 
 func NewCFGListener() *CFGListener {
@@ -35,6 +38,26 @@ func (s *CFGListener) getCalls() map[string]struct{} {
 	result := s.calls
 	s.calls = nil
 	return result
+}
+
+func (s *CFGListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
+	i, err := strconv.ParseInt(ctx.GetText(), 10, 32)
+	if err != nil {
+		panic(err)
+	}
+	s.CommandStack.Push(commands.NewPushIntCommand(int32(i)))
+}
+
+func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
+	op := ctx.GetOp().GetText()
+	switch op {
+	case "+":
+		s.CommandStack.Push(commands.NewAddIntCommand())
+	case "-":
+		s.CommandStack.Push(commands.NewSubIntCommand())
+	default:
+		panic("unknown operand at add sub command: " + op)
+	}
 }
 
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
