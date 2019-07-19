@@ -36,7 +36,7 @@ func directoryExist(path string) (bool, error) {
 	return false, nil
 }
 
-func lab2Main() {
+func main() {
 	filesFlag := flag.String("files", "", "Set of source filesFlag to be parsed. "+
 		`Specify like this: -files "in1 in2 in3".`)
 	dir := flag.String("dir", "", "Output dir for cfg representation")
@@ -68,8 +68,4 @@ func lab2Main() {
 	}
 
 	// TODO all content file with links between function calls
-}
-
-func main() {
-	lab2Main()
 }
