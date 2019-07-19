@@ -117,12 +117,6 @@ func (s *BaseLangListener) EnterBlock(ctx *BlockContext) {}
 // ExitBlock is called when production block is exited.
 func (s *BaseLangListener) ExitBlock(ctx *BlockContext) {}
 
-// EnterVariableStatement is called when production variableStatement is entered.
-func (s *BaseLangListener) EnterVariableStatement(ctx *VariableStatementContext) {}
-
-// ExitVariableStatement is called when production variableStatement is exited.
-func (s *BaseLangListener) ExitVariableStatement(ctx *VariableStatementContext) {}
-
 // EnterIfExpr is called when production ifExpr is entered.
 func (s *BaseLangListener) EnterIfExpr(ctx *IfExprContext) {}
 
@@ -170,12 +164,6 @@ func (s *BaseLangListener) EnterBlockBody(ctx *BlockBodyContext) {}
 
 // ExitBlockBody is called when production blockBody is exited.
 func (s *BaseLangListener) ExitBlockBody(ctx *BlockBodyContext) {}
-
-// EnterVariable is called when production variable is entered.
-func (s *BaseLangListener) EnterVariable(ctx *VariableContext) {}
-
-// ExitVariable is called when production variable is exited.
-func (s *BaseLangListener) ExitVariable(ctx *VariableContext) {}
 
 // EnterMulDivMod is called when production mulDivMod is entered.
 func (s *BaseLangListener) EnterMulDivMod(ctx *MulDivModContext) {}

@@ -56,9 +56,6 @@ type LangListener interface {
 	// EnterBlock is called when entering the block production.
 	EnterBlock(c *BlockContext)
 
-	// EnterVariableStatement is called when entering the variableStatement production.
-	EnterVariableStatement(c *VariableStatementContext)
-
 	// EnterIfExpr is called when entering the ifExpr production.
 	EnterIfExpr(c *IfExprContext)
 
@@ -82,9 +79,6 @@ type LangListener interface {
 
 	// EnterBlockBody is called when entering the blockBody production.
 	EnterBlockBody(c *BlockBodyContext)
-
-	// EnterVariable is called when entering the variable production.
-	EnterVariable(c *VariableContext)
 
 	// EnterMulDivMod is called when entering the mulDivMod production.
 	EnterMulDivMod(c *MulDivModContext)
@@ -203,9 +197,6 @@ type LangListener interface {
 	// ExitBlock is called when exiting the block production.
 	ExitBlock(c *BlockContext)
 
-	// ExitVariableStatement is called when exiting the variableStatement production.
-	ExitVariableStatement(c *VariableStatementContext)
-
 	// ExitIfExpr is called when exiting the ifExpr production.
 	ExitIfExpr(c *IfExprContext)
 
@@ -229,9 +220,6 @@ type LangListener interface {
 
 	// ExitBlockBody is called when exiting the blockBody production.
 	ExitBlockBody(c *BlockBodyContext)
-
-	// ExitVariable is called when exiting the variable production.
-	ExitVariable(c *VariableContext)
 
 	// ExitMulDivMod is called when exiting the mulDivMod production.
 	ExitMulDivMod(c *MulDivModContext)

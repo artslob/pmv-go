@@ -37,7 +37,6 @@ statement: ifExpr ifThen ifElse? 'end'          # if
          | 'break' ';'                          # break
          | expr ';'                             # expression
          | ('begin'|'{') blockBody ('end'|'}')  # block
-         | variable                             # variableStatement
          ;
 
 ifExpr: 'if' expr ;
@@ -51,8 +50,6 @@ untilStatement: 'do' statement ;
 untilExpr: ('while'|'until') expr ;
 
 blockBody: statement* ;
-
-variable: 'var' name=IDENTIFIER typeRef ('=' expr )? ';' ;
 
 /******** EXPR ********/
 
@@ -69,7 +66,7 @@ expr: expr '(' (expr (',' expr)*)? ')'      # call
     | expr op='|'  expr           # or
     | expr op='&&' expr           # andLogical
     | expr op='||' expr           # orLogical
-    | name=IDENTIFIER op='=' expr # assign
+    | expr op='='  expr           # assign
     | '(' expr ')'                # braces
     | boolRule                    # literalBool
     | STR                         # literalStr
