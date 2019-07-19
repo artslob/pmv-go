@@ -52,6 +52,7 @@ func main() {
 	filesFlag := flag.String("files", "", "Set of source filesFlag to be parsed. "+
 		`Specify like this: -files "in1 in2 in3".`)
 	dir := flag.String("dir", "", "Output dir for cfg representation")
+	cfName := flag.String("cfName", "out.cfg", "filename for concatenated cfg")
 	flag.Parse()
 	flagIsRequired(filesFlag, "files")
 	flagIsRequired(dir, "dir")
@@ -75,10 +76,10 @@ func main() {
 		cf.append(content)
 		functionBlocks := lab2.ParseInputToCFG(string(content))
 		output := lab2.NewCfgPrinter().Print(functionBlocks, false).String()
-		err = ioutil.WriteFile(filepath.Join(*dir, fmt.Sprintf("%s.pmv", file)), []byte(output), 0644)
+		err = ioutil.WriteFile(filepath.Join(*dir, fmt.Sprintf("%s.cfg", file)), []byte(output), 0644)
 		checkError(err)
 	}
 
 	output := lab2.NewCfgPrinter().Print(lab2.ParseInputToCFG(string(cf)), true).String()
-	err = ioutil.WriteFile(filepath.Join(*dir, "concatenated.pmv"), []byte(output), 0644)
+	err = ioutil.WriteFile(filepath.Join(*dir, *cfName), []byte(output), 0644)
 }
