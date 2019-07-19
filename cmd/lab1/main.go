@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/artslob/pmv-go/lab1"
+	"github.com/artslob/pmv-go/ast"
 	"io/ioutil"
 	"log"
 	"os"
@@ -24,7 +24,7 @@ func main() {
 	data, err := ioutil.ReadFile(*inputFilename)
 	checkError(err)
 	input := string(data)
-	output := lab1.ParseAstToString(input)
+	output := ast.ParseAstToString(input)
 	if *outputFilename == "" {
 		fmt.Print(output)
 	} else {

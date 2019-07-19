@@ -1,4 +1,4 @@
-package lab1
+package ast
 
 import (
 	"fmt"

@@ -3,13 +3,13 @@ package lab2
 import (
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/artslob/pmv-go/lab1"
+	"github.com/artslob/pmv-go/ast"
 	"github.com/artslob/pmv-go/lab2/blocks"
 	"strings"
 )
 
 func ParseInputToCFG(input string) []blocks.Block {
-	p := lab1.GetParser(input)
+	p := ast.GetParser(input)
 	listener := NewCFGListener()
 	antlr.ParseTreeWalkerDefault.Walk(listener, p.Source())
 	return listener.functionBlocks

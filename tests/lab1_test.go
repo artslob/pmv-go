@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/artslob/pmv-go/lab1"
+	"github.com/artslob/pmv-go/ast"
 	"path/filepath"
 	"testing"
 )
@@ -10,7 +10,7 @@ type TreePrintParser struct {
 }
 
 func (TreePrintParser) Parse(got string) string {
-	return lab1.ParseAstToString(got)
+	return ast.ParseAstToString(got)
 }
 
 func (TreePrintParser) InputDir() string {

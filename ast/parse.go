@@ -1,4 +1,4 @@
-package lab1
+package ast
 
 import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
