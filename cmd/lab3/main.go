@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/artslob/pmv-go/lab3"
+	"github.com/artslob/pmv-go/codegen"
 )
 
 func main() {
@@ -11,6 +11,6 @@ def func()
 	a = (5 + 10) - (4 + 2);
 end
 `
-	listener := lab3.GenerateCode(input)
-	fmt.Println(lab3.GetBytecodeString(*listener))
+	listener := codegen.GenerateCode(input)
+	fmt.Println(codegen.GetBytecodeString(*listener))
 }

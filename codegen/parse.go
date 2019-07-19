@@ -1,4 +1,4 @@
-package lab3
+package codegen
 
 import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"

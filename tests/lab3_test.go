@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/artslob/pmv-go/lab3"
+	"github.com/artslob/pmv-go/codegen"
 	"path/filepath"
 	"testing"
 )
@@ -10,8 +10,8 @@ type BytecodeGeneratorTest struct {
 }
 
 func (BytecodeGeneratorTest) Parse(got string) string {
-	listener := lab3.GenerateCode(got)
-	return lab3.GetBytecodeString(*listener)
+	listener := codegen.GenerateCode(got)
+	return codegen.GetBytecodeString(*listener)
 }
 
 func (BytecodeGeneratorTest) InputDir() string {

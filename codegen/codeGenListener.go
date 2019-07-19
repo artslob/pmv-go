@@ -1,7 +1,7 @@
-package lab3
+package codegen
 
 import (
-	"github.com/artslob/pmv-go/lab3/commands"
+	"github.com/artslob/pmv-go/codegen/commands"
 	"github.com/artslob/pmv-go/parser"
 	"strconv"
 )
