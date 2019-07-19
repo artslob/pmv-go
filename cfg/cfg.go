@@ -1,7 +1,7 @@
-package lab2
+package cfg
 
 import (
-	"github.com/artslob/pmv-go/lab2/blocks"
+	"github.com/artslob/pmv-go/cfg/blocks"
 	"github.com/artslob/pmv-go/parser"
 	"github.com/artslob/pmv-go/utils"
 )

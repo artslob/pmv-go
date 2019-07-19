@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/artslob/pmv-go/lab2"
+	"github.com/artslob/pmv-go/cfg"
 )
 
 func main() {
@@ -18,6 +18,6 @@ def qwe()
 	z = func() + test() + func() + t();
 end
 `
-	functionBlocks := lab2.ParseInputToCFG(input)
-	fmt.Print(lab2.NewCfgPrinter().Print(functionBlocks, true).String())
+	functionBlocks := cfg.ParseInputToCFG(input)
+	fmt.Print(cfg.NewCfgPrinter().Print(functionBlocks, true).String())
 }

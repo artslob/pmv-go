@@ -4,7 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/artslob/pmv-go/lab2"
+	"github.com/artslob/pmv-go/cfg"
 	"io/ioutil"
 	"log"
 	"os"
@@ -74,12 +74,12 @@ func main() {
 		content, err := ioutil.ReadFile(file)
 		checkError(err)
 		cf.append(content)
-		functionBlocks := lab2.ParseInputToCFG(string(content))
-		output := lab2.NewCfgPrinter().Print(functionBlocks, false).String()
+		functionBlocks := cfg.ParseInputToCFG(string(content))
+		output := cfg.NewCfgPrinter().Print(functionBlocks, false).String()
 		err = ioutil.WriteFile(filepath.Join(*dir, fmt.Sprintf("%s.cfg", file)), []byte(output), 0644)
 		checkError(err)
 	}
 
-	output := lab2.NewCfgPrinter().Print(lab2.ParseInputToCFG(string(cf)), true).String()
+	output := cfg.NewCfgPrinter().Print(cfg.ParseInputToCFG(string(cf)), true).String()
 	err = ioutil.WriteFile(filepath.Join(*dir, *cfName), []byte(output), 0644)
 }

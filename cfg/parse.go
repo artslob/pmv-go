@@ -1,10 +1,10 @@
-package lab2
+package cfg
 
 import (
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/artslob/pmv-go/ast"
-	"github.com/artslob/pmv-go/lab2/blocks"
+	"github.com/artslob/pmv-go/cfg/blocks"
 	"strings"
 )
 

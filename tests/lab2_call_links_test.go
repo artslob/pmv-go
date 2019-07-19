@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/artslob/pmv-go/lab2"
+	"github.com/artslob/pmv-go/cfg"
 	"path/filepath"
 	"testing"
 )
@@ -10,8 +10,8 @@ type CfgLinksTestParser struct {
 }
 
 func (CfgLinksTestParser) Parse(got string) string {
-	head := lab2.ParseInputToCFG(string(got))
-	return lab2.NewCfgPrinter().Print(head, true).String()
+	head := cfg.ParseInputToCFG(string(got))
+	return cfg.NewCfgPrinter().Print(head, true).String()
 }
 
 func (CfgLinksTestParser) InputDir() string {
