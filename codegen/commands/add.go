@@ -1,49 +1,25 @@
 package commands
 
-import "fmt"
-
-type AddBaseCommand struct {
-	BaseCommand
-	Left  Command
-	Right Command
-}
-
-func (cmd AddBaseCommand) String() string {
-	return fmt.Sprintf("%s\n%s\n%s", cmd.Left.String(), cmd.Right.String(), cmd.BaseCommand.String())
-}
-
 type AddByteCommand struct {
-	AddBaseCommand
+	TwoChildCommand
 }
 
 func NewAddByteCommand(right, left Command) *AddByteCommand {
-	return &AddByteCommand{AddBaseCommand{
-		BaseCommand: BaseCommand{code: AddByte},
-		Left:        left,
-		Right:       right,
-	}}
+	return &AddByteCommand{NewTwoChildCommand(AddByte, left, right)}
 }
 
 type AddIntCommand struct {
-	AddBaseCommand
+	TwoChildCommand
 }
 
 func NewAddIntCommand(right, left Command) *AddIntCommand {
-	return &AddIntCommand{AddBaseCommand{
-		BaseCommand: BaseCommand{code: AddInt},
-		Left:        left,
-		Right:       right,
-	}}
+	return &AddIntCommand{NewTwoChildCommand(AddInt, left, right)}
 }
 
 type AddLongCommand struct {
-	AddBaseCommand
+	TwoChildCommand
 }
 
 func NewAddLongCommand(right, left Command) *AddLongCommand {
-	return &AddLongCommand{AddBaseCommand{
-		BaseCommand: BaseCommand{code: AddLong},
-		Left:        left,
-		Right:       right,
-	}}
+	return &AddLongCommand{NewTwoChildCommand(AddLong, left, right)}
 }
