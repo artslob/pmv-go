@@ -1,25 +1,49 @@
 package commands
 
-type MulByteCommand struct {
+import "fmt"
+
+type MulBaseCommand struct {
 	BaseCommand
+	Left  Command
+	Right Command
 }
 
-func NewMulByteCommand() *MulByteCommand {
-	return &MulByteCommand{BaseCommand: BaseCommand{code: MulByte}}
+func (cmd MulBaseCommand) String() string {
+	return fmt.Sprintf("%s\n%s\n%s", cmd.Left.String(), cmd.Right.String(), cmd.BaseCommand.String())
+}
+
+type MulByteCommand struct {
+	MulBaseCommand
+}
+
+func NewMulByteCommand(right, left Command) *MulByteCommand {
+	return &MulByteCommand{MulBaseCommand{
+		BaseCommand: BaseCommand{code: MulByte},
+		Left:        left,
+		Right:       right,
+	}}
 }
 
 type MulIntCommand struct {
-	BaseCommand
+	MulBaseCommand
 }
 
-func NewMulIntCommand() *MulIntCommand {
-	return &MulIntCommand{BaseCommand: BaseCommand{code: MulInt}}
+func NewMulIntCommand(right, left Command) *MulIntCommand {
+	return &MulIntCommand{MulBaseCommand{
+		BaseCommand: BaseCommand{code: MulInt},
+		Left:        left,
+		Right:       right,
+	}}
 }
 
 type MulLongCommand struct {
-	BaseCommand
+	MulBaseCommand
 }
 
-func NewMulLongCommand() *MulLongCommand {
-	return &MulLongCommand{BaseCommand: BaseCommand{code: MulLong}}
+func NewMulLongCommand(right, left Command) *MulLongCommand {
+	return &MulLongCommand{MulBaseCommand{
+		BaseCommand: BaseCommand{code: MulLong},
+		Left:        left,
+		Right:       right,
+	}}
 }

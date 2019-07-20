@@ -12,6 +12,7 @@ func main() {
 	var input = `
 def func()
 	a = (5 + 10) - (4 + 2);
+	b = 7 * 9 / 6 + 3 / 2 + 5 % 2;
 end
 `
 	listener := cfg.NewCFGListener()

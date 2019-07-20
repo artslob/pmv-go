@@ -5,3 +5,16 @@ PushInt 4
 PushInt 2
 AddInt
 SubInt
+PushInt 7
+PushInt 9
+MulInt
+PushInt 6
+DivInt
+PushInt 3
+PushInt 2
+DivInt
+AddInt
+PushInt 5
+PushInt 2
+ModInt
+AddInt

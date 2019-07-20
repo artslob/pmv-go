@@ -63,6 +63,23 @@ func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
 	}
 }
 
+func (s *CFGListener) ExitMulDivMod(ctx *parser.MulDivModContext) {
+	if s.CommandStack.Size() < 2 {
+		return // TODO remove
+	}
+	op := ctx.GetOp().GetText()
+	switch op {
+	case "*":
+		s.CommandStack.Push(commands.NewMulIntCommand(s.CommandStack.Pop(), s.CommandStack.Pop()))
+	case "/":
+		s.CommandStack.Push(commands.NewDivIntCommand(s.CommandStack.Pop(), s.CommandStack.Pop()))
+	case "%":
+		s.CommandStack.Push(commands.NewModIntCommand(s.CommandStack.Pop(), s.CommandStack.Pop()))
+	default:
+		panic("unknown operand at add sub command: " + op)
+	}
+}
+
 func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
 	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText(), FunctionCalls: s.getCalls()})
 }
