@@ -93,16 +93,27 @@ func NewInt64Command(code Code, arg int64) *Int64Command {
 	}
 }
 
+type LeftRightCommands struct {
+	Left, Right Command
+}
+
+func NewLeftRightCommands(left Command, right Command) LeftRightCommands {
+	return LeftRightCommands{Left: left, Right: right}
+}
+
+func (cmd LeftRightCommands) String() string {
+	return fmt.Sprintf("%s\n%s", cmd.Left.String(), cmd.Right.String())
+}
+
 type TwoChildCommand struct {
 	BaseCommand
-	Left  Command
-	Right Command
+	children LeftRightCommands
 }
 
 func NewTwoChildCommand(code Code, left Command, right Command) TwoChildCommand {
-	return TwoChildCommand{BaseCommand: BaseCommand{code: code}, Left: left, Right: right}
+	return TwoChildCommand{BaseCommand: BaseCommand{code: code}, children: NewLeftRightCommands(left, right)}
 }
 
 func (cmd TwoChildCommand) String() string {
-	return fmt.Sprintf("%s\n%s\n%s", cmd.Left.String(), cmd.Right.String(), cmd.BaseCommand.String())
+	return fmt.Sprintf("%s\n%s", cmd.children.String(), cmd.BaseCommand.String())
 }
