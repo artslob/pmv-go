@@ -15,7 +15,7 @@ def func()
 	b = 7 * 9 / 6 + 3 / 2 + 5 % 2;
 end
 `
-	listener := cfg.NewCFGListener()
+	listener := cfg.NewCFGListener(true)
 	antlr.ParseTreeWalkerDefault.Walk(listener, ast.GetParser(input).Source())
 	fmt.Println(codegen.GetBytecodeStringFromCfg(listener))
 }

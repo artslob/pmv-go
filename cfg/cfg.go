@@ -17,11 +17,12 @@ type CFGListener struct {
 	breaks         map[int][]blocks.Block
 	functionBlocks blocks.Stack
 	calls          map[string]struct{}
+	generateCode   bool
 	CommandStack   commands.Stack
 }
 
-func NewCFGListener() *CFGListener {
-	return &CFGListener{breaks: map[int][]blocks.Block{}}
+func NewCFGListener(generateCode bool) *CFGListener {
+	return &CFGListener{breaks: map[int][]blocks.Block{}, generateCode: generateCode}
 }
 
 func (s *CFGListener) nextId() int {
@@ -49,8 +50,8 @@ func (s *CFGListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
 }
 
 func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
-	if s.CommandStack.Size() < 2 {
-		return // TODO remove
+	if !s.generateCode {
+		return
 	}
 	op := ctx.GetOp().GetText()
 	switch op {
@@ -64,8 +65,8 @@ func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
 }
 
 func (s *CFGListener) ExitMulDivMod(ctx *parser.MulDivModContext) {
-	if s.CommandStack.Size() < 2 {
-		return // TODO remove
+	if !s.generateCode {
+		return
 	}
 	op := ctx.GetOp().GetText()
 	switch op {

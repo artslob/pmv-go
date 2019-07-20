@@ -13,7 +13,7 @@ type BytecodeGeneratorTest struct {
 }
 
 func (BytecodeGeneratorTest) Parse(got string) string {
-	listener := cfg.NewCFGListener()
+	listener := cfg.NewCFGListener(true)
 	antlr.ParseTreeWalkerDefault.Walk(listener, ast.GetParser(got).Source())
 	return codegen.GetBytecodeStringFromCfg(listener)
 }
