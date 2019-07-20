@@ -49,12 +49,15 @@ func (s *CFGListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
 }
 
 func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
+	if s.CommandStack.Size() < 2 {
+		return // TODO remove
+	}
 	op := ctx.GetOp().GetText()
 	switch op {
 	case "+":
-		s.CommandStack.Push(commands.NewAddIntCommand())
+		s.CommandStack.Push(commands.NewAddIntCommand(s.CommandStack.Pop(), s.CommandStack.Pop()))
 	case "-":
-		s.CommandStack.Push(commands.NewSubIntCommand())
+		s.CommandStack.Push(commands.NewSubIntCommand(s.CommandStack.Pop(), s.CommandStack.Pop()))
 	default:
 		panic("unknown operand at add sub command: " + op)
 	}

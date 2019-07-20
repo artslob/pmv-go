@@ -1,25 +1,49 @@
 package commands
 
-type AddByteCommand struct {
+import "fmt"
+
+type AddBaseCommand struct {
 	BaseCommand
+	Left  Command
+	Right Command
 }
 
-func NewAddByteCommand() *AddByteCommand {
-	return &AddByteCommand{BaseCommand: BaseCommand{code: AddByte}}
+func (cmd AddBaseCommand) String() string {
+	return fmt.Sprintf("%s\n%s\n%s", cmd.Left.String(), cmd.Right.String(), cmd.BaseCommand.String())
+}
+
+type AddByteCommand struct {
+	AddBaseCommand
+}
+
+func NewAddByteCommand(right, left Command) *AddByteCommand {
+	return &AddByteCommand{AddBaseCommand{
+		BaseCommand: BaseCommand{code: AddByte},
+		Left:        left,
+		Right:       right,
+	}}
 }
 
 type AddIntCommand struct {
-	BaseCommand
+	AddBaseCommand
 }
 
-func NewAddIntCommand() *AddIntCommand {
-	return &AddIntCommand{BaseCommand: BaseCommand{code: AddInt}}
+func NewAddIntCommand(right, left Command) *AddIntCommand {
+	return &AddIntCommand{AddBaseCommand{
+		BaseCommand: BaseCommand{code: AddInt},
+		Left:        left,
+		Right:       right,
+	}}
 }
 
 type AddLongCommand struct {
-	BaseCommand
+	AddBaseCommand
 }
 
-func NewAddLongCommand() *AddLongCommand {
-	return &AddLongCommand{BaseCommand: BaseCommand{code: AddLong}}
+func NewAddLongCommand(right, left Command) *AddLongCommand {
+	return &AddLongCommand{AddBaseCommand{
+		BaseCommand: BaseCommand{code: AddLong},
+		Left:        left,
+		Right:       right,
+	}}
 }
