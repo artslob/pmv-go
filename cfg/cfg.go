@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-type CFGListener struct {
+type Listener struct {
 	*parser.BaseLangListener
 	currentId      int
 	blocks         blocks.Stack
@@ -21,27 +21,27 @@ type CFGListener struct {
 	CommandStack   commands.Stack
 }
 
-func NewCFGListener(generateCode bool) *CFGListener {
-	return &CFGListener{breaks: map[int][]blocks.Block{}, generateCode: generateCode}
+func NewCFGListener(generateCode bool) *Listener {
+	return &Listener{breaks: map[int][]blocks.Block{}, generateCode: generateCode}
 }
 
-func (s *CFGListener) nextId() int {
+func (s *Listener) nextId() int {
 	s.currentId++
 	return s.currentId
 }
 
-func (s *CFGListener) nextLoopId() int {
+func (s *Listener) nextLoopId() int {
 	s.loopId++
 	return s.loopId
 }
 
-func (s *CFGListener) getCalls() map[string]struct{} {
+func (s *Listener) getCalls() map[string]struct{} {
 	result := s.calls
 	s.calls = nil
 	return result
 }
 
-func (s *CFGListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
+func (s *Listener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
 	i, err := strconv.ParseInt(ctx.GetText(), 10, 32)
 	if err != nil {
 		panic(err)
@@ -49,7 +49,7 @@ func (s *CFGListener) ExitLiteralDec(ctx *parser.LiteralDecContext) {
 	s.CommandStack.Push(commands.NewPushIntCommand(int32(i)))
 }
 
-func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
+func (s *Listener) ExitAddSub(ctx *parser.AddSubContext) {
 	if !s.generateCode {
 		return
 	}
@@ -64,7 +64,7 @@ func (s *CFGListener) ExitAddSub(ctx *parser.AddSubContext) {
 	}
 }
 
-func (s *CFGListener) ExitMulDivMod(ctx *parser.MulDivModContext) {
+func (s *Listener) ExitMulDivMod(ctx *parser.MulDivModContext) {
 	if !s.generateCode {
 		return
 	}
@@ -81,22 +81,22 @@ func (s *CFGListener) ExitMulDivMod(ctx *parser.MulDivModContext) {
 	}
 }
 
-func (s *CFGListener) ExitExpression(ctx *parser.ExpressionContext) {
+func (s *Listener) ExitExpression(ctx *parser.ExpressionContext) {
 	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: ctx.GetText(), FunctionCalls: s.getCalls()})
 }
 
-func (s *CFGListener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
+func (s *Listener) ExitFuncSignature(ctx *parser.FuncSignatureContext) {
 	s.blocks.Push(blocks.NewFunction(s.nextId(), ctx.IDENTIFIER().GetText()))
 }
 
-func (s *CFGListener) ExitCall(ctx *parser.CallContext) {
+func (s *Listener) ExitCall(ctx *parser.CallContext) {
 	if s.calls == nil {
 		s.calls = map[string]struct{}{}
 	}
 	s.calls[ctx.Expr(0).GetText()] = struct{}{}
 }
 
-func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
+func (s *Listener) ExitFuncDef(ctx *parser.FuncDefContext) {
 	s.blocks.Push(&blocks.DefaultBlock{Id: s.nextId(), Text: "END"})
 	for s.blocks.Size() > 1 {
 		last := s.blocks.Pop()
@@ -107,7 +107,7 @@ func (s *CFGListener) ExitFuncDef(ctx *parser.FuncDefContext) {
 	s.functionBlocks.Push(s.blocks.Pop())
 }
 
-func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
+func (s *Listener) ExitIfExpr(ctx *parser.IfExprContext) {
 	s.blocks.Push(&blocks.BranchBlock{
 		DefaultBlock: blocks.DefaultBlock{
 			Id:            s.nextId(),
@@ -117,7 +117,7 @@ func (s *CFGListener) ExitIfExpr(ctx *parser.IfExprContext) {
 	})
 }
 
-func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
+func (s *Listener) ExitIf(ctx *parser.IfContext) {
 	var else_ blocks.Block
 	if ctx.IfElse() == nil {
 		// stack with only then:   [n]: then, [n-1]: if
@@ -143,7 +143,7 @@ func (s *CFGListener) ExitIf(ctx *parser.IfContext) {
 	s.blocks.Push(&ifBlock)
 }
 
-func (s *CFGListener) ExitBlockBody(ctx *parser.BlockBodyContext) {
+func (s *Listener) ExitBlockBody(ctx *parser.BlockBodyContext) {
 	if ctx.AllStatement() == nil || len(ctx.AllStatement()) == 0 {
 		s.blocks.Push(blocks.NewEmptyBlock(s.nextId()))
 		return
@@ -155,7 +155,7 @@ func (s *CFGListener) ExitBlockBody(ctx *parser.BlockBodyContext) {
 	s.blocks.Push(&group)
 }
 
-func (s *CFGListener) ExitWhileBody(ctx *parser.WhileBodyContext) {
+func (s *Listener) ExitWhileBody(ctx *parser.WhileBodyContext) {
 	if ctx.AllStatement() == nil || len(ctx.AllStatement()) == 0 {
 		s.blocks.Push(blocks.NewEmptyBlock(s.nextId()))
 		return
@@ -167,7 +167,7 @@ func (s *CFGListener) ExitWhileBody(ctx *parser.WhileBodyContext) {
 	s.blocks.Push(&group)
 }
 
-func (s *CFGListener) ExitWhileExpr(ctx *parser.WhileExprContext) {
+func (s *Listener) ExitWhileExpr(ctx *parser.WhileExprContext) {
 	s.blocks.Push(&blocks.BranchBlock{
 		DefaultBlock: blocks.DefaultBlock{
 			Id:            s.nextId(),
@@ -177,7 +177,7 @@ func (s *CFGListener) ExitWhileExpr(ctx *parser.WhileExprContext) {
 	})
 }
 
-func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
+func (s *Listener) ExitLoop(ctx *parser.LoopContext) {
 	currentLoopId := s.loopIdStack.Pop()
 	body := s.blocks.Pop()
 	expr := s.blocks.Pop()
@@ -194,7 +194,7 @@ func (s *CFGListener) ExitLoop(ctx *parser.LoopContext) {
 	delete(s.breaks, currentLoopId)
 }
 
-func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
+func (s *Listener) ExitUntilExpr(ctx *parser.UntilExprContext) {
 	s.blocks.Push(&blocks.BranchBlock{
 		DefaultBlock: blocks.DefaultBlock{
 			Id:            s.nextId(),
@@ -204,7 +204,7 @@ func (s *CFGListener) ExitUntilExpr(ctx *parser.UntilExprContext) {
 	})
 }
 
-func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
+func (s *Listener) ExitRepeat(ctx *parser.RepeatContext) {
 	currentLoopId := s.loopIdStack.Pop()
 	expression := s.blocks.Pop()
 	statement := s.blocks.Pop()
@@ -221,7 +221,7 @@ func (s *CFGListener) ExitRepeat(ctx *parser.RepeatContext) {
 	delete(s.breaks, currentLoopId)
 }
 
-func (s *CFGListener) ExitBreak(ctx *parser.BreakContext) {
+func (s *Listener) ExitBreak(ctx *parser.BreakContext) {
 	if s.loopIdStack.Empty() {
 		panic("encounter break while being outside of loop")
 	}
@@ -231,10 +231,10 @@ func (s *CFGListener) ExitBreak(ctx *parser.BreakContext) {
 	s.breaks[currentLoopId] = append(s.breaks[currentLoopId], breakBlock)
 }
 
-func (s *CFGListener) EnterLoop(ctx *parser.LoopContext) {
+func (s *Listener) EnterLoop(ctx *parser.LoopContext) {
 	s.loopIdStack.Push(s.nextLoopId())
 }
 
-func (s *CFGListener) EnterRepeat(ctx *parser.RepeatContext) {
+func (s *Listener) EnterRepeat(ctx *parser.RepeatContext) {
 	s.loopIdStack.Push(s.nextLoopId())
 }

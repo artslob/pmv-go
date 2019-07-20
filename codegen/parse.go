@@ -23,7 +23,7 @@ func GetBytecodeString(listener CodeGeneratorListener) string {
 	return builder.String()
 }
 
-func GetBytecodeStringFromCfg(listener *cfg.CFGListener) string {
+func GetBytecodeStringFromCfg(listener *cfg.Listener) string {
 	var builder strings.Builder
 	for _, cmd := range listener.CommandStack {
 		builder.WriteString(cmd.String())
