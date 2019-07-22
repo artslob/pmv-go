@@ -1,11 +1,13 @@
 package commands
 
+import "github.com/artslob/pmv-go/codegen/types"
+
 type MulByteCommand struct {
 	TwoChildCommand
 }
 
 func NewMulByteCommand(right, left Command) *MulByteCommand {
-	return &MulByteCommand{NewTwoChildCommand(MulByte, left, right)}
+	return &MulByteCommand{NewTwoChildCommand(MulByte, types.Byte, left, right)}
 }
 
 type MulIntCommand struct {
@@ -13,7 +15,7 @@ type MulIntCommand struct {
 }
 
 func NewMulIntCommand(right, left Command) *MulIntCommand {
-	return &MulIntCommand{NewTwoChildCommand(MulInt, left, right)}
+	return &MulIntCommand{NewTwoChildCommand(MulInt, types.Int, left, right)}
 }
 
 type MulLongCommand struct {
@@ -21,5 +23,5 @@ type MulLongCommand struct {
 }
 
 func NewMulLongCommand(right, left Command) *MulLongCommand {
-	return &MulLongCommand{NewTwoChildCommand(MulLong, left, right)}
+	return &MulLongCommand{NewTwoChildCommand(MulLong, types.Long, left, right)}
 }

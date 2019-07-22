@@ -1,11 +1,13 @@
 package commands
 
+import "github.com/artslob/pmv-go/codegen/types"
+
 type PushByteCommand struct {
 	ByteCommand
 }
 
 func NewPushByteCommand(arg byte) *PushByteCommand {
-	return &PushByteCommand{ByteCommand: *NewByteCommand(PushByte, arg)}
+	return &PushByteCommand{ByteCommand: *NewByteCommand(PushByte, types.Byte, arg)}
 }
 
 type PushIntCommand struct {
@@ -13,7 +15,7 @@ type PushIntCommand struct {
 }
 
 func NewPushIntCommand(arg int32) *PushIntCommand {
-	return &PushIntCommand{Int32Command: *NewInt32Command(PushInt, arg)}
+	return &PushIntCommand{Int32Command: *NewInt32Command(PushInt, types.Int, arg)}
 }
 
 type PushLongCommand struct {
@@ -21,7 +23,7 @@ type PushLongCommand struct {
 }
 
 func NewPushLongCommand(arg int64) *PushLongCommand {
-	return &PushLongCommand{Int64Command: *NewInt64Command(PushLong, arg)}
+	return &PushLongCommand{Int64Command: *NewInt64Command(PushLong, types.Long, arg)}
 }
 
 type PushReferenceCommand struct {
@@ -29,5 +31,5 @@ type PushReferenceCommand struct {
 }
 
 func NewPushReferenceCommand(arg int32) *PushReferenceCommand {
-	return &PushReferenceCommand{Int32Command: *NewInt32Command(PushReference, arg)}
+	return &PushReferenceCommand{Int32Command: *NewInt32Command(PushReference, types.Reference, arg)}
 }

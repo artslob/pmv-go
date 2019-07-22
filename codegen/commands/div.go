@@ -1,11 +1,13 @@
 package commands
 
+import "github.com/artslob/pmv-go/codegen/types"
+
 type DivByteCommand struct {
 	TwoChildCommand
 }
 
 func NewDivByteCommand(right, left Command) *DivByteCommand {
-	return &DivByteCommand{NewTwoChildCommand(DivByte, left, right)}
+	return &DivByteCommand{NewTwoChildCommand(DivByte, types.Byte, left, right)}
 }
 
 type DivIntCommand struct {
@@ -13,7 +15,7 @@ type DivIntCommand struct {
 }
 
 func NewDivIntCommand(right, left Command) *DivIntCommand {
-	return &DivIntCommand{NewTwoChildCommand(DivInt, left, right)}
+	return &DivIntCommand{NewTwoChildCommand(DivInt, types.Int, left, right)}
 }
 
 type DivLongCommand struct {
@@ -21,5 +23,5 @@ type DivLongCommand struct {
 }
 
 func NewDivLongCommand(right, left Command) *DivLongCommand {
-	return &DivLongCommand{NewTwoChildCommand(DivLong, left, right)}
+	return &DivLongCommand{NewTwoChildCommand(DivLong, types.Long, left, right)}
 }

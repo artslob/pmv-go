@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"github.com/artslob/pmv-go/codegen/types"
 	"strconv"
 )
 
@@ -11,11 +12,13 @@ type Command interface {
 	// Then command can have optional argument, that specify for example index. So if argument is 1 byte, then
 	// length is 2 bytes; if argument is int, then length is 5 bytes.
 	Length() int
+	Type() types.Type
 	fmt.Stringer
 }
 
 type BaseCommand struct {
-	code Code
+	code    Code
+	cmdType types.Type
 }
 
 func (cmd BaseCommand) GetOpCode() Code {
@@ -26,12 +29,16 @@ func (cmd BaseCommand) Length() int {
 	return 1
 }
 
+func (cmd BaseCommand) Type() types.Type {
+	return cmd.cmdType
+}
+
 func (cmd BaseCommand) String() string {
 	return cmd.GetOpCode().String()
 }
 
-func NewByteCommand(code Code, arg byte) *ByteCommand {
-	return &ByteCommand{BaseCommand: BaseCommand{code: code}, Arg: arg}
+func NewByteCommand(code Code, cmdType types.Type, arg byte) *ByteCommand {
+	return &ByteCommand{BaseCommand: BaseCommand{code: code, cmdType: cmdType}, Arg: arg}
 }
 
 type ByteCommand struct {
@@ -47,8 +54,8 @@ func (cmd ByteCommand) String() string {
 	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
 }
 
-func NewInt32Command(code Code, arg int32) *Int32Command {
-	return &Int32Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
+func NewInt32Command(code Code, cmdType types.Type, arg int32) *Int32Command {
+	return &Int32Command{BaseCommand: BaseCommand{code: code, cmdType: cmdType}, Arg: arg}
 }
 
 type Int32Command struct {
@@ -64,8 +71,8 @@ func (cmd Int32Command) String() string {
 	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
 }
 
-func NewInt64Command(code Code, arg int64) *Int64Command {
-	return &Int64Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
+func NewInt64Command(code Code, cmdType types.Type, arg int64) *Int64Command {
+	return &Int64Command{BaseCommand: BaseCommand{code: code, cmdType: cmdType}, Arg: arg}
 }
 
 type Int64Command struct {
@@ -98,8 +105,8 @@ type TwoChildCommand struct {
 	children LeftRightCommands
 }
 
-func NewTwoChildCommand(code Code, left Command, right Command) TwoChildCommand {
-	return TwoChildCommand{BaseCommand: BaseCommand{code: code}, children: NewLeftRightCommands(left, right)}
+func NewTwoChildCommand(code Code, cmdType types.Type, left Command, right Command) TwoChildCommand {
+	return TwoChildCommand{BaseCommand: BaseCommand{code: code, cmdType: cmdType}, children: NewLeftRightCommands(left, right)}
 }
 
 func (cmd TwoChildCommand) String() string {

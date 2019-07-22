@@ -1,6 +1,9 @@
 package commands
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/artslob/pmv-go/codegen/types"
+)
 
 type StoreByteCommand struct {
 	ByteCommand
@@ -9,7 +12,7 @@ type StoreByteCommand struct {
 
 func NewStoreByteCommand(arg byte, right, left Command) *StoreByteCommand {
 	return &StoreByteCommand{
-		ByteCommand:       *NewByteCommand(StoreByte, arg),
+		ByteCommand:       *NewByteCommand(StoreByte, types.Store, arg),
 		LeftRightCommands: NewLeftRightCommands(left, right),
 	}
 }
@@ -25,7 +28,7 @@ type StoreIntCommand struct {
 
 func NewStoreIntCommand(arg int32, right, left Command) *StoreIntCommand {
 	return &StoreIntCommand{
-		Int32Command:      *NewInt32Command(StoreInt, arg),
+		Int32Command:      *NewInt32Command(StoreInt, types.Store, arg),
 		LeftRightCommands: NewLeftRightCommands(left, right),
 	}
 }
@@ -41,7 +44,7 @@ type StoreLongCommand struct {
 
 func NewStoreLongCommand(arg int64, right, left Command) *StoreLongCommand {
 	return &StoreLongCommand{
-		Int64Command:      *NewInt64Command(StoreLong, arg),
+		Int64Command:      *NewInt64Command(StoreLong, types.Store, arg),
 		LeftRightCommands: NewLeftRightCommands(left, right),
 	}
 }
@@ -57,7 +60,7 @@ type StoreReferenceCommand struct {
 
 func NewStoreReferenceCommand(arg int32, right, left Command) *StoreReferenceCommand {
 	return &StoreReferenceCommand{
-		Int32Command:      *NewInt32Command(StoreReference, arg),
+		Int32Command:      *NewInt32Command(StoreReference, types.Store, arg),
 		LeftRightCommands: NewLeftRightCommands(left, right),
 	}
 }
