@@ -16,9 +16,6 @@ type Command interface {
 
 type BaseCommand struct {
 	code Code
-	// If command length > 1 (it has optional arguments, like index) then this field contains string
-	// representation of this argument.
-	argAsString string
 }
 
 func (cmd BaseCommand) GetOpCode() Code {
@@ -30,10 +27,7 @@ func (cmd BaseCommand) Length() int {
 }
 
 func (cmd BaseCommand) String() string {
-	if cmd.argAsString == "" {
-		return cmd.GetOpCode().String()
-	}
-	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), cmd.argAsString)
+	return cmd.GetOpCode().String()
 }
 
 type ByteCommand struct {
@@ -46,13 +40,11 @@ func (cmd ByteCommand) Length() int {
 }
 
 func NewByteCommand(code Code, arg byte) *ByteCommand {
-	return &ByteCommand{
-		BaseCommand: BaseCommand{
-			code:        code,
-			argAsString: strconv.Itoa(int(arg)),
-		},
-		Arg: arg,
-	}
+	return &ByteCommand{BaseCommand: BaseCommand{code: code}, Arg: arg}
+}
+
+func (cmd ByteCommand) String() string {
+	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
 }
 
 type Int32Command struct {
@@ -65,13 +57,11 @@ func (cmd Int32Command) Length() int {
 }
 
 func NewInt32Command(code Code, arg int32) *Int32Command {
-	return &Int32Command{
-		BaseCommand: BaseCommand{
-			code:        code,
-			argAsString: strconv.Itoa(int(arg)),
-		},
-		Arg: arg,
-	}
+	return &Int32Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
+}
+
+func (cmd Int32Command) String() string {
+	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
 }
 
 type Int64Command struct {
@@ -84,13 +74,11 @@ func (cmd Int64Command) Length() int {
 }
 
 func NewInt64Command(code Code, arg int64) *Int64Command {
-	return &Int64Command{
-		BaseCommand: BaseCommand{
-			code:        code,
-			argAsString: strconv.FormatInt(arg, 10),
-		},
-		Arg: arg,
-	}
+	return &Int64Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
+}
+
+func (cmd Int64Command) String() string {
+	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.FormatInt(cmd.Arg, 10))
 }
 
 type LeftRightCommands struct {
