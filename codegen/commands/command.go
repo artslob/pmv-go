@@ -30,6 +30,10 @@ func (cmd BaseCommand) String() string {
 	return cmd.GetOpCode().String()
 }
 
+func NewByteCommand(code Code, arg byte) *ByteCommand {
+	return &ByteCommand{BaseCommand: BaseCommand{code: code}, Arg: arg}
+}
+
 type ByteCommand struct {
 	BaseCommand
 	Arg byte
@@ -39,12 +43,12 @@ func (cmd ByteCommand) Length() int {
 	return 2
 }
 
-func NewByteCommand(code Code, arg byte) *ByteCommand {
-	return &ByteCommand{BaseCommand: BaseCommand{code: code}, Arg: arg}
-}
-
 func (cmd ByteCommand) String() string {
 	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
+}
+
+func NewInt32Command(code Code, arg int32) *Int32Command {
+	return &Int32Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
 }
 
 type Int32Command struct {
@@ -56,12 +60,12 @@ func (cmd Int32Command) Length() int {
 	return 5
 }
 
-func NewInt32Command(code Code, arg int32) *Int32Command {
-	return &Int32Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
-}
-
 func (cmd Int32Command) String() string {
 	return fmt.Sprintf("%s %s", cmd.GetOpCode().String(), strconv.Itoa(int(cmd.Arg)))
+}
+
+func NewInt64Command(code Code, arg int64) *Int64Command {
+	return &Int64Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
 }
 
 type Int64Command struct {
@@ -71,10 +75,6 @@ type Int64Command struct {
 
 func (cmd Int64Command) Length() int {
 	return 9
-}
-
-func NewInt64Command(code Code, arg int64) *Int64Command {
-	return &Int64Command{BaseCommand: BaseCommand{code: code}, Arg: arg}
 }
 
 func (cmd Int64Command) String() string {
